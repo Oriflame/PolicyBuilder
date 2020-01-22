@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Oriflame.PolicyBuilder.Example.Controllers
+namespace Oriflame.PolicyBuilder.ApiExample.Controllers
 {
     [ApiController]
     [Route("[controller]")]

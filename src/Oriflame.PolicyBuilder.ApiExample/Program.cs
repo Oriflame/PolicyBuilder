@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Oriflame.PolicyBuilder.Example
+namespace Oriflame.PolicyBuilder.ApiExample
 {
     public class Program
     {

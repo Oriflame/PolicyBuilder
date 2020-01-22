@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Example", "src\Oriflame.PolicyBuilder.Example\Oriflame.PolicyBuilder.Example.csproj", "{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.ApiExample", "src\Oriflame.PolicyBuilder.ApiExample\Oriflame.PolicyBuilder.ApiExample.csproj", "{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4715FD27-24CD-49EF-BD10-23020C689D7F}"
 EndProject

@@ -1,6 +1,6 @@
 using System;
 
-namespace Oriflame.PolicyBuilder.Example
+namespace Oriflame.PolicyBuilder.ApiExample
 {
     public class WeatherForecast
     {
