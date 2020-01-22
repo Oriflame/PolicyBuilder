@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.ApiE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4715FD27-24CD-49EF-BD10-23020C689D7F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Dependencies", "src\Oriflame.PolicyBuilder.Dependencies\Oriflame.PolicyBuilder.Dependencies.csproj", "{88999156-F4CF-4E5F-AB3D-7C5643C37BA3}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Policies", "src\Oriflame.PolicyBuilder.Policies\Oriflame.PolicyBuilder.Policies.csproj", "{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Xml", "src\Oriflame.PolicyBuilder.Xml\Oriflame.PolicyBuilder.Xml.csproj", "{597954CF-C46A-4AD9-92C8-FD273C3557C7}"
@@ -23,10 +21,6 @@ Global
 		{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88999156-F4CF-4E5F-AB3D-7C5643C37BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88999156-F4CF-4E5F-AB3D-7C5643C37BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88999156-F4CF-4E5F-AB3D-7C5643C37BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88999156-F4CF-4E5F-AB3D-7C5643C37BA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,7 +35,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
-		{88999156-F4CF-4E5F-AB3D-7C5643C37BA3} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
 		{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
 		{597954CF-C46A-4AD9-92C8-FD273C3557C7} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
 	EndGlobalSection
