@@ -2,10 +2,9 @@
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
-using Ori.Gateway.Generator;
 using Oriflame.PolicyBuilder.Xml;
 
-namespace Ori.Gateway.Policies
+namespace Oriflame.PolicyBuilder.Generator.Policies
 {
     public class PolicyXmlExporter : IFileExporter<IXmlPolicy>
     {
@@ -18,7 +17,7 @@ namespace Ori.Gateway.Policies
 
             CreateDirectory(filePath);
 
-            var file = Path.Join(filePath, $"{fileName}.xml");
+            var file = Path.Combine(filePath, $"{fileName}.xml");
 
             var xmlDocument = new XDocument(xml);
             var xws = new XmlWriterSettings { OmitXmlDeclaration = true, Indent = true, IndentChars = "\t", Encoding = _encoding, NewLineChars = LineBreak };

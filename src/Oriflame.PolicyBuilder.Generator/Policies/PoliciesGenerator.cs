@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.Extensions.Options;
-using Ori.Gateway.Generator;
-using Oriflame.PolicyBuilder.ApiExample.Settings;
 using Oriflame.PolicyBuilder.Policies;
 using Oriflame.PolicyBuilder.Policies.Builders;
 using Oriflame.PolicyBuilder.Policies.Definitions;
 
-
-namespace Ori.Gateway.Policies
+namespace Oriflame.PolicyBuilder.Generator.Policies
 {
     public class PoliciesGenerator<TOperationPolicy, TResult> : Generator<TResult> 
         where TOperationPolicy : IOperationPolicy
@@ -20,20 +14,20 @@ namespace Ori.Gateway.Policies
     {
         private readonly IBuildersFactory<TOperationPolicy> _buildersFactory;
 
-        public PoliciesGenerator(IApiDescriptionGroupCollectionProvider apiDescriptionGroupCollectionProvider, IFileExporter<TResult> fileExporter, IOptionsMonitor<HostConfigs> hostConfigAccessor, IBuildersFactory<TOperationPolicy> buildersFactory) : base(apiDescriptionGroupCollectionProvider, fileExporter, hostConfigAccessor)
+        public PoliciesGenerator(IFileExporter<TResult> fileExporter, IBuildersFactory<TOperationPolicy> buildersFactory) : base(fileExporter)
         {
             _buildersFactory = buildersFactory;
         }
 
-        protected override void Generate(string outputDirectory, string apiName, IEnumerable<MethodInfo> actionMethods)
+        protected override void GenerateOutput(string outputDirectory, Assembly assembly)
         {
-            Parallel.ForEach(actionMethods, actionMethod => { GenerateFor(actionMethod, outputDirectory, GetApiFolder(apiName)); });
-            GenerateAllOperationsPolicy(outputDirectory, GetApiAssembly(apiName), GetApiFolder(apiName));
+            Parallel.ForEach(GetActionMethods(assembly), actionMethod => { GenerateFor(actionMethod, outputDirectory); });
+            GenerateAllOperationsPolicy(outputDirectory, assembly);
 
-            Console.WriteLine($"Policies for {apiName} API has been written to {outputDirectory}");
+            Console.WriteLine($"Policies for API has been written to {outputDirectory}");
         }
 
-        private void GenerateAllOperationsPolicy(string outputDirectory, Assembly assembly, string apiFolder)
+        private void GenerateAllOperationsPolicy(string outputDirectory, Assembly assembly)
         {
             var allOperationsMethodInfo = assembly
                 .GetTypes().Single(type => typeof(AllOperationsPolicyBase).IsAssignableFrom(type))
@@ -48,7 +42,7 @@ namespace Ori.Gateway.Policies
             return new PolicyGenerator<TOperationPolicy, TResult>(_buildersFactory, GetCustomFixture());
         }
 
-        protected void GenerateFor(MethodInfo actionMethod, string outputDirectory, string groupName)
+        protected void GenerateFor(MethodInfo actionMethod, string outputDirectory)
         {
             var operationId = GetOperationId(actionMethod);
 

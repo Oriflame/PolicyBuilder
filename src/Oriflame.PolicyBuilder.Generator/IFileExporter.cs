@@ -1,4 +1,4 @@
-﻿namespace Ori.Gateway.Generator
+﻿namespace Oriflame.PolicyBuilder.Generator
 {
     public interface IFileExporter<in T>
     {

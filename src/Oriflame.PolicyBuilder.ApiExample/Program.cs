@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Oriflame.PolicyBuilder.Generator;
 
 namespace Oriflame.PolicyBuilder.ApiExample
 {
@@ -7,7 +8,10 @@ namespace Oriflame.PolicyBuilder.ApiExample
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            var generator = host.Services.GetService(typeof(IGenerator)) as IGenerator;
+            generator.Generate(@"APITemplates\ApiExample\policies", typeof(Program).Assembly);
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

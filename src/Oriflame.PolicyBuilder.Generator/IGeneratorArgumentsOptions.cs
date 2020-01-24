@@ -1,4 +1,4 @@
-﻿namespace Ori.Gateway.EndpointsMap
+﻿namespace Oriflame.PolicyBuilder.Generator
 {
     public interface IGeneratorArgumentsOptions
     {

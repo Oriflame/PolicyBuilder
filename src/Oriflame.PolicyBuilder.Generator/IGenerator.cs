@@ -1,4 +1,6 @@
-﻿namespace Ori.Gateway.Generator
+﻿using System.Reflection;
+
+namespace Oriflame.PolicyBuilder.Generator
 {
     /// <summary>
     /// Common generator
@@ -8,6 +10,6 @@
         /// <summary>
         /// Generate metadata for selected API
         /// </summary>
-        void Generate(string outputDirectory, string apiName);
+        void Generate(string outputDirectory, Assembly assembly);
     }
 }

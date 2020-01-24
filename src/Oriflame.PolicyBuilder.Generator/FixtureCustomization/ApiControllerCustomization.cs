@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace Ori.Gateway.Generator.FixtureCustomization
+namespace Oriflame.PolicyBuilder.Generator.FixtureCustomization
 {
     public class ApiControllerCustomization : ICustomization
     {
