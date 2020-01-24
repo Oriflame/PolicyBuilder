@@ -11,6 +11,7 @@ namespace Oriflame.PolicyBuilder.Generator.FixtureCustomization
         {
             fixture.Register<ICompositeMetadataDetailsProvider>(() => new CustomCompositeMetadataDetailsProvider());
             fixture.Inject(new ViewDataDictionary(fixture.Create<DefaultModelMetadataProvider>(), fixture.Create<ModelStateDictionary>()));
+            fixture.Customize<BindingInfo>(c => c.OmitAutoProperties());
         }
 
         private class CustomCompositeMetadataDetailsProvider : ICompositeMetadataDetailsProvider

@@ -55,6 +55,7 @@ namespace Oriflame.PolicyBuilder.Policies
         private object CreateBaseType(MemberInfo method, TOperationPolicy operationPolicy)
         {
             _fixture.Customize(new AutoMoqCustomization());
+
             _fixture.Register(() => _buildersFactory.CreateInboundBuilder(operationPolicy));
             _fixture.Register(() => _buildersFactory.CreateBackendBuilder(operationPolicy));
             _fixture.Register(() => _buildersFactory.CreateOutboundBuilder(operationPolicy));

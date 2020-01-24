@@ -7,11 +7,18 @@ using Microsoft.Extensions.Logging;
 namespace Oriflame.PolicyBuilder.ApiExample.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("WeatherForecast")]
     public class WeatherForecastController : ControllerBase
     {
         [HttpGet]
         public string Get()
+        {
+            return "Ok";
+        }
+
+        [HttpGet("{id}")]
+
+        public string Get(string id)
         {
             return "Ok";
         }

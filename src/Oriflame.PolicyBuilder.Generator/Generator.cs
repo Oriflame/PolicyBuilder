@@ -1,19 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using AutoFixture;
-using Microsoft.AspNetCore.Mvc;
 using Oriflame.PolicyBuilder.Generator.FixtureCustomization;
+using Oriflame.PolicyBuilder.Generator.Operations;
 
 namespace Oriflame.PolicyBuilder.Generator
 {
     public abstract class Generator<T> : IGenerator
     {
-       protected readonly IFileExporter<T> FileExporter;
+        protected readonly IFileExporter<T> FileExporter;
 
-        protected Generator(IFileExporter<T> fileExporter)
+        protected readonly IOperationsProvider OperationsProvider;
+        
+        protected Generator(IFileExporter<T> fileExporter, IOperationsProvider operationsProvider)
         {
             FileExporter = fileExporter;
+            OperationsProvider = operationsProvider;
         }
 
         public virtual void Generate(string outputDirectory, Assembly assembly)
@@ -24,14 +25,6 @@ namespace Oriflame.PolicyBuilder.Generator
         }
 
         protected abstract void GenerateOutput(string outputDirectory, Assembly assembly);
-
-        protected virtual IEnumerable<MethodInfo> GetActionMethods(Assembly assembly)
-        {
-            return assembly.GetTypes()
-                .Where(type => typeof(ControllerBase).IsAssignableFrom(type)) //filter controllers
-                .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public))
-                .Where(method => !method.IsDefined(typeof(NonActionAttribute)));
-        }
 
         protected static Fixture GetCustomFixture()
         {

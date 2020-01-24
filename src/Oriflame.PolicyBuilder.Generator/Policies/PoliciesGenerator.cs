@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Oriflame.PolicyBuilder.Generator.Operations;
 using Oriflame.PolicyBuilder.Policies;
 using Oriflame.PolicyBuilder.Policies.Builders;
 using Oriflame.PolicyBuilder.Policies.Definitions;
@@ -16,14 +16,14 @@ namespace Oriflame.PolicyBuilder.Generator.Policies
 
         private readonly IBuildersFactory<TOperationPolicy> _buildersFactory;
 
-        public PoliciesGenerator(IFileExporter<TResult> fileExporter, IBuildersFactory<TOperationPolicy> buildersFactory) : base(fileExporter)
+        public PoliciesGenerator(IFileExporter<TResult> fileExporter, IBuildersFactory<TOperationPolicy> buildersFactory, IOperationsProvider operationsProvider) : base(fileExporter, operationsProvider)
         {
             _buildersFactory = buildersFactory;
         }
 
         protected override void GenerateOutput(string outputDirectory, Assembly assembly)
         {
-            var actionMethods = GetActionMethods(assembly);
+            var actionMethods = OperationsProvider.GetOperations(assembly);
             Parallel.ForEach(actionMethods, actionMethod => { GenerateFor(actionMethod, outputDirectory); });
             GenerateAllOperationsPolicy(outputDirectory, assembly);
 
@@ -32,9 +32,7 @@ namespace Oriflame.PolicyBuilder.Generator.Policies
 
         private void GenerateAllOperationsPolicy(string outputDirectory, Assembly assembly)
         {
-            var allOperationsMethodInfo = assembly
-                .GetTypes().FirstOrDefault(type => typeof(AllOperationsPolicyBase).IsAssignableFrom(type))?
-                .GetMethod("Create");
+            var allOperationsMethodInfo = OperationsProvider.GetAllOperations(assembly);
 
             if (allOperationsMethodInfo == null)
             {
@@ -52,16 +50,9 @@ namespace Oriflame.PolicyBuilder.Generator.Policies
 
         protected void GenerateFor(MethodInfo actionMethod, string outputDirectory)
         {
-            var operationId = GetOperationId(actionMethod);
-
+            var fileName = OperationsProvider.GetOperationId(actionMethod);
             var operationPolicy = CreatePolicyGenerator().Generate(actionMethod);
-            FileExporter.ExportToFile(operationPolicy, outputDirectory, operationId);
-        }
-
-        private static string GetOperationId(MethodInfo method)
-        { 
-            //TODO: Generate Operation Id
-            throw new NotImplementedException();
+            FileExporter.ExportToFile(operationPolicy, outputDirectory, fileName);
         }
     }
 }
