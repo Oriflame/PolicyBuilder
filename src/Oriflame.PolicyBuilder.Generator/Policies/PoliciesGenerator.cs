@@ -10,8 +10,10 @@ namespace Oriflame.PolicyBuilder.Generator.Policies
 {
     public class PoliciesGenerator<TOperationPolicy, TResult> : Generator<TResult> 
         where TOperationPolicy : IOperationPolicy
-        where TResult : class 
+        where TResult : class
     {
+        private const string AllOperationsFileName = "AllOperations";
+
         private readonly IBuildersFactory<TOperationPolicy> _buildersFactory;
 
         public PoliciesGenerator(IFileExporter<TResult> fileExporter, IBuildersFactory<TOperationPolicy> buildersFactory) : base(fileExporter)
@@ -21,7 +23,8 @@ namespace Oriflame.PolicyBuilder.Generator.Policies
 
         protected override void GenerateOutput(string outputDirectory, Assembly assembly)
         {
-            Parallel.ForEach(GetActionMethods(assembly), actionMethod => { GenerateFor(actionMethod, outputDirectory); });
+            var actionMethods = GetActionMethods(assembly);
+            Parallel.ForEach(actionMethods, actionMethod => { GenerateFor(actionMethod, outputDirectory); });
             GenerateAllOperationsPolicy(outputDirectory, assembly);
 
             Console.WriteLine($"Policies for API has been written to {outputDirectory}");
@@ -30,11 +33,16 @@ namespace Oriflame.PolicyBuilder.Generator.Policies
         private void GenerateAllOperationsPolicy(string outputDirectory, Assembly assembly)
         {
             var allOperationsMethodInfo = assembly
-                .GetTypes().Single(type => typeof(AllOperationsPolicyBase).IsAssignableFrom(type))
+                .GetTypes().FirstOrDefault(type => typeof(AllOperationsPolicyBase).IsAssignableFrom(type))?
                 .GetMethod("Create");
 
-             var allOperationsPolicy = CreatePolicyGenerator().Generate(allOperationsMethodInfo);
-            FileExporter.ExportToFile(allOperationsPolicy, outputDirectory, "AllOperations");
+            if (allOperationsMethodInfo == null)
+            {
+                return;
+            }
+
+            var allOperationsPolicy = CreatePolicyGenerator().Generate(allOperationsMethodInfo);
+            FileExporter.ExportToFile(allOperationsPolicy, outputDirectory, AllOperationsFileName);
         }
 
         private PolicyGenerator<TOperationPolicy, TResult> CreatePolicyGenerator()

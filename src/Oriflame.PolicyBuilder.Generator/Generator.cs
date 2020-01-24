@@ -25,10 +25,10 @@ namespace Oriflame.PolicyBuilder.Generator
 
         protected abstract void GenerateOutput(string outputDirectory, Assembly assembly);
 
-        protected static IEnumerable<MethodInfo> GetActionMethods(Assembly assembly)
+        protected virtual IEnumerable<MethodInfo> GetActionMethods(Assembly assembly)
         {
             return assembly.GetTypes()
-                .Where(type => typeof(Controller).IsAssignableFrom(type)) //filter controllers
+                .Where(type => typeof(ControllerBase).IsAssignableFrom(type)) //filter controllers
                 .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public))
                 .Where(method => !method.IsDefined(typeof(NonActionAttribute)));
         }
