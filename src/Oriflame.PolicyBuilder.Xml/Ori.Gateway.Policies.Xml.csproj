@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture.AutoMoq" Version="4.8.0" />
+    <PackageReference Include="Castle.Core" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ori.Gateway.Policies\Ori.Gateway.Policies.csproj" />
+  </ItemGroup>
+
+</Project>
