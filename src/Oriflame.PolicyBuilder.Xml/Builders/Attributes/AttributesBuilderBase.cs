@@ -4,11 +4,11 @@ using Oriflame.PolicyBuilder.Xml.Mappers;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Attributes
 {
-    public class AttributesBuilderBase<TAttributesBuilder> : IAttributesBuilder where TAttributesBuilder : class, IAttributesBuilder
+    public abstract class AttributesBuilderBase<TAttributesBuilder> : IAttributesBuilder where TAttributesBuilder : class, IAttributesBuilder
     {
         private readonly IDictionary<string, string> _attributes;
 
-        public AttributesBuilderBase()
+        protected AttributesBuilderBase()
         {
             _attributes = new Dictionary<string, string>();
         }
