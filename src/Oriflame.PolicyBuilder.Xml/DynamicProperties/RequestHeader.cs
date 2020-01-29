@@ -22,22 +22,16 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
     
         public static string Get(string variableName, string defaultValue = null, bool inline = false)
         {
-            if (inline)
-            {
-                return GetValueCommand(variableName, defaultValue);
-            }
-
-            return $"@({GetValueCommand(variableName, defaultValue)})";
+            return inline
+                ? GetValueCommand(variableName, defaultValue)
+                : $"@({GetValueCommand(variableName, defaultValue)})";
         }
 
         private static string GetValueCommand(string variableName, string defaultValue)
         {
-            if (defaultValue == null)
-            {
-                return $"context.Request.Headers.GetValueOrDefault(\"{variableName}\")";
-            }
-
-            return $"context.Request.Headers.GetValueOrDefault(\"{variableName}\", \"{defaultValue}\")";
+            return defaultValue == null
+                ? $"context.Request.Headers.GetValueOrDefault(\"{variableName}\")"
+                : $"context.Request.Headers.GetValueOrDefault(\"{variableName}\", \"{defaultValue}\")";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using Oriflame.PolicyBuilder.Xml.Extensions;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 {
