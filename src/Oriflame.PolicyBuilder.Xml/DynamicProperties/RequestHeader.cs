@@ -1,4 +1,5 @@
 ﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties;
+using Oriflame.PolicyBuilder.Xml.Extensions;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 {
@@ -22,9 +23,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
     
         public static string Get(string variableName, string defaultValue = null, bool inline = false)
         {
-            return inline
-                ? GetValueCommand(variableName, defaultValue)
-                : $"@({GetValueCommand(variableName, defaultValue)})";
+            return GetValueCommand(variableName, defaultValue).ToPolicyCode(inline);
         }
 
         private static string GetValueCommand(string variableName, string defaultValue)

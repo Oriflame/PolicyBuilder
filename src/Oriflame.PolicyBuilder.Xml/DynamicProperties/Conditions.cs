@@ -112,5 +112,10 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
+
+        private enum VariableType
+        {
+            Undefined, Request, Response
+        }
     }
 }
