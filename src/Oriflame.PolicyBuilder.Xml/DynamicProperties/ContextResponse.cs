@@ -1,4 +1,6 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
+﻿using Oriflame.PolicyBuilder.Xml.Extensions;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 {
     public static class ContextResponse
     {

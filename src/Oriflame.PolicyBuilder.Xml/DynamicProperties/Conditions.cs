@@ -1,4 +1,5 @@
 ﻿using System;
+using Oriflame.PolicyBuilder.Xml.Extensions;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 {
@@ -111,11 +112,10 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
-    }
 
-    public enum VariableType
-    {
-        Undefined, Request, Response
+        private enum VariableType
+        {
+            Undefined, Request, Response
+        }
     }
-
 }

@@ -1,4 +1,5 @@
 ﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties;
+using Oriflame.PolicyBuilder.Xml.Extensions;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 {
@@ -31,7 +32,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         public static string GetAsString(string variableName, bool strict = true, bool inline = false)
         {
-            return $"{(inline ? "" : "@")}((string){GetVariableCommand(variableName, strict)})";
+            return $"((string){GetVariableCommand(variableName, strict)})".ToPolicyCode(inline);
         }
 
         public static string GetAsResponse(string variableName, bool strict = true)
@@ -68,6 +69,11 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             return $"({GetBodyCommand(variableName)}.As<JObject>())";
         }
+
+        public static string Contains(string variableName)
+        {
+            return $"context.Variables.ContainsKey(\"{variableName}\")";
+        }
        
         private static string GetVariableCommand(string variableName, bool strict = true)
         {
@@ -79,11 +85,6 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         private static string GetBodyCommand(string variableName)
         {
             return $"{GetAsResponse(variableName)}.Body";
-        }
-
-        public static string Contains(string variableName)
-        {
-            return $"context.Variables.ContainsKey(\"{variableName}\")";
         }
     }
 }
