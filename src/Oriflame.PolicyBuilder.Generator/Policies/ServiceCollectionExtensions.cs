@@ -14,6 +14,7 @@ namespace Oriflame.PolicyBuilder.Generator.Policies
             services.AddSingleton<IFileExporter<IXmlPolicy>, PolicyXmlExporter>();
             services.AddSingleton<IBuildersFactory<XmlOperationPolicy>, XmlPolicyBuildersFactory>();
             services.AddSingleton<IOperationsProvider, OperationsProvider>();
+            services.AddSingleton<IPolicyBuilder, DummyPolicyBuilder>();
             return services;
         }
     }
