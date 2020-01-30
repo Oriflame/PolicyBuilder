@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.ApiExample", "src\Oriflame.PolicyBuilder.ApiExample\Oriflame.PolicyBuilder.ApiExample.csproj", "{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4715FD27-24CD-49EF-BD10-23020C689D7F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Policies", "src\Oriflame.PolicyBuilder.Policies\Oriflame.PolicyBuilder.Policies.csproj", "{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Xml", "src\Oriflame.PolicyBuilder.Xml\Oriflame.PolicyBuilder.Xml.csproj", "{597954CF-C46A-4AD9-92C8-FD273C3557C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Generator", "src\Oriflame.PolicyBuilder.Generator\Oriflame.PolicyBuilder.Generator.csproj", "{F8DF5ACC-C1B6-40C1-9A6B-7AD53FBE5DE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oriflame.PolicyBuilder.Xml.Tests", "tests\Oriflame.PolicyBuilder.Xml.Tests\Oriflame.PolicyBuilder.Xml.Tests.csproj", "{0A1B3624-E56A-4895-BB77-66548D9767EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{65EE8CA4-F829-49D3-A160-FBBF50B74B3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{597954CF-C46A-4AD9-92C8-FD273C3557C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{597954CF-C46A-4AD9-92C8-FD273C3557C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{597954CF-C46A-4AD9-92C8-FD273C3557C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{597954CF-C46A-4AD9-92C8-FD273C3557C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8DF5ACC-C1B6-40C1-9A6B-7AD53FBE5DE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8DF5ACC-C1B6-40C1-9A6B-7AD53FBE5DE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8DF5ACC-C1B6-40C1-9A6B-7AD53FBE5DE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DF5ACC-C1B6-40C1-9A6B-7AD53FBE5DE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A1B3624-E56A-4895-BB77-66548D9767EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A1B3624-E56A-4895-BB77-66548D9767EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A1B3624-E56A-4895-BB77-66548D9767EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A1B3624-E56A-4895-BB77-66548D9767EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2DD24719-0DA9-4EA0-AE7C-6EAB3F305E6B} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
+		{CFCAC74C-EE73-4A03-A80D-CFF7EABAA13D} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
+		{597954CF-C46A-4AD9-92C8-FD273C3557C7} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
+		{F8DF5ACC-C1B6-40C1-9A6B-7AD53FBE5DE5} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
+		{0A1B3624-E56A-4895-BB77-66548D9767EB} = {65EE8CA4-F829-49D3-A160-FBBF50B74B3D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB83448F-C408-4035-B888-ED5C980F2312}
+	EndGlobalSection
+EndGlobal
