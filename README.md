@@ -16,7 +16,7 @@ This project is able to generate Policies for [Azure API Management](https://azu
 	- [Development](#development)
 		- [What’s missing?](#whats-missing)
 
-Azure API Management is an implementation of API Gateway pattern on Azure. APIs are defined by API templates consist of OpenAPI Specification (Frontend) and Policies (Backend). Policies are XML based rules which describes behavior of the endpoint for incoming requests. Each endpoint has its own policy and there is also policy applicable to all endpoints in the API.
+Azure API Management is an implementation of API Gateway pattern on Azure. APIs are defined by API templates which consist of OpenAPI Specification (Frontend) and Policies (Backend). Policies are XML based rules which describes behavior of the endpoint for incoming requests. Each endpoint has its own policy and there is also policy applicable to all endpoints in the API.
 
 Target of this project is to provide easy, programmatic and safe way how to write the policies.
 
