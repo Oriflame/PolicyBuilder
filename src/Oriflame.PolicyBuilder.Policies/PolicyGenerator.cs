@@ -68,7 +68,7 @@ namespace Oriflame.PolicyBuilder.Policies
                     _fixture.Create<IOnErrorSectionPolicyBuilder>(),
                     operationPolicy
                 ));
-            return _fixture.Create(method.DeclaringType, new SpecimenContext(_fixture));
+            return _fixture.Create(method.ReflectedType, new SpecimenContext(_fixture));
         }
     }
 }

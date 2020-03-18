@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Oriflame.PolicyBuilder.Generator.Extensions;
 using Oriflame.PolicyBuilder.Policies;
 
@@ -43,10 +44,11 @@ namespace Oriflame.PolicyBuilder.Generator.Operations
 
         public virtual IEnumerable<MethodInfo> GetOperations(Assembly assembly)
         {
-            var operations=  assembly.GetTypes()
-                .Where(type => typeof(ControllerBase).IsAssignableFrom(type)) //filter controllers
-                .SelectMany(type => type.GetMethods(BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Public))
-                .Where(method => !method.IsDefined(typeof(NonActionAttribute)));
+            var operations = assembly.GetTypes().Where(type => typeof(ControllerBase).IsAssignableFrom(type) && !type.IsAbstract)
+                .SelectMany(type =>
+                    type.GetMethods(BindingFlags.Instance | BindingFlags.Public) as IEnumerable<MethodInfo>)
+                .Where(method =>
+                    !method.IsDefined(typeof(NonActionAttribute)) && method.IsDefined(typeof(HttpMethodAttribute)));
             return operations;
         }
 
