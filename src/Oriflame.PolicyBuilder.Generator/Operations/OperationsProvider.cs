@@ -44,7 +44,7 @@ namespace Oriflame.PolicyBuilder.Generator.Operations
 
         public virtual IEnumerable<MethodInfo> GetOperations(Assembly assembly)
         {
-            var operations = assembly.GetTypes().Where(type => typeof(ControllerBase).IsAssignableFrom(type))
+            var operations = assembly.GetTypes().Where(type => typeof(ControllerBase).IsAssignableFrom(type) && !type.IsAbstract)
                 .SelectMany(type =>
                     type.GetMethods(BindingFlags.Instance | BindingFlags.Public) as IEnumerable<MethodInfo>)
                 .Where(method =>
