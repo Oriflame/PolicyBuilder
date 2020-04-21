@@ -7,27 +7,27 @@ namespace Oriflame.PolicyBuilder.Xml
 {
     public class XmlPolicyBuildersFactory : IBuildersFactory<XmlOperationPolicy>
     {
-        public IInboundSectionPolicyBuilder CreateInboundBuilder(XmlOperationPolicy xmlOperationPolicy)
+        public virtual IInboundSectionPolicyBuilder CreateInboundBuilder(XmlOperationPolicy xmlOperationPolicy)
         {
             return new InboundSectionPolicyBuilder(xmlOperationPolicy.InboundPolicy);
         }
 
-        public IBackendSectionPolicyBuilder CreateBackendBuilder(XmlOperationPolicy xmlOperationPolicy)
+        public virtual IBackendSectionPolicyBuilder CreateBackendBuilder(XmlOperationPolicy xmlOperationPolicy)
         {
             return new BackendSectionPolicyBuilder(xmlOperationPolicy.BackendPolicy);
         }
 
-        public IOutboundSectionPolicyBuilder CreateOutboundBuilder(XmlOperationPolicy xmlOperationPolicy)
+        public virtual IOutboundSectionPolicyBuilder CreateOutboundBuilder(XmlOperationPolicy xmlOperationPolicy)
         {
             return new OutboundSectionPolicyBuilder(xmlOperationPolicy.OutboundPolicy);
         }
 
-        public IOnErrorSectionPolicyBuilder CreateOnErrorBuilder(XmlOperationPolicy xmlOperationPolicy)
+        public virtual IOnErrorSectionPolicyBuilder CreateOnErrorBuilder(XmlOperationPolicy xmlOperationPolicy)
         {
             return new OnErrorSectionPolicyBuilderBase(xmlOperationPolicy.OnErrorPolicy);
         }
 
-        public XmlOperationPolicy CreateOperationPolicy()
+        public virtual XmlOperationPolicy CreateOperationPolicy()
         {
             return new XmlOperationPolicy();
         }
