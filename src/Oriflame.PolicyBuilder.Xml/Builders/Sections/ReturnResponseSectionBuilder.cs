@@ -11,12 +11,12 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         {
         }
 
-        public IReturnResponseSectionBuilder SetStatus(string httpStatusCode, string reason)
+        public virtual IReturnResponseSectionBuilder SetStatus(string httpStatusCode, string reason)
         {
             return AddPolicyDefinition(new SetStatus(httpStatusCode, reason));
         }
 
-        public IReturnResponseSectionBuilder SetBody(string value)
+        public virtual IReturnResponseSectionBuilder SetBody(string value)
         {
             return AddPolicyDefinition(new SetBody(value));
         }

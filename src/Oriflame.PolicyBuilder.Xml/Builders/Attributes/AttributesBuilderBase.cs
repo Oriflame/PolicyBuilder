@@ -13,7 +13,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Attributes
             _attributes = new Dictionary<string, string>();
         }
 
-        public IDictionary<string, string> Create()
+        public virtual IDictionary<string, string> Create()
         {
             return _attributes;
         }
