@@ -12,12 +12,12 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         {
         }
 
-        public ISendRequestSectionBuilder SetUrl(string url)
+        public virtual ISendRequestSectionBuilder SetUrl(string url)
         {
             return AddPolicyDefinition(new SetUrl(url));
         }
 
-        public ISendRequestSectionBuilder SetBody(string content)
+        public virtual ISendRequestSectionBuilder SetBody(string content)
         {
             return AddPolicyDefinition(new SetBody(content));
         }

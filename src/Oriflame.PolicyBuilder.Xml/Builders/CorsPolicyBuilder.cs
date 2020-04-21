@@ -19,61 +19,61 @@ namespace Oriflame.PolicyBuilder.Xml.Builders
 
         private int? _preflightResultMaxAge;
 
-        public IAllowedMethodsPolicyBuilder AllOrigins()
+        public virtual IAllowedMethodsPolicyBuilder AllOrigins()
         {
             _allowedOrigins = new AllowedOrigins();
             return this;
         }
 
-        public IAllowedMethodsPolicyBuilder Origins(params string[] origins)
+        public virtual IAllowedMethodsPolicyBuilder Origins(params string[] origins)
         {
             _allowedOrigins = new AllowedOrigins(origins);
             return this;
         }
 
-        public IAllowedMethodsPolicyBuilder PreflightResultMaxAge(int seconds)
+        public virtual IAllowedMethodsPolicyBuilder PreflightResultMaxAge(int seconds)
         {
             _preflightResultMaxAge = seconds;
             return this;
         }
 
-        public IAllowedHeadersPolicyBuilder AllMethods()
+        public virtual IAllowedHeadersPolicyBuilder AllMethods()
         {
             _allowedMethods = new AllowedMethods(_preflightResultMaxAge);
             return this;
         }
 
-        public IAllowedHeadersPolicyBuilder Methods(params HttpMethod[] methods)
+        public virtual IAllowedHeadersPolicyBuilder Methods(params HttpMethod[] methods)
         {
             _allowedMethods = new AllowedMethods(methods, _preflightResultMaxAge);
             return this;
         }
 
-        public IExposeHeadersPolicyBuilder AllHeaders()
+        public virtual IExposeHeadersPolicyBuilder AllHeaders()
         {
             _allowedHeaders = new AllowedHeaders();
             return this;
         }
 
-        public IExposeHeadersPolicyBuilder Headers(params string[] headers)
+        public virtual IExposeHeadersPolicyBuilder Headers(params string[] headers)
         {
             _allowedHeaders = new AllowedHeaders(headers);
             return this;
         }
 
-        public ISectionPolicy AllExposeHeaders()
+        public virtual ISectionPolicy AllExposeHeaders()
         {
             _exposedHeaders = new ExposeHeaders();
             return Create();
         }
 
-        public ISectionPolicy ExposeHeaders(params string[] exposeHeaders)
+        public virtual ISectionPolicy ExposeHeaders(params string[] exposeHeaders)
         {
             _exposedHeaders = new ExposeHeaders(exposeHeaders);
             return Create();
         }
 
-        public ISectionPolicy Create()
+        public virtual ISectionPolicy Create()
         {
             var sectionPolicy = new SectionPolicy("cors");
             sectionPolicy.AddInnerPolicy(_allowedOrigins);

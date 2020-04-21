@@ -15,13 +15,13 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public IOutboundSectionPolicyBuilder SetBody(ILiquidTemplate template)
+        public virtual IOutboundSectionPolicyBuilder SetBody(ILiquidTemplate template)
         {
             return AddPolicyDefinition(new SetBodyLiquid(template));
         }
 
         /// <inheritdoc />
-        public IOutboundSectionPolicyBuilder SetBody(string content)
+        public virtual IOutboundSectionPolicyBuilder SetBody(string content)
         {
             return AddPolicyDefinition(new SetBody(content));
         }
@@ -33,7 +33,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public IOutboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action,
+        public virtual IOutboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action,
             bool? firstFastRetry = null)
         {
             var actionBuilder = new OutboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
@@ -41,12 +41,12 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public IOutboundSectionPolicyBuilder CacheStore(TimeSpan cacheDuration)
+        public virtual IOutboundSectionPolicyBuilder CacheStore(TimeSpan cacheDuration)
         {
             return AddPolicyDefinition(new CacheStore(cacheDuration));
         }
 
-        public IOutboundSectionPolicyBuilder SetStatus(string statusCode, string reason)
+        public virtual IOutboundSectionPolicyBuilder SetStatus(string statusCode, string reason)
         {
             return AddPolicyDefinition(new SetStatus(statusCode, reason));
         }

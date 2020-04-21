@@ -15,19 +15,19 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public IBackendSectionPolicyBuilder SetBackendService(string url)
+        public virtual IBackendSectionPolicyBuilder SetBackendService(string url)
         {
             return AddPolicyDefinition(new SetBackendService(url));
         }
 
         /// <inheritdoc />
-        public IBackendSectionPolicyBuilder SetQueryParameter(string name, string value, ExistsAction? existsAction)
+        public virtual IBackendSectionPolicyBuilder SetQueryParameter(string name, string value, ExistsAction? existsAction)
         {
             return AddPolicyDefinition(new SetQueryParameter(name, value, existsAction));
         }
 
         /// <inheritdoc />
-        public IBackendSectionPolicyBuilder SetBody(ILiquidTemplate template)
+        public virtual IBackendSectionPolicyBuilder SetBody(ILiquidTemplate template)
         {
             return AddPolicyDefinition(new SetBodyLiquid(template));
         }
@@ -40,14 +40,14 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public IBackendSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
+        public virtual IBackendSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
         {
             var actionBuilder = new BackendSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
         }
 
         /// <inheritdoc />
-        public IBackendSectionPolicyBuilder ForwardRequest(TimeSpan? timeout)
+        public virtual IBackendSectionPolicyBuilder ForwardRequest(TimeSpan? timeout)
         {
             return AddPolicyDefinition(new ForwardRequest(timeout));
         }
