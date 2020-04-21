@@ -9,7 +9,7 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
     {
         protected readonly IList<IXmlPolicy> Policies = new List<IXmlPolicy>();
         
-        public void AddInnerPolicy(IXmlPolicy policy)
+        public virtual void AddInnerPolicy(IXmlPolicy policy)
         {
             // Some tests can be done here i.e. policy already added
             Policies.Add(policy);
@@ -28,7 +28,7 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
         {
         }
 
-        public void AddInnerPolicy(IPolicy policy)
+        public virtual void AddInnerPolicy(IPolicy policy)
         {
             AddInnerPolicy(policy as IXmlPolicy);
         }

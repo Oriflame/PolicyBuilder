@@ -16,36 +16,36 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
     public class InboundSectionPolicyBuilder : SectionBuilderBase<IInboundSectionPolicyBuilder>, IInboundSectionPolicyBuilder
     {
         /// <inheritdoc />
-        public IInboundSectionPolicyBuilder RewriteUri(string uriTemplate)
+        public virtual IInboundSectionPolicyBuilder RewriteUri(string uriTemplate)
         {
             return AddPolicyDefinition(new RewriteUriPolicy(uriTemplate));
         }
 
         /// <inheritdoc />
-        public IInboundSectionPolicyBuilder SetBackendService(string url)
+        public virtual IInboundSectionPolicyBuilder SetBackendService(string url)
         {
             return AddPolicyDefinition(new SetBackendService(url));
         }
 
         /// <inheritdoc />
-        public IInboundSectionPolicyBuilder SetQueryParameter(string name, string value, ExistsAction? skip)
+        public virtual IInboundSectionPolicyBuilder SetQueryParameter(string name, string value, ExistsAction? skip)
         {
             return AddPolicyDefinition(new SetQueryParameter(name, value, skip));
         }
 
-        public IInboundSectionPolicyBuilder SetBody(ILiquidTemplate template)
+        public virtual IInboundSectionPolicyBuilder SetBody(ILiquidTemplate template)
         {
             return AddPolicyDefinition(new SetBodyLiquid(template));
         }
 
         /// <inheritdoc />
-        public IInboundSectionPolicyBuilder SetBody(string value)
+        public virtual IInboundSectionPolicyBuilder SetBody(string value)
         {
             return AddPolicyDefinition(new SetBody(value));
         }
 
         /// <inheritdoc />
-        public ISectionPolicy MockResponse(HttpStatusCode? statusCode = null, string contentType = null)
+        public virtual ISectionPolicy MockResponse(HttpStatusCode? statusCode = null, string contentType = null)
         {
             AddPolicyDefinition(new MockResponse(statusCode, contentType));
             return Create();

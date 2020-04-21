@@ -29,7 +29,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         public abstract IConditionSectionBuilder<TBaseBuilder> When(string condition, Func<TBaseBuilder, ISectionPolicy> actionBuilder);
 
-        public ISectionPolicy Otherwise(Func<TBaseBuilder, ISectionPolicy> actionBuilder)
+        public virtual ISectionPolicy Otherwise(Func<TBaseBuilder, ISectionPolicy> actionBuilder)
         {
             return OtherwiseDefinition(actionBuilder).Create();
         }
