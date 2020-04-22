@@ -13,6 +13,7 @@ This project is able to generate Policies for [Azure API Management](https://azu
 		- [Extensions](#extensions)
 		- [Dynamic properties](#dynamic-properties)
 		- [Release pipeline](#release-pipeline)
+		- [Action method context in fluent builder](#action-method-context-in-fluent-builder)
 	- [Development](#development)
 		- [What’s missing?](#whats-missing)
 
@@ -188,6 +189,11 @@ You can define easily your own release pipeline for whole API. You will need:
 3. Write a script for uploading whole API Template to API Management
 
 You can read more about defining release process in [this article](https://developers.oriflame.com/2019/04/03/azure-api-management-release-process/)
+
+### Action method context in fluent builder
+If you need to access the controller method inside your implementation for a builder method, you can use `ActionContextHelper`. It stores `MethodInfo` in thread safe context.
+
+This could be helpful when you need to get some a controller method attribute for example.
 
 ## Development
 [![Build status](https://oriflame.visualstudio.com/Ori.Common/_apis/build/status/PolicyBuilder/Oriflame.PolicyBuilder-CI-CD?label=Prerelease+build&branchName=develop)](https://oriflame.visualstudio.com/Ori.Common/_build/latest?definitionId=2241&branchName=master) [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/Oriflame.PolicyBuilder.Generator)](https://www.nuget.org/packages/Oriflame.PolicyBuilder.Generator)

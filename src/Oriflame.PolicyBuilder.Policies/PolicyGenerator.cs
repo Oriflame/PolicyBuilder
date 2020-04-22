@@ -7,6 +7,7 @@ using AutoFixture.Kernel;
 using Oriflame.PolicyBuilder.Policies.Builders;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
 using Oriflame.PolicyBuilder.Policies.Definitions;
+using Oriflame.PolicyBuilder.Policies.Helpers;
 
 namespace Oriflame.PolicyBuilder.Policies
 {
@@ -25,6 +26,7 @@ namespace Oriflame.PolicyBuilder.Policies
 
         public TResult Generate(MethodInfo method)
         {
+            ActionContextHelper.Set(method);
             var operationPolicy = _buildersFactory.CreateOperationPolicy();
             var baseType = CreateBaseType(method, operationPolicy);
             var mockedArguments = GetArguments(method);
