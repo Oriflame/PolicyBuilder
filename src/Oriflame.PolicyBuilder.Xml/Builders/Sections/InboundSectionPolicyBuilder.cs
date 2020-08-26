@@ -83,12 +83,17 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public IInboundSectionPolicyBuilder CacheLookup(Func<ICacheLookupAttributesBuilder, IDictionary<string, string>> cachingAttributesBuilder)
+        public IInboundSectionPolicyBuilder CacheLookup(Func<ICacheLookupAttributesBuilder, IDictionary<string, string>> cachingAttributesBuilder,
+            Func<ICacheLookupSectionBuilder, ISectionPolicy> cachingSectionPolicyBuilder = null)
         {
+            if (cachingSectionPolicyBuilder == null)
+            {
+                cachingSectionPolicyBuilder = new Func<ICacheLookupSectionBuilder, ISectionPolicy>(x => x.Create());
+            }
             var attributesBuilder = new CacheLookupAttributesBuilder();
             var attributes = cachingAttributesBuilder.Invoke(attributesBuilder);
-            var policy = new CacheLookupPolicy(attributes);
-            return AddPolicyDefinition(policy);
+            var policyBuilder = new CacheLookupSectionBuilder(attributes);
+            return AddPolicyDefinition(cachingSectionPolicyBuilder.Invoke(policyBuilder));
         }
 
         public InboundSectionPolicyBuilder(ISectionPolicy sectionPolicy) : base(sectionPolicy)
