@@ -39,6 +39,6 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         IInboundSectionPolicyBuilder Cors(Func<ICorsPolicyBuilder, ISectionPolicy> corsBuilder);
 
         /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-caching-policies"/>
-        IInboundSectionPolicyBuilder CacheLookup(Func<ICacheLookupAttributesBuilder, IDictionary<string, string>> cachingAttributesBuilder);
+        IInboundSectionPolicyBuilder CacheLookup(Func<ICacheLookupAttributesBuilder, IDictionary<string, string>> cachingAttributesBuilder, Func<ICacheLookupSectionBuilder, ISectionPolicy> cachingSectionPolicyBuilder = null);
     }
 }
