@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
+using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 using Oriflame.PolicyBuilder.Xml.Builders.Sections;
 using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
 using Xunit;
@@ -14,13 +14,13 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
             var claim1 = "claim1";
             var claim1Value1 = "value11";
             var claim1Value2 = "value12";
-            var claim1Match = Match.All;
+            var claim1Match = RequiredClaimsMatch.All;
             var claim1Separator = ";";
 
             var claim2 = "claim2";
             var claim2Value1 = "value21";
             var claim2Value2 = "value22";
-            var claim2Match = Match.Any;
+            var claim2Match = RequiredClaimsMatch.Any;
             var claim2Separator = ",";
 
             var sectionPolicy =

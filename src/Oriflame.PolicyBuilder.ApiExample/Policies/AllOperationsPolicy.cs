@@ -4,7 +4,7 @@ using System.Net;
 using Microsoft.Net.Http.Headers;
 using Oriflame.PolicyBuilder.Policies;
 using Oriflame.PolicyBuilder.Policies.Builders;
-using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
+using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 
 namespace Oriflame.PolicyBuilder.ApiExample.Policies
 {
@@ -27,7 +27,7 @@ namespace Oriflame.PolicyBuilder.ApiExample.Policies
                         "http://contoso.com/.well-known/openid-configuration",
                         new List<string> { "http://contoso.com/" },
                         requiredClaimsBuilder => requiredClaimsBuilder
-                            .SetClaimPolicy("scope", new[] { "forcast_api" }, Match.All, "separator")
+                            .SetClaimPolicy("scope", new[] { "forcast_api" }, RequiredClaimsMatch.All)
                             .Create()
                         )
                     .Create())

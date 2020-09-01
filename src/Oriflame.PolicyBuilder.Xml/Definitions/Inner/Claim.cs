@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
+using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 
 namespace Oriflame.PolicyBuilder.Xml.Definitions.Inner
 {
@@ -16,7 +16,7 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Inner
         private const string Match = "match";
         private const string Separator = "separator";
 
-        public Claim(string name, IEnumerable<string> values, Match match, string separator) : base("claim")
+        public Claim(string name, IEnumerable<string> values, RequiredClaimsMatch match, string separator) : base("claim")
         {
             Attributes.Add(Name, name);
             Attributes.Add(Match, match.ToString());
