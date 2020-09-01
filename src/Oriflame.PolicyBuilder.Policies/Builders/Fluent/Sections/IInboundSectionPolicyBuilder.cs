@@ -30,7 +30,7 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         ISectionPolicy MockResponse(HttpStatusCode? statusCode = null, string contentType = null);
 
         /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-access-restriction-policies#ValidateJWT"/>
-        IInboundSectionPolicyBuilder ValidateJwt(Func<IJwtValidationAttributesBuilder, IDictionary<string, string>> jwtAttributesBuilder, string openIdConfigUrl = null, IEnumerable<string> issuers = null);
+        IInboundSectionPolicyBuilder ValidateJwt(Func<IJwtValidationAttributesBuilder, IDictionary<string, string>> jwtAttributesBuilder, string openIdConfigUrl = null, IEnumerable<string> issuers = null, Func<IRequiredClaimsSectionBuilder, ISectionPolicy> requiredClaimsBuilder = null);
 
         /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
         IInboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null);
