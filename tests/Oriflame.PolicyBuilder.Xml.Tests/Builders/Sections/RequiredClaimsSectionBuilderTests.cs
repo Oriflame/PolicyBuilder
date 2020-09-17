@@ -32,11 +32,11 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
             var xml = ((SectionPolicy)sectionPolicy).GetXml().ToString();
             xml.Should().Be(
 $@"<required-claims>
-  <claim name=""{claim1}"" match=""{claim1Match}"" separator=""{claim1Separator}"">
+  <claim name=""{claim1}"" match=""{claim1Match.ToString().ToLower()}"" separator=""{claim1Separator}"">
     <value>{claim1Value1}</value>
     <value>{claim1Value2}</value>
   </claim>
-  <claim name=""{claim2}"" match=""{claim2Match}"" separator=""{claim2Separator}"">
+  <claim name=""{claim2}"" match=""{claim2Match.ToString().ToLower()}"" separator=""{claim2Separator}"">
     <value>{claim2Value1}</value>
     <value>{claim2Value2}</value>
   </claim>
