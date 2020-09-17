@@ -19,7 +19,7 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Inner
         public Claim(string name, IEnumerable<string> values, RequiredClaimsMatch match, string separator) : base("claim")
         {
             Attributes.Add(Name, name);
-            Attributes.Add(Match, match.ToString());
+            Attributes.Add(Match, match.ToString().ToLower());
             Attributes.Add(Separator, separator);
             _values = values.Select(v => new Value(v));
         }
