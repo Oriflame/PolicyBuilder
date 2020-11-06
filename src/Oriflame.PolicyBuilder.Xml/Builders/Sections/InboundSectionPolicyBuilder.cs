@@ -60,11 +60,13 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         /// <inheritdoc />
         public IInboundSectionPolicyBuilder ValidateJwt(Func<IJwtValidationAttributesBuilder, IDictionary<string, string>> jwtAttributesBuilder, string openIdConfigUrl = null,
-            IEnumerable<string> issuers = null)
+            IEnumerable<string> issuers = null, Func<IRequiredClaimsSectionBuilder, ISectionPolicy> requiredClaimsBuilder = null)
         {
             var attributesBuilder = new JwtAttributesBuilder();
             var attributes = jwtAttributesBuilder.Invoke(attributesBuilder);
-            var policy = new JwtValidationPolicy(attributes, openIdConfigUrl, issuers);
+            var requiredClaimsSectionBuilder = new RequiredClaimsSectionBuilder();
+            var requiredClaims = requiredClaimsBuilder?.Invoke(requiredClaimsSectionBuilder);
+            var policy = new JwtValidationPolicy(attributes, openIdConfigUrl, issuers, requiredClaims);
             return AddPolicyDefinition(policy);
         }
 
