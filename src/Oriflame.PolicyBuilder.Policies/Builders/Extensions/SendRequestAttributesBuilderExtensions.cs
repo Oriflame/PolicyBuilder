@@ -7,12 +7,12 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Extensions
 {
     public static class SendRequestAttributesBuilderExtensions
     {
-        public static IDictionary<string, string> Create(this ISendRequestAttributesBuilder builder, string variableName, TimeSpan timeOut)
+        public static IDictionary<string, string> Create(this ISendRequestAttributesBuilder builder, string variableName, TimeSpan timeOut, bool ignoreError = false)
         {
             return builder.Mode(RequestMode.New)
                 .ResponseVariable(variableName)
                 .Timeout(timeOut)
-                .IgnoreError(false)
+                .IgnoreError(ignoreError)
                 .Create();
         }
     }
