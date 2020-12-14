@@ -11,5 +11,10 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Extensions
         {
             return builder.SendRequest(attributesBuilder => attributesBuilder.Create(variableName, timeout), sendRequestBuilder);
         }
+
+        public static T SendRequest<T>(this ISendRequests<T> builder, string variableName, TimeSpan timeout, bool ignoreError, Func<ISendRequestSectionBuilder, ISectionPolicy> sendRequestBuilder) where T : IPolicySectionBuilder
+        {
+            return builder.SendRequest(attributesBuilder => attributesBuilder.Create(variableName, timeout, ignoreError), sendRequestBuilder);
+        }
     }
 }
