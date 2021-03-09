@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using Microsoft.Net.Http.Headers;
 using Oriflame.PolicyBuilder.Policies;
@@ -24,28 +25,11 @@ namespace Oriflame.PolicyBuilder.ApiExample.Policies
                         .FailedValidationMessage("Unauthorized. Access token is missing or invalid.")
                         .Create(),
                         "http://contoso.com/.well-known/openid-configuration",
-                        
-                        new List<string>
-                        {
-                            @"@{
-                                if (true && true) return ""http://contoso.com/"";
-                                else return ""http://contoso.com/"";
-                            }"
-                        },
+                        new List<string> { "http://contoso.com/" },
                         requiredClaimsBuilder => requiredClaimsBuilder
                             .SetClaimPolicy("scope", new[] { "forcast_api" }, RequiredClaimsMatch.All)
                             .Create()
                         )
-                    .SetVariable("ReportingUrl",
-                        @"@{
-                            var serviceType = ""Reporting"";
-                            var uriJson = ((JObject)context.Variables[""UriSettingsJObject""]);
-                            if (uriJson != null && uriJson[serviceType] != null)
-                            {
-                                return uriJson[serviceType][""InternalUrl""].ToString();
-                            }
-                            return null;
-                        }")
                     .Create())
                 .Backend(builder => builder
                     .Base()
