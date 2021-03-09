@@ -48,14 +48,19 @@ namespace Oriflame.PolicyBuilder.Generator.Policies
                 Encoding = _encoding,
                 NewLineChars = LineBreak,
             };
-            using (var xw = XmlWriter.Create(path, xws))
+
+            using (var sw = new StringWriter())
             {
-                xmlDocument.Save(xw);
+                using (var xw = XmlWriter.Create(sw, xws))
+                {
+                    xmlDocument.Save(xw);
+                }
+
+                var content = sw.ToString();
+                content = _prettifyService.Prettify(content);
+                content += LineBreak;
+                File.WriteAllText(path, content, _encoding);
             }
-
-            _prettifyService.PrettifyFile(path);
-
-            File.AppendAllText(path, LineBreak, _encoding);
         }
 
         private static void CreateDirectory(string filePath)

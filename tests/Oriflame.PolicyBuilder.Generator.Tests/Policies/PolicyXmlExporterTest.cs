@@ -14,10 +14,10 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Policies
 			var underTest = new XmlInnerCodePrettifyService();
 
 			// Act
-			var outputXml = underTest.PrettifyContent(inputXml);
+			var outputXml = underTest.Prettify(inputXml);
 
             // Assert
-            outputXml.Should().Be(outputXml);
+            outputXml.Should().Be(GetOutputXml());
         }
 
         private string GetInputXml()
@@ -40,6 +40,13 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Policies
 				</claim>
 			</required-claims>
 		</validate-jwt>
+		<choose>
+			<when condition=""@(string.IsNullOrEmpty((string)context.Variables[&quot;Tenant&quot;]))"">
+				<return-response>
+					<set-status code=""400"" reason=""Tenant context must be specified"" />
+				</return-response>
+			</when>
+		</choose>
 		<set-variable name=""ReportingUrl"" value=""@{&#xD;&#xA;                            var serviceType = &quot;Reporting&quot;;&#xD;&#xA;                            var uriJson = ((JObject)context.Variables[&quot;UriSettingsJObject&quot;]);&#xD;&#xA;                            if (uriJson != null &amp;&amp; uriJson[serviceType] != null)&#xD;&#xA;                            {&#xD;&#xA;                                return uriJson[serviceType][&quot;InternalUrl&quot;].ToString();&#xD;&#xA;                            }&#xD;&#xA;                            return null;&#xD;&#xA;                        }"" />
 	</inbound>
 	<backend>
@@ -48,7 +55,9 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Policies
 	<outbound>
 		<base />
 	</outbound>
-	<on-error />
+	<on-error>
+		<trace source=""On error section"">@($""Reason: {context.LastError.Reason}, Message: {context.LastError.Message}"")</trace>
+	</on-error>
 </policies>";
         }
 
@@ -72,6 +81,13 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Policies
 				</claim>
 			</required-claims>
 		</validate-jwt>
+		<choose>
+			<when condition=""@(string.IsNullOrEmpty((string)context.Variables[""Tenant""]))"">
+				<return-response>
+					<set-status code=""400"" reason=""Tenant context must be specified"" />
+				</return-response>
+			</when>
+		</choose>
 		<set-variable name=""ReportingUrl"" value=""@{
                             var serviceType = ""Reporting"";
                             var uriJson = ((JObject)context.Variables[""UriSettingsJObject""]);
@@ -88,7 +104,9 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Policies
 	<outbound>
 		<base />
 	</outbound>
-	<on-error />
+	<on-error>
+		<trace source=""On error section"">@($""Reason: {context.LastError.Reason}, Message: {context.LastError.Message}"")</trace>
+	</on-error>
 </policies>";
         }
     }

@@ -1,5 +1,4 @@
-﻿using System.IO;
-using System.Web;
+﻿using System.Web;
 
 namespace Oriflame.PolicyBuilder.Generator.Services
 {
@@ -11,28 +10,23 @@ namespace Oriflame.PolicyBuilder.Generator.Services
         /// <summary>
         /// Prettifies the code inside XML
         /// </summary>
-        /// <param name="path">File path</param>
-        public void PrettifyFile(string path)
-        {
-            var fileContent = File.ReadAllText(path);
-            var prettifiedContent = PrettifyContent(fileContent);
-            File.WriteAllText(path, prettifiedContent);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="xmlContent"></param>
-        /// <returns></returns>
-        public string PrettifyContent(string xmlContent)
+        public string Prettify(string xmlContent)
         {
             var content = xmlContent;
-            UnescapeCodeBlocks(">@{", "}<", ref content); // Tags
-            UnescapeCodeBlocks("=\"@{", "}\" ", ref content); // Attributes
+            DecodeCodeBlocks(">@{", "}<", ref content); // Method in tags
+            DecodeCodeBlocks("=\"@{", "}\"", ref content); // Method in attributes
+            DecodeCodeBlocks(">@(", ")<", ref content); // Expression in tags
+            DecodeCodeBlocks("=\"@(", ")\"", ref content); // Expression in attributes
             return content;
         }
 
-        private void UnescapeCodeBlocks(string startSequence, string endSequence, ref string content)
+        /// <summary>
+        /// Finds code block in XML and decodes the HTML-encoded characters
+        /// </summary>
+        /// <param name="startSequence"></param>
+        /// <param name="endSequence"></param>
+        /// <param name="content"></param>
+        private void DecodeCodeBlocks(string startSequence, string endSequence, ref string content)
         {
             var lastIndex = 0;
             while (true)
@@ -49,7 +43,7 @@ namespace Oriflame.PolicyBuilder.Generator.Services
                 {
                     break;
                 }
-                lastIndex = endIndex + 1;
+                lastIndex = startIndex;
 
                 var length = endIndex - startIndex;
                 var code = content.Substring(startIndex, length);
