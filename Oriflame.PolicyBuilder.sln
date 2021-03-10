@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Xml"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Generator", "src\Oriflame.PolicyBuilder.Generator\Oriflame.PolicyBuilder.Generator.csproj", "{F8DF5ACC-C1B6-40C1-9A6B-7AD53FBE5DE5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oriflame.PolicyBuilder.Xml.Tests", "tests\Oriflame.PolicyBuilder.Xml.Tests\Oriflame.PolicyBuilder.Xml.Tests.csproj", "{0A1B3624-E56A-4895-BB77-66548D9767EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oriflame.PolicyBuilder.Xml.Tests", "tests\Oriflame.PolicyBuilder.Xml.Tests\Oriflame.PolicyBuilder.Xml.Tests.csproj", "{0A1B3624-E56A-4895-BB77-66548D9767EB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{65EE8CA4-F829-49D3-A160-FBBF50B74B3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Oriflame.PolicyBuilder.Generator.Tests", "tests\Oriflame.PolicyBuilder.Generator.Tests\Oriflame.PolicyBuilder.Generator.Tests.csproj", "{F5371435-B2E1-4743-B451-FAF5E0274E27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{0A1B3624-E56A-4895-BB77-66548D9767EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A1B3624-E56A-4895-BB77-66548D9767EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A1B3624-E56A-4895-BB77-66548D9767EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5371435-B2E1-4743-B451-FAF5E0274E27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5371435-B2E1-4743-B451-FAF5E0274E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5371435-B2E1-4743-B451-FAF5E0274E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5371435-B2E1-4743-B451-FAF5E0274E27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{597954CF-C46A-4AD9-92C8-FD273C3557C7} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
 		{F8DF5ACC-C1B6-40C1-9A6B-7AD53FBE5DE5} = {4715FD27-24CD-49EF-BD10-23020C689D7F}
 		{0A1B3624-E56A-4895-BB77-66548D9767EB} = {65EE8CA4-F829-49D3-A160-FBBF50B74B3D}
+		{F5371435-B2E1-4743-B451-FAF5E0274E27} = {65EE8CA4-F829-49D3-A160-FBBF50B74B3D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BB83448F-C408-4035-B888-ED5C980F2312}
