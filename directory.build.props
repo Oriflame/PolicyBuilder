@@ -7,7 +7,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageProjectUrl>>https://github.com/Oriflame/PolicyBuilder</PackageProjectUrl>
     <Description>Policies generator for Azure API Management</Description>
-    <VersionPrefix>1.6.0</VersionPrefix>
+    <VersionPrefix>1.7.0</VersionPrefix>
     <VersionSuffix Condition="'$(VersionSuffix)'!=''">$(VersionSuffix)</VersionSuffix>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>

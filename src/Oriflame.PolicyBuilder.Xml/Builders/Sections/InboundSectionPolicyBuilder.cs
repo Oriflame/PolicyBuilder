@@ -78,10 +78,17 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(action.Invoke(actionBuilder));
         }
 
-        public IInboundSectionPolicyBuilder Cors(Func<ICorsPolicyBuilder, ISectionPolicy> corsBuilder)
+        public IInboundSectionPolicyBuilder Cors(Func<ICorsPolicySectionBuilder, ISectionPolicy> corsBuilder)
         {
-            var corsPolicyBuilder = new CorsPolicyBuilder();
-            return AddPolicyDefinition(corsBuilder.Invoke(corsPolicyBuilder));
+            return Cors(a => new Dictionary<string, string>(), corsBuilder);
+        }
+
+        public IInboundSectionPolicyBuilder Cors(Func<ICorsAttributesBuilder, IDictionary<string, string>> corsAttributesBuilder, Func<ICorsPolicySectionBuilder, ISectionPolicy> corsBuilder)
+        {
+            var attributesBuilder = new CorsAttributesBuilder();
+            var attributes = corsAttributesBuilder.Invoke(attributesBuilder);
+            var corsSectionBuilder = new CorsPolicySectionBuilder(attributes);
+            return AddPolicyDefinition(corsBuilder.Invoke(corsSectionBuilder));
         }
 
         /// <inheritdoc />
@@ -90,7 +97,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         {
             if (cachingSectionPolicyBuilder == null)
             {
-                cachingSectionPolicyBuilder = new Func<ICacheLookupSectionBuilder, ISectionPolicy>(x => x.Create());
+                cachingSectionPolicyBuilder = x => x.Create();
             }
             var attributesBuilder = new CacheLookupAttributesBuilder();
             var attributes = cachingAttributesBuilder.Invoke(attributesBuilder);
