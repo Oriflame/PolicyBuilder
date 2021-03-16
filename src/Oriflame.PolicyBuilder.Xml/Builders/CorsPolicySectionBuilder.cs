@@ -1,33 +1,31 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Policy;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Policy.Cors;
 using Oriflame.PolicyBuilder.Policies.Definitions;
+using Oriflame.PolicyBuilder.Xml.Builders.Sections;
 using Oriflame.PolicyBuilder.Xml.Definitions.Inner.Cors;
 using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders
 {
-    public class CorsPolicyBuilder : ICorsPolicyBuilder, IAllowedOriginsPolicyBuilder, IAllowedMethodsPolicyBuilder, IAllowedHeadersPolicyBuilder, IExposeHeadersPolicyBuilder
+    public class CorsPolicySectionBuilder : SectionBuilderBase<ICorsPolicySectionBuilder>, ICorsPolicySectionBuilder, IAllowedOriginsPolicyBuilder, IAllowedMethodsPolicyBuilder, IAllowedHeadersPolicyBuilder, IExposeHeadersPolicyBuilder
     {
-        private AllowedOrigins _allowedOrigins;
+       private int? _preflightResultMaxAge;
 
-        private AllowedMethods _allowedMethods;
-
-        private AllowedHeaders _allowedHeaders;
-
-        private ExposeHeaders _exposedHeaders;
-
-        private int? _preflightResultMaxAge;
+        public CorsPolicySectionBuilder(IDictionary<string, string> attributes) : base(new SectionPolicy("cors", attributes))
+        {
+        }
 
         public virtual IAllowedMethodsPolicyBuilder AllOrigins()
         {
-            _allowedOrigins = new AllowedOrigins();
+            AddPolicyDefinition(new AllowedOrigins());
             return this;
         }
 
         public virtual IAllowedMethodsPolicyBuilder Origins(params string[] origins)
         {
-            _allowedOrigins = new AllowedOrigins(origins);
+            AddPolicyDefinition(new AllowedOrigins(origins));
             return this;
         }
 
@@ -39,48 +37,38 @@ namespace Oriflame.PolicyBuilder.Xml.Builders
 
         public virtual IAllowedHeadersPolicyBuilder AllMethods()
         {
-            _allowedMethods = new AllowedMethods(_preflightResultMaxAge);
+            AddPolicyDefinition(new AllowedMethods(_preflightResultMaxAge));
             return this;
         }
 
         public virtual IAllowedHeadersPolicyBuilder Methods(params HttpMethod[] methods)
         {
-            _allowedMethods = new AllowedMethods(methods, _preflightResultMaxAge);
+            AddPolicyDefinition(new AllowedMethods(methods, _preflightResultMaxAge));
             return this;
         }
 
         public virtual IExposeHeadersPolicyBuilder AllHeaders()
         {
-            _allowedHeaders = new AllowedHeaders();
+            AddPolicyDefinition(new AllowedHeaders());
             return this;
         }
 
         public virtual IExposeHeadersPolicyBuilder Headers(params string[] headers)
         {
-            _allowedHeaders = new AllowedHeaders(headers);
+            AddPolicyDefinition(new AllowedHeaders(headers));
             return this;
         }
 
         public virtual ISectionPolicy AllExposeHeaders()
         {
-            _exposedHeaders = new ExposeHeaders();
+            AddPolicyDefinition(new ExposeHeaders());
             return Create();
         }
 
         public virtual ISectionPolicy ExposeHeaders(params string[] exposeHeaders)
         {
-            _exposedHeaders = new ExposeHeaders(exposeHeaders);
+            AddPolicyDefinition(new ExposeHeaders(exposeHeaders));
             return Create();
-        }
-
-        public virtual ISectionPolicy Create()
-        {
-            var sectionPolicy = new SectionPolicy("cors");
-            sectionPolicy.AddInnerPolicy(_allowedOrigins);
-            sectionPolicy.AddInnerPolicy(_allowedMethods);
-            sectionPolicy.AddInnerPolicy(_allowedHeaders);
-            sectionPolicy.AddInnerPolicy(_exposedHeaders);
-            return sectionPolicy;
         }
     }
 }
