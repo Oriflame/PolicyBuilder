@@ -1,6 +1,6 @@
 ﻿namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Attributes
 {
-    public interface ICorsAttributesBuilder
+    public interface ICorsAttributesBuilder : IAttributesBuilder
     {
         /// <summary>
         /// The Access-Control-Allow-Credentials header in the preflight response will be set to the value of this attribute and affect the client's ability to submit credentials in cross-domain requests.
