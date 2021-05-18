@@ -59,5 +59,15 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
             var policy = ContextRequest.GetRouteParamAsString(paramName, inline);
             policy.Should().Be(expected);
         }
+
+        [Theory]
+        [InlineData("testingParam", "TestDefault", false, "@(context.Request.OriginalUrl.Query.GetValueOrDefault(\"testingParam\", \"TestDefault\"))")]
+        [InlineData("testingParam", "TestDefault", true, "context.Request.OriginalUrl.Query.GetValueOrDefault(\"testingParam\", \"TestDefault\")")]
+        [InlineData("testingParam", null, true, "context.Request.OriginalUrl.Query.GetValueOrDefault(\"testingParam\")")]
+        public void GetQueryParamGeneratesCorrectPolicy(string paramName,string defaultValue, bool inline, string expected)
+        {
+            var policy = ContextRequest.GetQueryParam(paramName, defaultValue, inline);
+            policy.Should().Be(expected);
+        }
     }
 }
