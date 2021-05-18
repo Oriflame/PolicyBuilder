@@ -33,5 +33,13 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             return $"(string){GetRouteParam(paramName, true)}".ToPolicyCode(inline);
         }
+
+        public static string GetQueryParam(string paramName, string defaultValue, bool inline = false)
+        {
+            var command = defaultValue == null
+                ? $"{Get(true)}.OriginalUrl.Query.GetValueOrDefault(\"{paramName}\")"
+                : $"{Get(true)}.OriginalUrl.Query.GetValueOrDefault(\"{paramName}\", \"{defaultValue}\")";
+            return command.ToPolicyCode(inline);
+        }
     }
 }
