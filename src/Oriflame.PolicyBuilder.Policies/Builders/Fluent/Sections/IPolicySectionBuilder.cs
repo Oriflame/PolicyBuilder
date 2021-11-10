@@ -18,14 +18,14 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         //Adds comment
         TSection Comment(string comment);
 
-        /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ReturnResponse"/>
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ReturnResponse"/>
         ISectionPolicy ReturnResponse(Func<IReturnResponseSectionBuilder, ISectionPolicy> returnResponseBuilder);
 
-        /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace"/>
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace"/>
         TSection Trace(string sourceName, string content);
        
 
-        /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#choose"/>
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#choose"/>
         TSection Choose(Func<IConditionSectionBuilder<TSection>, ISectionPolicy> conditionBuilder);
     }
 }

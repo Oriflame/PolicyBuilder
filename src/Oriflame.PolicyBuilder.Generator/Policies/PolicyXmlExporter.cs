@@ -8,8 +8,8 @@ namespace Oriflame.PolicyBuilder.Generator.Policies
 {
     public class PolicyXmlExporter : IFileExporter<IXmlPolicy>
     {
-        private static string LineBreak = "\r\n";
-        private static Encoding _encoding = Encoding.Unicode;
+        private static readonly string LineBreak = "\r\n";
+        private static readonly Encoding _encoding = Encoding.Unicode;
 
         private readonly IPrettifyService _prettifyService;
 

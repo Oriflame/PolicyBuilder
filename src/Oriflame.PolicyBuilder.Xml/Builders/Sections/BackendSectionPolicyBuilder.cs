@@ -47,6 +47,13 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        public virtual IBackendSectionPolicyBuilder Retry(string condition, string count, TimeSpan interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
+        {
+            var actionBuilder = new BackendSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
+        /// <inheritdoc />
         public virtual IBackendSectionPolicyBuilder ForwardRequest(TimeSpan? timeout)
         {
             return AddPolicyDefinition(new ForwardRequest(timeout));
