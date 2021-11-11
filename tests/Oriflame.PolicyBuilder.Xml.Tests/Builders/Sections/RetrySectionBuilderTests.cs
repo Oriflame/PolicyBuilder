@@ -16,7 +16,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
 
             var xml = policy.GetXml().ToString();
             xml.Should().Be(
-$@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
+                $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
         }
 
         [Theory]
@@ -27,7 +27,7 @@ $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval}"" 
 
             var xml = policy.GetXml().ToString();
             xml.Should().Be(
-$@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
+                $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
         }
 
         [Theory]
@@ -40,7 +40,7 @@ $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval}"" 
 
             var xml = policy.GetXml().ToString();
             xml.Should().Be(
-$@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval.GetSeconds().ToString()}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
+                $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval.GetSeconds().ToString()}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
         }
 
         [Theory]
@@ -53,7 +53,7 @@ $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval.Get
 
             var xml = policy.GetXml().ToString();
             xml.Should().Be(
-$@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval.GetSeconds().ToString()}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
+                $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval.GetSeconds().ToString()}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
         }
 
         [Theory]
@@ -64,7 +64,7 @@ $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval.Get
 
             var xml = policy.GetXml().ToString();
             xml.Should().Be(
-$@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
+                $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
         }
     }
 }
