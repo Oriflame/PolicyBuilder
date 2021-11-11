@@ -10,7 +10,7 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         ISectionPolicy Create();
     }
 
-    public interface IPolicySectionBuilder<TSection> : ISendRequests<TSection>, ISetHeaders<TSection>, ISetMethod<TSection>, ICacheValue<TSection>, ISetVariable<TSection>, IPolicySectionBuilder where TSection : IPolicySectionBuilder 
+    public interface IPolicySectionBuilder<TSection> : ISendRequests<TSection>, ISetHeaders<TSection>, ISetMethod<TSection>, ICacheValue<TSection>, ISetVariable<TSection>, IPolicySectionBuilder where TSection : IPolicySectionBuilder
     {
         //Calls base action for this section
         TSection Base();
@@ -22,8 +22,7 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         ISectionPolicy ReturnResponse(Func<IReturnResponseSectionBuilder, ISectionPolicy> returnResponseBuilder);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace"/>
-        TSection Trace(string sourceName, string content);
-       
+        TSection Trace(string sourceName, string content, Severity? severity = null);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#choose"/>
         TSection Choose(Func<IConditionSectionBuilder<TSection>, ISectionPolicy> conditionBuilder);

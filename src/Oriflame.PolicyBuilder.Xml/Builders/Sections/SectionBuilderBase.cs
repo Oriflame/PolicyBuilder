@@ -34,7 +34,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         {
             return AddPolicyDefinition(new CommentPolicy(comment));
         }
-        
+
         public virtual TSection SetVariable(string name, string value)
         {
             return AddPolicyDefinition(new SetVariablePolicy(name, value));
@@ -49,9 +49,9 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public virtual TSection Trace(string sourceName, string content)
+        public virtual TSection Trace(string sourceName, string content, Severity? severity = null)
         {
-            return AddPolicyDefinition(new Trace(sourceName, content));
+            return AddPolicyDefinition(new Trace(sourceName, content, severity));
         }
 
         /// <inheritdoc />
