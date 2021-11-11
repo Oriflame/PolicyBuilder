@@ -78,6 +78,46 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(action.Invoke(actionBuilder));
         }
 
+        /// <inheritdoc />
+        public IInboundSectionPolicyBuilder Retry(string condition, string count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            bool? firstFastRetry = null)
+        {
+            var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
+        /// <inheritdoc />
+        public IInboundSectionPolicyBuilder Retry(string condition, int count, string interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            bool? firstFastRetry = null)
+        {
+            var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
+        /// <inheritdoc />
+        public IInboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            string firstFastRetry = null)
+        {
+            var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
+        /// <inheritdoc />
+        public IInboundSectionPolicyBuilder Retry(string condition, string count, string interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            string firstFastRetry = null)
+        {
+            var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
+        /// <inheritdoc />
+        public IInboundSectionPolicyBuilder Retry(string condition, string count, string interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            bool? firstFastRetry = null)
+        {
+            var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
         public IInboundSectionPolicyBuilder Cors(Func<ICorsPolicySectionBuilder, ISectionPolicy> corsBuilder)
         {
             return Cors(a => new Dictionary<string, string>(), corsBuilder);
