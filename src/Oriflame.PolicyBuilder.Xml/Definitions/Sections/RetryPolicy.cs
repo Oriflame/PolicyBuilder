@@ -21,13 +21,13 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
         {
         }
 
-        public RetryPolicy(string condition, int count, TimeSpan interval, string firstFastRetry = null)
+        public RetryPolicy(string condition, int count, TimeSpan interval, string firstFastRetry)
             : base("retry")
         {
             Initialize(condition, count.ToString(), interval.GetSeconds(), firstFastRetry);
         }
 
-        public RetryPolicy(string condition, string count, string interval, string firstFastRetry = null)
+        public RetryPolicy(string condition, string count, string interval, string firstFastRetry)
             : base("retry")
         {
             Initialize(condition, count.ToString(), interval, firstFastRetry);
@@ -36,10 +36,11 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
         public RetryPolicy(string condition, string count, string interval, bool? firstFastRetry = null)
             : base("retry")
         {
-            Initialize(condition, count, interval, BoolMapper.Map(firstFastRetry.Value));
+            Initialize(condition, count, interval,
+                firstFastRetry.HasValue ? BoolMapper.Map(firstFastRetry.Value) : string.Empty);
         }
 
-        private void Initialize(string condition, string count, string interval, string firstFastRetry = null)
+        private void Initialize(string condition, string count, string interval, string firstFastRetry)
         {
             Attributes.Add("condition", condition);
             Attributes.Add("count", count);

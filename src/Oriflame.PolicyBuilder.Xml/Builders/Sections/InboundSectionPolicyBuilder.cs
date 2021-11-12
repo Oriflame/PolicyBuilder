@@ -96,7 +96,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         /// <inheritdoc />
         public IInboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
-            string firstFastRetry = null)
+            string firstFastRetry)
         {
             var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
@@ -104,7 +104,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         /// <inheritdoc />
         public IInboundSectionPolicyBuilder Retry(string condition, string count, string interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
-            string firstFastRetry = null)
+            string firstFastRetry)
         {
             var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
