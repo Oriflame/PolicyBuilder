@@ -20,21 +20,25 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             SectionPolicy = sectionPolicy;
         }
 
+        /// <inheritdoc />
         public virtual ISectionPolicy Create()
         {
             return SectionPolicy;
         }
 
+        /// <inheritdoc />
         public virtual TSection Base()
         {
             return AddPolicyDefinition(new BasePolicy());
         }
 
+        /// <inheritdoc />
         public virtual TSection Comment(string comment)
         {
             return AddPolicyDefinition(new CommentPolicy(comment));
         }
 
+        /// <inheritdoc />
         public virtual TSection SetVariable(string name, string value)
         {
             return AddPolicyDefinition(new SetVariablePolicy(name, value));
@@ -80,6 +84,42 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc />
+        public virtual TSection SetHeader(string name, string value, ExistsAction? existsAction)
+        {
+            return AddPolicyDefinition(new SetHeaderParameter(name, value, existsAction));
+        }
+
+        /// <inheritdoc />
+        public virtual TSection SetMethod(HttpMethod httpMethod)
+        {
+            return AddPolicyDefinition(new SetMethod(httpMethod));
+        }
+
+        /// <inheritdoc />
+        public virtual TSection RateLimitByKey(int calls, int renewalPeriod, string counterKey)
+        {
+            return AddPolicyDefinition(new RateLimitByKey(calls, renewalPeriod, counterKey));
+        }
+
+        /// <inheritdoc />
+        public virtual TSection RateLimitByKey(string calls, string renewalPeriod, string counterKey)
+        {
+            return AddPolicyDefinition(new RateLimitByKey(calls, renewalPeriod, counterKey));
+        }
+
+        /// <inheritdoc />
+        public virtual TSection QuotaByKey(int calls, int bandwidth, int renewalPeriod, string counterKey)
+        {
+            return AddPolicyDefinition(new QuotaByKey(calls, bandwidth, renewalPeriod, counterKey));
+        }
+
+        /// <inheritdoc />
+        public virtual TSection QuotaByKey(string calls, string bandwidth, string renewalPeriod, string counterKey)
+        {
+            return AddPolicyDefinition(new QuotaByKey(calls, bandwidth, renewalPeriod, counterKey));
+        }
+
         protected TSection AddPolicyDefinition(IXmlPolicy policy)
         {
             SectionPolicy.AddInnerPolicy(policy);
@@ -95,16 +135,6 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         private TSection Return()
         {
             return this as TSection;
-        }
-
-        public virtual TSection SetHeader(string name, string value, ExistsAction? existsAction)
-        {
-            return AddPolicyDefinition(new SetHeaderParameter(name, value, existsAction));
-        }
-
-        public virtual TSection SetMethod(HttpMethod httpMethod)
-        {
-            return AddPolicyDefinition(new SetMethod(httpMethod));
         }
     }
 }
