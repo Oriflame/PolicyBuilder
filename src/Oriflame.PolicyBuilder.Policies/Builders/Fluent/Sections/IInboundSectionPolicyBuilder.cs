@@ -35,6 +35,26 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
         IInboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null);
 
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
+        IInboundSectionPolicyBuilder Retry(string condition, string count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            bool? firstFastRetry = null);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
+        IInboundSectionPolicyBuilder Retry(string condition, int count, string interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            bool? firstFastRetry = null);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
+        IInboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            string firstFastRetry);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
+        IInboundSectionPolicyBuilder Retry(string condition, string count, string interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            string firstFastRetry);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
+        IInboundSectionPolicyBuilder Retry(string condition, string count, string interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
+            bool? firstFastRetry = null);
+
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-cross-domain-policies#CORS"/>
         IInboundSectionPolicyBuilder Cors(Func<ICorsPolicySectionBuilder, ISectionPolicy> corsBuilder);
 
