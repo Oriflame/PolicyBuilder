@@ -145,6 +145,31 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(cachingSectionPolicyBuilder.Invoke(policyBuilder));
         }
 
+
+        /// <inheritdoc />
+        public virtual IInboundSectionPolicyBuilder RateLimitByKey(int calls, int renewalPeriod, string counterKey)
+        {
+            return AddPolicyDefinition(new RateLimitByKey(calls, renewalPeriod, counterKey));
+        }
+
+        /// <inheritdoc />
+        public virtual IInboundSectionPolicyBuilder RateLimitByKey(string calls, string renewalPeriod, string counterKey)
+        {
+            return AddPolicyDefinition(new RateLimitByKey(calls, renewalPeriod, counterKey));
+        }
+
+        /// <inheritdoc />
+        public virtual IInboundSectionPolicyBuilder QuotaByKey(int calls, int bandwidth, int renewalPeriod, string counterKey)
+        {
+            return AddPolicyDefinition(new QuotaByKey(calls, bandwidth, renewalPeriod, counterKey));
+        }
+
+        /// <inheritdoc />
+        public virtual IInboundSectionPolicyBuilder QuotaByKey(string calls, string bandwidth, string renewalPeriod, string counterKey)
+        {
+            return AddPolicyDefinition(new QuotaByKey(calls, bandwidth, renewalPeriod, counterKey));
+        }
+
         public InboundSectionPolicyBuilder(ISectionPolicy sectionPolicy) : base(sectionPolicy)
         {
         }

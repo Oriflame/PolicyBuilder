@@ -65,5 +65,17 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-caching-policies"/>
         IInboundSectionPolicyBuilder CacheLookup(Func<ICacheLookupAttributesBuilder, IDictionary<string, string>> cachingAttributesBuilder, Func<ICacheLookupSectionBuilder, ISectionPolicy> cachingSectionPolicyBuilder = null);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-sample-flexible-throttling"/>
+        IInboundSectionPolicyBuilder RateLimitByKey(int calls, int renewalPeriod, string counterKey);
+        
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-sample-flexible-throttling"/>
+        IInboundSectionPolicyBuilder RateLimitByKey(string calls, string renewalPeriod, string counterKey);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-sample-flexible-throttling"/>
+        IInboundSectionPolicyBuilder QuotaByKey(int calls, int bandwidth, int renewalPeriod, string counterKey);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-sample-flexible-throttling"/>
+        IInboundSectionPolicyBuilder QuotaByKey(string calls, string bandwidth, string renewalPeriod, string counterKey);
     }
 }
