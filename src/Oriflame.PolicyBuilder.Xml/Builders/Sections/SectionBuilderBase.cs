@@ -96,30 +96,6 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(new SetMethod(httpMethod));
         }
 
-        /// <inheritdoc />
-        public virtual TSection RateLimitByKey(int calls, int renewalPeriod, string counterKey)
-        {
-            return AddPolicyDefinition(new RateLimitByKey(calls, renewalPeriod, counterKey));
-        }
-
-        /// <inheritdoc />
-        public virtual TSection RateLimitByKey(string calls, string renewalPeriod, string counterKey)
-        {
-            return AddPolicyDefinition(new RateLimitByKey(calls, renewalPeriod, counterKey));
-        }
-
-        /// <inheritdoc />
-        public virtual TSection QuotaByKey(int calls, int bandwidth, int renewalPeriod, string counterKey)
-        {
-            return AddPolicyDefinition(new QuotaByKey(calls, bandwidth, renewalPeriod, counterKey));
-        }
-
-        /// <inheritdoc />
-        public virtual TSection QuotaByKey(string calls, string bandwidth, string renewalPeriod, string counterKey)
-        {
-            return AddPolicyDefinition(new QuotaByKey(calls, bandwidth, renewalPeriod, counterKey));
-        }
-
         protected TSection AddPolicyDefinition(IXmlPolicy policy)
         {
             SectionPolicy.AddInnerPolicy(policy);
