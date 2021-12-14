@@ -17,7 +17,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
         public void CreatesCorrectPolicy()
         {
             var attributes = new CacheLookupAttributesBuilder().Create();
-            var basePolicy = (SectionPolicy) new CacheLookupSectionBuilder(attributes).Create();
+            var basePolicy = (SectionPolicy)new CacheLookupSectionBuilder(attributes).Create();
             var xml = basePolicy.GetXml().ToString();
             xml.Should().Be("<cache-lookup />");
         }
@@ -33,7 +33,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
                     .AllowPrivateResponseCaching(true)
                     .Create();
 
-            var basePolicy = (SectionPolicy) new CacheLookupSectionBuilder(attributes).Create();
+            var basePolicy = (SectionPolicy)new CacheLookupSectionBuilder(attributes).Create();
             var xml = basePolicy.GetXml().ToString();
             xml.Should().Be(
                 $"<cache-lookup vary-by-developer=\"true\" vary-by-developer-groups=\"false\" downstream-caching-type=\"public\" allow-private-response-caching=\"true\" />");

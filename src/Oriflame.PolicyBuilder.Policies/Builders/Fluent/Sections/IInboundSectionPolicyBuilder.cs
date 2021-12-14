@@ -30,7 +30,7 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         ISectionPolicy MockResponse(HttpStatusCode? statusCode = null, string contentType = null);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-access-restriction-policies#ValidateJWT"/>
-        IInboundSectionPolicyBuilder ValidateJwt(Func<IJwtValidationAttributesBuilder, IDictionary<string, string>> jwtAttributesBuilder, string openIdConfigUrl = null, IEnumerable<string> issuers = null, Func<IRequiredClaimsSectionBuilder, ISectionPolicy> requiredClaimsBuilder = null);
+        IInboundSectionPolicyBuilder ValidateJwt(Func<IJwtValidationAttributesBuilder, IDictionary<string, string>> jwtAttributesBuilder, string openIdConfigUrl = null, IEnumerable<string> issuers = null, Func<IRequiredClaimSectionBuilder, ISectionPolicy> requiredClaimsBuilder = null);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
         IInboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null);
@@ -77,5 +77,8 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-sample-flexible-throttling"/>
         IInboundSectionPolicyBuilder QuotaByKey(string calls, string bandwidth, string renewalPeriod, string counterKey);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#emit-metrics"/>
+        IInboundSectionPolicyBuilder EmitMetric(string name, string value, string @namespace, Func<IEmitMetricPolicyBuilder, ISectionPolicy> action = null);
     }
 }
