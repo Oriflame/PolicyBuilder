@@ -1,15 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Oriflame.PolicyBuilder.Policies\Oriflame.PolicyBuilder.Policies.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Oriflame.PolicyBuilder.Policies\Oriflame.PolicyBuilder.Policies.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update=".\Builders\Sections\InboundSectionPolicyBuilder.*.cs">
+			<DependentUpon>.\Builders\Sections\InboundSectionPolicyBuilder.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
 </Project>
