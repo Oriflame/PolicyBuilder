@@ -83,5 +83,8 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#LimitConcurrency"/>
         IInboundSectionPolicyBuilder LimitConcurrency(string key, string maxCount, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#emit-metrics"/>
+        IInboundSectionPolicyBuilder EmitMetric(string name, string value, string @namespace, Func<IEmitMetricPolicyBuilder, ISectionPolicy> action = null);
     }
 }
