@@ -77,5 +77,11 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-sample-flexible-throttling"/>
         IInboundSectionPolicyBuilder QuotaByKey(string calls, string bandwidth, string renewalPeriod, string counterKey);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#LimitConcurrency"/>
+        IInboundSectionPolicyBuilder LimitConcurrency(string key, int maxCount, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#LimitConcurrency"/>
+        IInboundSectionPolicyBuilder LimitConcurrency(string key, string maxCount, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action);
     }
 }
