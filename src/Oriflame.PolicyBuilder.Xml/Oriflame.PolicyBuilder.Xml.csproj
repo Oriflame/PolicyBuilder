@@ -18,10 +18,4 @@
 		</Compile>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Compile Update="Builders\Sections\InboundSectionPolicyBuilder - Copy.Cors.cs">
-	    <DependentUpon>.\Builders\Sections\InboundSectionPolicyBuilder.cs</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
 </Project>

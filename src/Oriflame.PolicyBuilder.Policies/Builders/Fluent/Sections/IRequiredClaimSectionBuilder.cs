@@ -4,8 +4,8 @@ using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
 {
 
-    public interface IRequiredClaimSectionBuilder : IPolicySectionBuilder
+    public interface IRequiredClaimsSectionBuilder : IPolicySectionBuilder
     {
-        IRequiredClaimSectionBuilder SetClaimPolicy(string claimName, IEnumerable<string> claimValues, RequiredClaimsMatch match, string separator = "");
+        IRequiredClaimsSectionBuilder SetClaimPolicy(string claimName, IEnumerable<string> claimValues, RequiredClaimsMatch match, string separator = "");
     }
 }
