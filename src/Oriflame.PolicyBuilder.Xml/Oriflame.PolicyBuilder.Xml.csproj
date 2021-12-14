@@ -16,9 +16,6 @@
 		<Content Include=".\Builders\Sections\InboundSectionPolicyBuilder.Cors.cs">
 			<DependentUpon>.\Builders\Sections\InboundSectionPolicyBuilder.cs</DependentUpon>
 		</Content>
-		<Content Include=".\Builders\Sections\InboundSectionPolicyBuilder.EmitMetrics.cs">
-			<DependentUpon>.\Builders\Sections\InboundSectionPolicyBuilder.cs</DependentUpon>
-		</Content>
 		<Content Include=".\Builders\Sections\InboundSectionPolicyBuilder.QuotaByKey.cs">
 			<DependentUpon>.\Builders\Sections\InboundSectionPolicyBuilder.cs</DependentUpon>
 		</Content>
