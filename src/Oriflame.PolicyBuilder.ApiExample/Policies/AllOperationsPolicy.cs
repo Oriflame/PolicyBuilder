@@ -19,9 +19,6 @@ namespace Oriflame.PolicyBuilder.ApiExample.Policies
             PolicyBuilder
                 .Inbound(builder => builder
                     .Base()
-                    .EmitMetric("name", "value", "namespace", m => m
-                        .Dimension("dname", "dvalue")
-                        .Create())
                     .ValidateJwt(jwtAttr => jwtAttr
                         .HeaderName(HeaderNames.Authorization)
                         .FailedValidationStatusCode(HttpStatusCode.Unauthorized)

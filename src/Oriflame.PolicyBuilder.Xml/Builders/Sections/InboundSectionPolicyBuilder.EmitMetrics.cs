@@ -2,7 +2,6 @@
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
 using Oriflame.PolicyBuilder.Policies.Definitions;
 using Oriflame.PolicyBuilder.Xml.Builders.Attributes;
-using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 {
@@ -11,7 +10,6 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         /// <inheritdoc />
         public virtual IInboundSectionPolicyBuilder EmitMetric(string name, string value, string @namespace, Func<IEmitMetricPolicyBuilder, ISectionPolicy> action = null)
         {
-            // TODO
             var attributes =
                 new EmitMetricAttributesBuilder()
                     .Name(name)
