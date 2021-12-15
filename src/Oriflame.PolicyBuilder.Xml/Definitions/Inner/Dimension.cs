@@ -1,8 +1,8 @@
 ﻿namespace Oriflame.PolicyBuilder.Xml.Definitions.Inner
 {
-    public class Dimention : PolicyXmlBase
+    public class Dimension : PolicyXmlBase
     {
-        public Dimention(string name, string value) : base("dimention")
+        public Dimension(string name, string value) : base("dimension")
         {
             Attributes.Add("name", name);
             Attributes.Add("value", value);

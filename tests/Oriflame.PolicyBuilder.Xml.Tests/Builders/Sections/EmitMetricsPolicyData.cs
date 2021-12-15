@@ -1,17 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Oriflame.PolicyBuilder.Xml.Tests.Definitions.Common
+namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
 {
     public class EmitMetricsPolicyTestData
     {
         public string Name;
         public string Value;
         public string Namespace;
-        public EmitMetricsPolicyDimentionData[] DimentionsDatas;
+        public EmitMetricsPolicyDimensionData[] DimensionsDatas;
     }
 
-    public class EmitMetricsPolicyDimentionData
+    public class EmitMetricsPolicyDimensionData
     {
         public string Name;
         public string Value;
@@ -28,14 +28,15 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Definitions.Common
                     Name = "policy-name",
                     Value = "policy-value",
                     Namespace = "policy-namespace",
-                    DimentionsDatas = new EmitMetricsPolicyDimentionData[]
+                    DimensionsDatas = new EmitMetricsPolicyDimensionData[]
                         {
-                            new EmitMetricsPolicyDimentionData
+                            new EmitMetricsPolicyDimensionData
                             {
                                 Name = "foo",
                                 Value = "foo-value"
                             },
-                            new EmitMetricsPolicyDimentionData{
+                            new EmitMetricsPolicyDimensionData
+                            {
                                 Name = "bar",
                                 Value = "bar-value"
                             }
