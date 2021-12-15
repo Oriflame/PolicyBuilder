@@ -47,7 +47,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
             xml.Should().Be(
 $@"<emit-metric name=""{data.Name}"" value=""{data.Value}"" namespace=""{data.Namespace}"">
 " + (data.DimensionsDatas).Select(x =>
-    $@"  <dimension name=""{x.Name}"" value=""{x.Value}"" />").Aggregate("", (prev, curr) => $"{prev}{curr}\n") +
+    $@"  <dimension name=""{x.Name}"" value=""{x.Value}"" />").Aggregate("", (prev, curr) => $"{prev}{curr}{System.Environment.NewLine}") +
 "</emit-metric>");
         }
     }
