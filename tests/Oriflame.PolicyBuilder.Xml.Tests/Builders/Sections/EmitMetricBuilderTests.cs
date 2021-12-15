@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
 {
-    public class EmitMetricBuilderTestss
+    public class EmitMetricBuilderTests
     {
         [Theory]
         [InlineData("foo", "foo-value", "foo-namespace")]
