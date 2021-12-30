@@ -2,10 +2,14 @@
 {
     public class Dimension : PolicyXmlBase
     {
-        public Dimension(string name, string value) : base("dimension")
+        public Dimension(string name, string value = null) : base("dimension")
         {
             Attributes.Add("name", name);
-            Attributes.Add("value", value);
+
+            if (!string.IsNullOrEmpty(value))
+            {
+                Attributes.Add("value", value);
+            }
         }
     }
 }

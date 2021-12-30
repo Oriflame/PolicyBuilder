@@ -8,16 +8,23 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
     public partial class InboundSectionPolicyBuilder : SectionBuilderBase<IInboundSectionPolicyBuilder>, IInboundSectionPolicyBuilder
     {
         /// <inheritdoc />
-        public virtual IInboundSectionPolicyBuilder EmitMetric(string name, string value, string @namespace, Func<IEmitMetricPolicyBuilder, ISectionPolicy> action = null)
+        public virtual IInboundSectionPolicyBuilder EmitMetric(string name, string value = null, string @namespace = null, Func<IEmitMetricPolicyBuilder, ISectionPolicy> action = null)
         {
-            var attributes =
-                new EmitMetricAttributesBuilder()
-                    .Name(name)
-                    .Value(value)
-                    .Namespace(@namespace)
-                    .Create();
-            var emitMetricPolicyBuilder = new EmitMetricPolicyBuilder(attributes);
-            var policy = action.Invoke(emitMetricPolicyBuilder);
+            var attributeBuilder = new EmitMetricAttributesBuilder();
+            attributeBuilder.Name(name);
+
+            if (!string.IsNullOrEmpty(value))
+            {
+                attributeBuilder.Value(value);
+            }
+
+            if (!string.IsNullOrEmpty(@namespace))
+            {
+                attributeBuilder.Namespace(@namespace);
+            }
+
+            var emitMetricPolicyBuilder = new EmitMetricPolicyBuilder(attributeBuilder.Create());
+            var policy = action?.Invoke(emitMetricPolicyBuilder);
             return AddPolicyDefinition(policy);
         }
     }

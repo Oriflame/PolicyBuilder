@@ -11,7 +11,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         {
         }
 
-        public IEmitMetricPolicyBuilder Dimension(string name, string value)
+        public IEmitMetricPolicyBuilder Dimension(string name, string value = null)
         {
             return AddPolicyDefinition(new Dimension(name, value));
         }
