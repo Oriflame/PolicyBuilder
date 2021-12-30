@@ -2,6 +2,6 @@
 {
     public interface IEmitMetricPolicyBuilder : IPolicySectionBuilder
     {
-        IEmitMetricPolicyBuilder Dimension(string name, string value);
+        IEmitMetricPolicyBuilder Dimension(string name, string value = null);
     }
 }
