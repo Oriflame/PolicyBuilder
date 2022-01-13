@@ -4,6 +4,10 @@
 		<TargetFramework>net6.0</TargetFramework>
 	</PropertyGroup>
 
+  <ItemGroup>
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<ProjectReference Include="..\Oriflame.PolicyBuilder.Policies\Oriflame.PolicyBuilder.Policies.csproj" />
 	</ItemGroup>
