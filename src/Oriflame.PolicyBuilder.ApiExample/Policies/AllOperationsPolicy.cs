@@ -26,7 +26,7 @@ namespace Oriflame.PolicyBuilder.ApiExample.Policies
                         "http://contoso.com/.well-known/openid-configuration",
                         new List<string> { "http://contoso.com/" },
                         requiredClaimsBuilder => requiredClaimsBuilder
-                            .SetClaimPolicy("scope", new[] { "forcast_api" }, RequiredClaimsMatch.All)
+                            .SetClaimPolicy("scope", new[] { "forecast_api" }, RequiredClaimsMatch.All)
                             .Create()
                         )
                     .Create())
