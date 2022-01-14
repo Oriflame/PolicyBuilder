@@ -73,6 +73,14 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        public virtual TSection SendOneWayRequest(Func<ISendOneWayRequestAttributesBuilder, IDictionary<string, string>> sendOneWayRequestAttributesBuilder, Func<ISendOneWayRequestSectionBuilder, ISectionPolicy> sendOneWayRequestBuilder)
+        {
+            var attributes = sendOneWayRequestAttributesBuilder.Invoke(new SendOneWayRequestAttributesBuilder());
+            var sendOneWayRequestSectionBuilder = new SendOneWayRequestSectionBuilder(attributes);
+            return AddPolicyDefinition(sendOneWayRequestBuilder.Invoke(sendOneWayRequestSectionBuilder));
+        }
+
+        /// <inheritdoc />
         public virtual TSection CacheStoreValue(string key, string value, TimeSpan duration)
         {
             return AddPolicyDefinition(new CacheStoreValue(key, value, duration));

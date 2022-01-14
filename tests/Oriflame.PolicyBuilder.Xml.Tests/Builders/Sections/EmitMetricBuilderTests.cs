@@ -11,8 +11,22 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
     public class EmitMetricBuilderTests
     {
         [Theory]
+        [InlineData("foo")]
+        public void CreatesCorrectBasicPolicy(string name)
+        {
+            var attributes = new Dictionary<string, string>()
+            {
+                { "name", name }
+            };
+
+            var basePolicy = new EmitMetricPolicyBuilder(attributes).Create() as SectionPolicy;
+            var xml = basePolicy?.GetXml().ToString();
+            xml.Should().Be(@$"<emit-metric name=""{name}"" />");
+        }
+
+        [Theory]
         [InlineData("foo", "foo-value", "foo-namespace")]
-        public void CreatesCorrectBasicPolicy(string name, string value, string @namespace)
+        public void CreatesCorrectFullPolicy(string name, string value, string @namespace)
         {
             var attributes = new Dictionary<string, string>()
             {
@@ -24,20 +38,6 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
             var basePolicy = new EmitMetricPolicyBuilder(attributes).Create() as SectionPolicy;
             var xml = basePolicy?.GetXml().ToString();
             xml.Should().Be(@$"<emit-metric name=""{name}"" value=""{value}"" namespace=""{@namespace}"" />");
-        }
-
-        [Theory]
-        [InlineData("foo", "foo-value", "foo-namespace")]
-        public void CreatesCorrectFullPolicy(string name, string value, string @namespace)
-        {
-            var attributes = new Dictionary<string, string>()
-            {
-                { "name", name }
-            };
-
-            var basePolicy = new EmitMetricPolicyBuilder(attributes).Create() as SectionPolicy;
-            var xml = basePolicy?.GetXml().ToString();
-            xml.Should().Be(@$"<emit-metric name=""{name}"" />");
         }
 
         [Theory]
