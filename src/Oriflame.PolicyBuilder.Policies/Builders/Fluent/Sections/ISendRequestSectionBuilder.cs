@@ -7,5 +7,7 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         ISendRequestSectionBuilder SetUrl(string url);
 
         ISendRequestSectionBuilder SetBody(string content);
+
+        ISendRequestSectionBuilder AuthenticationCertificate(string thumbprint);
     }
 }

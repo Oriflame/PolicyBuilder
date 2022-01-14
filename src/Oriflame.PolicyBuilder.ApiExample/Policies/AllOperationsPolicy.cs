@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net;
 using Microsoft.Net.Http.Headers;
 using Oriflame.PolicyBuilder.Policies;
@@ -20,10 +19,10 @@ namespace Oriflame.PolicyBuilder.ApiExample.Policies
                 .Inbound(builder => builder
                     .Base()
                     .ValidateJwt(jwtAttr => jwtAttr
-                        .HeaderName(HeaderNames.Authorization)
-                        .FailedValidationStatusCode(HttpStatusCode.Unauthorized)
-                        .FailedValidationMessage("Unauthorized. Access token is missing or invalid.")
-                        .Create(),
+                            .HeaderName(HeaderNames.Authorization)
+                            .FailedValidationStatusCode(HttpStatusCode.Unauthorized)
+                            .FailedValidationMessage("Unauthorized. Access token is missing or invalid.")
+                            .Create(),
                         "http://contoso.com/.well-known/openid-configuration",
                         new List<string> { "http://contoso.com/" },
                         requiredClaimsBuilder => requiredClaimsBuilder

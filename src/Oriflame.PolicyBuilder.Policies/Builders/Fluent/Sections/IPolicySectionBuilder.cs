@@ -10,7 +10,7 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         ISectionPolicy Create();
     }
 
-    public interface IPolicySectionBuilder<TSection> : ISendRequests<TSection>, ISetHeaders<TSection>, ISetMethod<TSection>, ICacheValue<TSection>, ISetVariable<TSection>, IPolicySectionBuilder where TSection : IPolicySectionBuilder
+    public interface IPolicySectionBuilder<TSection> : ISendRequest<TSection>, ISendOneWayRequest<TSection>, ISetHeaders<TSection>, ISetMethod<TSection>, ICacheValue<TSection>, ISetVariable<TSection>, IPolicySectionBuilder where TSection : IPolicySectionBuilder
     {
         //Calls base action for this section
         TSection Base();
