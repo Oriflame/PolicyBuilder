@@ -58,7 +58,8 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(new Trace(sourceName, content, severity));
         }
 
-        public virtual TSection Trace(string source, string message = null, Severity? severity = null, Func<ITracePolicyBuilder, ISectionPolicy> action = null)
+        /// <inheritdoc />
+        public virtual TSection Trace(string source, string message, Func<ITracePolicyBuilder, ISectionPolicy> action, Severity? severity = null)
         {
             var attributeBuilder = new TraceAttributesBuilder();
             attributeBuilder.Source(source);
