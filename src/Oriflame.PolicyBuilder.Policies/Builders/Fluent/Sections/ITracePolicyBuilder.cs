@@ -2,8 +2,6 @@
 {
     public interface ITracePolicyBuilder : IPolicySectionBuilder
     {
-        ITracePolicyBuilder Message(string message);
-
         ITracePolicyBuilder Metadata(string name, string value);
     }
 }
