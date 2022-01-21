@@ -24,6 +24,9 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace"/>
         TSection Trace(string sourceName, string content, Severity? severity = null);
 
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace"/>
+        TSection Trace(string source, string message = null, Severity? severity = null, Func<ITracePolicyBuilder, ISectionPolicy> action = null);
+
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#choose"/>
         TSection Choose(Func<IConditionSectionBuilder<TSection>, ISectionPolicy> conditionBuilder);
     }

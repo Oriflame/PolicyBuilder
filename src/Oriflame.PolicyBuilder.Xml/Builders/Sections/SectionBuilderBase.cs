@@ -58,6 +58,22 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(new Trace(sourceName, content, severity));
         }
 
+        public virtual TSection Trace(string source, string message = null, Severity? severity = null, Func<ITracePolicyBuilder, ISectionPolicy> action = null)
+        {
+            var attributeBuilder = new TraceAttributesBuilder();
+            attributeBuilder.Source(source);
+
+            if (severity.HasValue)
+            {
+                attributeBuilder.Severity(severity.Value);
+            }
+
+            var tracePolicyBuilder = new TracePolicyBuilder(attributeBuilder.Create());
+            tracePolicyBuilder.Message(message);
+            var policy = action?.Invoke(tracePolicyBuilder);
+            return AddPolicyDefinition(policy);
+        }
+
         /// <inheritdoc />
         public virtual TSection CacheLookupValue(string key, string variable)
         {
