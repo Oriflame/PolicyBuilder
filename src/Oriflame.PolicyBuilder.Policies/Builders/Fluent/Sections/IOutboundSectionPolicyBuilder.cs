@@ -14,7 +14,7 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         IOutboundSectionPolicyBuilder SetBody(string content);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
-        IOutboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null);
+        IOutboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action, bool firstFastRetry = false);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-caching-policies#StoreToCache"/>
         IOutboundSectionPolicyBuilder CacheStore(TimeSpan cacheDuration);

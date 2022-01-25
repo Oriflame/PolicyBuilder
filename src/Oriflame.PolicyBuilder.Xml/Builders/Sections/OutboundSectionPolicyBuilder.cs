@@ -34,7 +34,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         /// <inheritdoc />
         public virtual IOutboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action,
-            bool? firstFastRetry = null)
+            bool firstFastRetry = false)
         {
             var actionBuilder = new OutboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));

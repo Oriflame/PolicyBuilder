@@ -17,7 +17,7 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         IBackendSectionPolicyBuilder SetBody(ILiquidTemplate template);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
-        IBackendSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null);
+        IBackendSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool firstFastRetry = false);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>
         IBackendSectionPolicyBuilder ForwardRequest(TimeSpan? timeout);

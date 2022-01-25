@@ -9,7 +9,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
     {
         /// <inheritdoc />
         public IInboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
-            bool? firstFastRetry = null)
+            bool firstFastRetry = false)
         {
             var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
@@ -17,7 +17,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         /// <inheritdoc />
         public IInboundSectionPolicyBuilder Retry(string condition, string count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
-            bool? firstFastRetry = null)
+            bool firstFastRetry = false)
         {
             var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
@@ -25,7 +25,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         /// <inheritdoc />
         public IInboundSectionPolicyBuilder Retry(string condition, int count, string interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
-            bool? firstFastRetry = null)
+            bool firstFastRetry = false)
         {
             var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
@@ -49,7 +49,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         /// <inheritdoc />
         public IInboundSectionPolicyBuilder Retry(string condition, string count, string interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
-            bool? firstFastRetry = null)
+            bool firstFastRetry = false)
         {
             var actionBuilder = new InboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));

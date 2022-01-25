@@ -40,28 +40,28 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public virtual IBackendSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
+        public virtual IBackendSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool firstFastRetry = false)
         {
             var actionBuilder = new BackendSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
         }
 
         /// <inheritdoc />
-        public virtual IBackendSectionPolicyBuilder Retry(string condition, string count, TimeSpan interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
+        public virtual IBackendSectionPolicyBuilder Retry(string condition, string count, TimeSpan interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool firstFastRetry = false)
         {
             var actionBuilder = new BackendSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
         }
 
         /// <inheritdoc />
-        public virtual IBackendSectionPolicyBuilder Retry(string condition, string count, string interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
+        public virtual IBackendSectionPolicyBuilder Retry(string condition, string count, string interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool firstFastRetry = false)
         {
             var actionBuilder = new BackendSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
         }
 
         /// <inheritdoc />
-        public virtual IBackendSectionPolicyBuilder Retry(string condition, int count, string interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
+        public virtual IBackendSectionPolicyBuilder Retry(string condition, int count, string interval, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action, bool firstFastRetry = false)
         {
             var actionBuilder = new BackendSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
