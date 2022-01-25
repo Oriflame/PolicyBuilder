@@ -45,7 +45,7 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
             Attributes.Add("condition", condition);
             Attributes.Add("count", count);
             Attributes.Add("interval", interval);
-            if (firstFastRetry != null)
+            if (!string.IsNullOrEmpty(firstFastRetry))
             {
                 Attributes.Add("first-fast-retry", firstFastRetry);
             }
