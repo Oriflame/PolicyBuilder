@@ -60,14 +60,16 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
             return $"((JObject){GetVariableCommand(variableName, strict)})";
         }
 
-        public static string GetBodyAsString(string variableName, bool inline = false)
+        public static string GetBodyAsString(string variableName, bool inline = false, bool preserveContent = false)
         {
-            return $"({GetBodyCommand(variableName)}.As<string>())".ToPolicyCode(inline);
+            var preserveContentParameter = preserveContent ? "preserveContent: true" : string.Empty;
+            return $"({GetBodyCommand(variableName)}.As<string>({preserveContentParameter}))".ToPolicyCode(inline);
         }
 
-        public static string GetBodyAsJObject(string variableName)
+        public static string GetBodyAsJObject(string variableName, bool preserveContent = false)
         {
-            return $"({GetBodyCommand(variableName)}.As<JObject>())";
+            var preserveContentParameter = preserveContent ? "preserveContent: true" : string.Empty;
+            return $"({GetBodyCommand(variableName)}.As<JObject>({preserveContentParameter}))";
         }
 
         public static string Contains(string variableName)
