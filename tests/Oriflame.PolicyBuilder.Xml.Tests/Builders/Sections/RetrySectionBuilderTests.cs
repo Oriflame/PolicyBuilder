@@ -66,5 +66,18 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
             xml.Should().Be(
                 $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval}"" first-fast-retry=""{firstFastRetry}"" />".ToLower());
         }
+
+        [Theory]
+        [InlineData("@(0 == 1)", "5", null)]
+        public void CreatesCorrectPolicyOverload6(string condition, string count, bool? firstFastRetry)
+        {
+            var interval = TimeSpan.FromSeconds(10);
+
+            var policy = new RetryPolicy(condition, count, interval, firstFastRetry);
+
+            var xml = policy.GetXml().ToString();
+            xml.Should().Be(
+                $@"<retry condition=""{ condition }"" count=""{count}"" interval=""{interval.GetSeconds()}"" />".ToLower());
+        }
     }
 }

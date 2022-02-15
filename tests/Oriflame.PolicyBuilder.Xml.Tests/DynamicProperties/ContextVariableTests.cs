@@ -83,19 +83,20 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData("testingVariable", false, "@(((IResponse)context.Variables[\"testingVariable\"]).Body.As<string>())")]
-        [InlineData("testingVariable", true, "(((IResponse)context.Variables[\"testingVariable\"]).Body.As<string>())")]
-        public void GetBodyAsStringGeneratesCorrectPolicy(string variableName, bool strict, string expected)
+        [InlineData("testingVariable", false, false, "@(((IResponse)context.Variables[\"testingVariable\"]).Body.As<string>())")]
+        [InlineData("testingVariable", true, true, "(((IResponse)context.Variables[\"testingVariable\"]).Body.As<string>(preserveContent: true))")]
+        public void GetBodyAsStringGeneratesCorrectPolicy(string variableName, bool strict, bool preserveContent, string expected)
         {
-            var policy = ContextVariable.GetBodyAsString(variableName, strict);
+            var policy = ContextVariable.GetBodyAsString(variableName, strict, preserveContent);
             policy.Should().Be(expected);
         }
 
         [Theory]
-        [InlineData("testingVariable", "(((IResponse)context.Variables[\"testingVariable\"]).Body.As<JObject>())")]
-        public void GetBodyAsJObjectGeneratesCorrectPolicy(string variableName, string expected)
+        [InlineData("testingVariable", false, "(((IResponse)context.Variables[\"testingVariable\"]).Body.As<JObject>())")]
+        [InlineData("testingVariable", true, "(((IResponse)context.Variables[\"testingVariable\"]).Body.As<JObject>(preserveContent: true))")]
+        public void GetBodyAsJObjectGeneratesCorrectPolicy(string variableName, bool preserveContent, string expected)
         {
-            var policy = ContextVariable.GetBodyAsJObject(variableName);
+            var policy = ContextVariable.GetBodyAsJObject(variableName, preserveContent);
             policy.Should().Be(expected);
         }
 
