@@ -16,17 +16,17 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData(false, "@(context.Response.Body.As<JObject>())")]
-        [InlineData(true, "context.Response.Body.As<JObject>()")]
-        public void GetBodyAsJObjectGeneratesCorrectPolicy(bool inline, string expected)
+        [InlineData(false, false, "@(context.Response.Body.As<JObject>(preserveContent: false))")]
+        [InlineData(true, true, "context.Response.Body.As<JObject>(preserveContent: true)")]
+        public void GetBodyAsJObjectGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
         {
-            var policy = ContextResponse.GetBodyAsJObject(inline);
+            var policy = ContextResponse.GetBodyAsJObject(inline, preserveContent);
             policy.Should().Be(expected);
         }
 
         [Theory]
-        [InlineData(false, false, "@(context.Response.Body.As<string>())")]
-        [InlineData(true, false, "context.Response.Body.As<string>()")]
+        [InlineData(false, false, "@(context.Response.Body.As<string>(preserveContent: false))")]
+        [InlineData(true, false, "context.Response.Body.As<string>(preserveContent: false)")]
         [InlineData(false, true, "@(context.Response.Body.As<string>(preserveContent: true))")]
         [InlineData(true, true, "context.Response.Body.As<string>(preserveContent: true)")]
         public void GetBodyAsStringGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)

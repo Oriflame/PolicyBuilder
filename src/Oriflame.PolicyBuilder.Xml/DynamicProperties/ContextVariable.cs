@@ -1,5 +1,6 @@
 ﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties;
 using Oriflame.PolicyBuilder.Xml.Extensions;
+using Oriflame.PolicyBuilder.Xml.Mappers;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 {
@@ -62,14 +63,13 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         public static string GetBodyAsString(string variableName, bool inline = false, bool preserveContent = false)
         {
-            var preserveContentParameter = preserveContent ? "preserveContent: true" : string.Empty;
-            return $"({GetBodyCommand(variableName)}.As<string>({preserveContentParameter}))".ToPolicyCode(inline);
+            return $"({GetBodyCommand(variableName)}.As<string>({GetPreserveContentParameter(preserveContent)}))".ToPolicyCode(inline);
         }
 
         public static string GetBodyAsJObject(string variableName, bool preserveContent = false)
         {
             var preserveContentParameter = preserveContent ? "preserveContent: true" : string.Empty;
-            return $"({GetBodyCommand(variableName)}.As<JObject>({preserveContentParameter}))";
+            return $"({GetBodyCommand(variableName)}.As<JObject>({GetPreserveContentParameter(preserveContent)}))";
         }
 
         public static string Contains(string variableName)
@@ -87,6 +87,11 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         private static string GetBodyCommand(string variableName)
         {
             return $"{GetAsResponse(variableName)}.Body";
+        }
+
+        private static string GetPreserveContentParameter(bool preserveContent)
+        {
+            return @$"{nameof(preserveContent)}: {BoolMapper.Map(preserveContent)}";
         }
     }
 }
