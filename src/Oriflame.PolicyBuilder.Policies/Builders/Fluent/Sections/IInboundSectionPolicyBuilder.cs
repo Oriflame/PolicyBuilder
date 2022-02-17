@@ -14,6 +14,9 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#RewriteURL"/>
         IInboundSectionPolicyBuilder RewriteUri(string uriTemplate);
 
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#RewriteURL"/>
+        IInboundSectionPolicyBuilder RewriteUri(string uriTemplate, bool copyUnmatchedParams);
+
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetBackendService"/>
         IInboundSectionPolicyBuilder SetBackendService(string url);
 

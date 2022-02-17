@@ -19,6 +19,12 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        public virtual IInboundSectionPolicyBuilder RewriteUri(string uriTemplate, bool copyUnmatchedParams)
+        {
+            return AddPolicyDefinition(new RewriteUriPolicy(uriTemplate, copyUnmatchedParams));
+        }
+
+        /// <inheritdoc />
         public virtual IInboundSectionPolicyBuilder SetBackendService(string url)
         {
             return AddPolicyDefinition(new SetBackendService(url));
