@@ -6,5 +6,11 @@
         {
             Attributes.Add("template", uriTemplate);
         }
+        
+        public RewriteUriPolicy(string uriTemplate, bool copyUnmatchedParams) : base("rewrite-uri")
+        {
+            Attributes.Add("template", uriTemplate);
+            Attributes.Add("copy-unmatched-params", copyUnmatchedParams);
+        }
     }
 }
