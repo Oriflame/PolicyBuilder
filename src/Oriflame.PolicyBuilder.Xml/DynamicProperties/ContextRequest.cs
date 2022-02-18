@@ -1,4 +1,5 @@
 ﻿using Oriflame.PolicyBuilder.Xml.Extensions;
+using Oriflame.PolicyBuilder.Xml.Mappers;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 {
@@ -14,14 +15,14 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
             return $"{Get(true)}.Body".ToPolicyCode(inline);
         }
 
-        public static string GetBodyAsJObject(bool inline = false)
+        public static string GetBodyAsJObject(bool inline = false, bool preserveContent = false)
         {
-            return $"{GetBody(true)}.As<JObject>()".ToPolicyCode(inline);
+            return $"{GetBody(true)}.As<JObject>({GetPreserveContentParameter(preserveContent)})".ToPolicyCode(inline);
         }
 
-        public static string GetBodyAsString(bool inline = false)
+        public static string GetBodyAsString(bool inline = false, bool preserveContent = false)
         {
-            return $"{GetBody(true)}.As<string>(true)".ToPolicyCode(inline);
+            return $"{GetBody(true)}.As<string>({GetPreserveContentParameter(preserveContent)})".ToPolicyCode(inline);
         }
 
         public static string GetRouteParam(string paramName, bool inline = false)
@@ -40,6 +41,11 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
                 ? $"{Get(true)}.OriginalUrl.Query.GetValueOrDefault(\"{paramName}\")"
                 : $"{Get(true)}.OriginalUrl.Query.GetValueOrDefault(\"{paramName}\", \"{defaultValue}\")";
             return command.ToPolicyCode(inline);
+        }
+
+        private static string GetPreserveContentParameter(bool preserveContent)
+        {
+            return @$"{nameof(preserveContent)}: {BoolMapper.Map(preserveContent)}";
         }
     }
 }

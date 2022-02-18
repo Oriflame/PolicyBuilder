@@ -43,8 +43,8 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData(false, "@(string.IsNullOrEmpty(context.Request.Body.As<string>(true)))")]
-        [InlineData(true, "string.IsNullOrEmpty(context.Request.Body.As<string>(true))")]
+        [InlineData(false, "@(string.IsNullOrEmpty(context.Request.Body.As<string>(preserveContent: true)))")]
+        [InlineData(true, "string.IsNullOrEmpty(context.Request.Body.As<string>(preserveContent: true))")]
         public void IsRequestBodyNullGeneratesCorrectPolicy(bool inline, string expected)
         {
             var policy = Conditions.IsRequestBodyNull(inline);

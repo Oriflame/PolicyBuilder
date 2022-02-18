@@ -83,7 +83,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData("testingVariable", false, false, "@(((IResponse)context.Variables[\"testingVariable\"]).Body.As<string>())")]
+        [InlineData("testingVariable", false, false, "@(((IResponse)context.Variables[\"testingVariable\"]).Body.As<string>(preserveContent: false))")]
         [InlineData("testingVariable", true, true, "(((IResponse)context.Variables[\"testingVariable\"]).Body.As<string>(preserveContent: true))")]
         public void GetBodyAsStringGeneratesCorrectPolicy(string variableName, bool strict, bool preserveContent, string expected)
         {
@@ -92,7 +92,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData("testingVariable", false, "(((IResponse)context.Variables[\"testingVariable\"]).Body.As<JObject>())")]
+        [InlineData("testingVariable", false, "(((IResponse)context.Variables[\"testingVariable\"]).Body.As<JObject>(preserveContent: false))")]
         [InlineData("testingVariable", true, "(((IResponse)context.Variables[\"testingVariable\"]).Body.As<JObject>(preserveContent: true))")]
         public void GetBodyAsJObjectGeneratesCorrectPolicy(string variableName, bool preserveContent, string expected)
         {
