@@ -45,7 +45,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         private static string GetPreserveContentParameter(bool preserveContent)
         {
-            return @$"{nameof(preserveContent)}: {BoolMapper.Map(preserveContent)}";
+            return preserveContent ? @$"{nameof(preserveContent)}: {BoolMapper.Map(preserveContent)}" : string.Empty;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData(false, false, "@(context.Request.Body.As<JObject>(preserveContent: false))")]
+        [InlineData(false, false, "@(context.Request.Body.As<JObject>())")]
         [InlineData(true, true, "context.Request.Body.As<JObject>(preserveContent: true)")]
         public void GetBodyAsJObjectGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
         {
@@ -35,7 +35,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
 
         [Theory]
         [InlineData(false, true, "@(context.Request.Body.As<string>(preserveContent: true))")]
-        [InlineData(true, false, "context.Request.Body.As<string>(preserveContent: false)")]
+        [InlineData(true, false, "context.Request.Body.As<string>()")]
         public void GetBodyAsStringGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
         {
             var policy = ContextRequest.GetBodyAsString(inline, preserveContent);
