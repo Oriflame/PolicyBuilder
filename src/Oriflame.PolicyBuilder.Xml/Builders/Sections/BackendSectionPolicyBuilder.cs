@@ -23,6 +23,14 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        public IBackendSectionPolicyBuilder LimitConcurrency(string key, string maxCount, Func<IBackendSectionPolicyBuilder, ISectionPolicy> action)
+        {
+            var limitConcurrency = new LimitConcurrency(key, maxCount);
+            var innerPolicyBuilder = new BackendSectionPolicyBuilder(limitConcurrency);
+            return AddPolicyDefinition(action.Invoke(innerPolicyBuilder));
+        }
+
+        /// <inheritdoc />
         public virtual IBackendSectionPolicyBuilder SetBackendService(string url)
         {
             return AddPolicyDefinition(new SetBackendService(url));
