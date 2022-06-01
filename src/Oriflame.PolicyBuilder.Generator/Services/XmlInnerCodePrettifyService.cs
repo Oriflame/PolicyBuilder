@@ -22,7 +22,7 @@ namespace Oriflame.PolicyBuilder.Generator.Services
             DecodeCodeBlocks(">@(", ")<", ref content); // Expression in tags
             DecodeCodeBlocks("=\"@(", ")\"", ref content); // Expression in 
 
-            DecodeCodeBlocksByAttribute(KeyValuePair.Create("template", "liquid"), ref content); // Liquid template in tags
+            DecodeCodeBlocks(KeyValuePair.Create("template", "liquid"), ref content); // Liquid template in tags
             
             return content;
         }
@@ -56,7 +56,12 @@ namespace Oriflame.PolicyBuilder.Generator.Services
             }
         }
 
-        private static void DecodeCodeBlocksByAttribute(KeyValuePair<string, string> attributeData, ref string content)
+        /// <summary>
+        /// Finds code block in XML by attribute data provided and decodes the HTML-encoded characters
+        /// </summary>
+        /// <param name="attributeData"></param>
+        /// <param name="content"></param>
+        private static void DecodeCodeBlocks(KeyValuePair<string, string> attributeData, ref string content)
         {
             var attribute = $"{attributeData.Key}=\"{attributeData.Value}\"";
             var lastIndex = 0;
