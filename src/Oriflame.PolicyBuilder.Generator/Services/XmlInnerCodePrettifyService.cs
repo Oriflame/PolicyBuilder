@@ -72,13 +72,13 @@ namespace Oriflame.PolicyBuilder.Generator.Services
                 {
                     break;
                 }
-                
+                attributeIndex += attribute.Length;
+
                 var startIndex = content.IndexOf(">", attributeIndex);
                 if (startIndex < 0)
                 {
                     break;
                 }
-                startIndex += attribute.Length;
 
                 var endIndex = content.IndexOf("</", startIndex);
                 if (endIndex < 0)
