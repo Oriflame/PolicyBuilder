@@ -50,7 +50,7 @@ namespace Oriflame.PolicyBuilder.Generator.Services
                 {
                     break;
                 }
-                lastIndex = startIndex;
+                lastIndex = endIndex;
 
                 DecodeCodeBlock(startIndex, endIndex, ref content);
             }
@@ -85,7 +85,7 @@ namespace Oriflame.PolicyBuilder.Generator.Services
                 {
                     break;
                 }
-                lastIndex = startIndex;
+                lastIndex = endIndex;
 
                 DecodeCodeBlock(startIndex, endIndex, ref content);
             }
