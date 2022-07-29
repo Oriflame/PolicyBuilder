@@ -1,6 +1,7 @@
 ﻿using System;
 using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Actions;
+using Oriflame.PolicyBuilder.Policies.Definitions;
 using Oriflame.PolicyBuilder.Policies.DynamicProperties;
 
 namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
