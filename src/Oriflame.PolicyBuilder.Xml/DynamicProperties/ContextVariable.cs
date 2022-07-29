@@ -68,7 +68,6 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         public static string GetBodyAsJObject(string variableName, bool preserveContent = false)
         {
-            var preserveContentParameter = preserveContent ? "preserveContent: true" : string.Empty;
             return $"({GetBodyCommand(variableName)}.As<JObject>({GetPreserveContentParameter(preserveContent)}))";
         }
 
@@ -91,7 +90,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         private static string GetPreserveContentParameter(bool preserveContent)
         {
-            return @$"{nameof(preserveContent)}: {BoolMapper.Map(preserveContent)}";
+            return preserveContent ? @$"{nameof(preserveContent)}: {BoolMapper.Map(preserveContent)}" : string.Empty;
         }
     }
 }
