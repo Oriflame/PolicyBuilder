@@ -20,7 +20,7 @@ namespace Oriflame.PolicyBuilder.Generator.Services
             DecodeCodeBlocks("=\"@{", "}\"", ref content); // Method in attributes
             
             DecodeCodeBlocks(">@(", ")<", ref content); // Expression in tags
-            DecodeCodeBlocks("=\"@(", ")\"", ref content); // Expression in 
+            DecodeCodeBlocks("=\"@(", ")\"", ref content); // Expression in attributes
 
             DecodeCodeBlocks(KeyValuePair.Create("template", "liquid"), ref content); // Liquid template in tags
             
