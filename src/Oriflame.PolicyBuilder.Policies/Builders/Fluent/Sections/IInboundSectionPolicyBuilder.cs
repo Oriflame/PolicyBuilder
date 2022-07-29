@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using Oriflame.PolicyBuilder.Policies.Builders.Enums;
+using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Actions;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Attributes;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Policy;
 using Oriflame.PolicyBuilder.Policies.Definitions;
@@ -9,7 +10,7 @@ using Oriflame.PolicyBuilder.Policies.DynamicProperties;
 
 namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
 {
-    public interface IInboundSectionPolicyBuilder : IPolicySectionBuilder<IInboundSectionPolicyBuilder>
+    public interface IInboundSectionPolicyBuilder : IPolicySectionBuilder<IInboundSectionPolicyBuilder>, IRetry<IInboundSectionPolicyBuilder>
     {
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#RewriteURL"/>
         IInboundSectionPolicyBuilder RewriteUri(string uriTemplate);
@@ -34,9 +35,6 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-access-restriction-policies#ValidateJWT"/>
         IInboundSectionPolicyBuilder ValidateJwt(Func<IJwtValidationAttributesBuilder, IDictionary<string, string>> jwtAttributesBuilder, string openIdConfigUrl = null, IEnumerable<string> issuers = null, Func<IRequiredClaimsSectionBuilder, ISectionPolicy> requiredClaimsBuilder = null);
-
-        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
-        IInboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
         IInboundSectionPolicyBuilder Retry(string condition, string count, TimeSpan interval, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action,
