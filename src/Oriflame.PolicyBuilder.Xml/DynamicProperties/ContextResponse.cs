@@ -32,6 +32,14 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
             return $"{Get(true)}.StatusReason".ToPolicyCode(inline);
         }
 
+        public static string GetHeaderParam(string paramName, string defaultValue, bool inline = false)
+        {
+            var command = defaultValue == null
+                ? $"{Get(true)}.Headers.GetValueOrDefault(\"{paramName}\")"
+                : $"{Get(true)}.Headers.GetValueOrDefault(\"{paramName}\", \"{defaultValue}\")";
+            return command.ToPolicyCode(inline);
+        }
+
         private static string GetPreserveContentParameter(bool preserveContent)
         {
             return preserveContent ? @$"{nameof(preserveContent)}: {BoolMapper.Map(preserveContent)}" : string.Empty;
