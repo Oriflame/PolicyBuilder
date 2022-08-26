@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Web;
 
 namespace Oriflame.PolicyBuilder.Generator.Services
@@ -35,6 +36,7 @@ namespace Oriflame.PolicyBuilder.Generator.Services
         /// <param name="content"></param>
         private static void DecodeCodeBlocks(string startSequence, string endSequence, ref string content)
         {
+            var sb = new StringBuilder();
             var lastIndex = 0;
             while (true)
             {
@@ -50,10 +52,16 @@ namespace Oriflame.PolicyBuilder.Generator.Services
                 {
                     break;
                 }
+
+                sb.Append(content.Substring(lastIndex, startIndex - lastIndex));
                 lastIndex = endIndex;
 
-                DecodeCodeBlock(startIndex, endIndex, ref content);
+                DecodeCodeBlock(startIndex, endIndex, content, ref sb);
             }
+
+            sb.Append(content.Substring(lastIndex));
+
+            content = sb.ToString();
         }
 
         /// <summary>
@@ -63,6 +71,7 @@ namespace Oriflame.PolicyBuilder.Generator.Services
         /// <param name="content"></param>
         private static void DecodeCodeBlocks(KeyValuePair<string, string> attributeData, ref string content)
         {
+            var sb = new StringBuilder();
             var attribute = $"{attributeData.Key}=\"{attributeData.Value}\"";
             var lastIndex = 0;
             while (true)
@@ -85,19 +94,24 @@ namespace Oriflame.PolicyBuilder.Generator.Services
                 {
                     break;
                 }
+
+                sb.Append(content.Substring(lastIndex, startIndex - lastIndex));
                 lastIndex = endIndex;
 
-                DecodeCodeBlock(startIndex, endIndex, ref content);
+                DecodeCodeBlock(startIndex, endIndex, content, ref sb);
             }
+
+            sb.Append(content.Substring(lastIndex));
+
+            content = sb.ToString();
         }
 
-        private static void DecodeCodeBlock(int startIndex, int endIndex, ref string content)
+        private static void DecodeCodeBlock(int startIndex, int endIndex, string content, ref StringBuilder sb)
         {
             var length = endIndex - startIndex;
             var code = content.Substring(startIndex, length);
-            content = content.Remove(startIndex, length);
             var unescapedCode = HttpUtility.HtmlDecode(code);
-            content = content.Insert(startIndex, unescapedCode);
+            sb.Append(unescapedCode);
         }
     }
 }
