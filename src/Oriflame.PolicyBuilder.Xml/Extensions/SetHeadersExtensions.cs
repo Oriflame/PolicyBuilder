@@ -23,7 +23,7 @@ namespace Oriflame.PolicyBuilder.Xml.Extensions
 
         public static T SetAuthorizationHeader<T>(this ISetHeaders<T> policyBuilder) where T : IPolicySectionBuilder
         {
-            return policyBuilder.SetHeader(HeaderNames.Authorization, RequestHeader.Get(HeaderNames.Authorization, ""), ExistsAction.Override);
+            return policyBuilder.SetHeader(HeaderNames.Authorization, ContextRequest.GetHeaderParam(HeaderNames.Authorization, ""), ExistsAction.Override);
         }
 
         public static T SetAcceptHeader<T>(this ISetHeaders<T> policyBuilder) where T : IPolicySectionBuilder
