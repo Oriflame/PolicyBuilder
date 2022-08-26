@@ -69,5 +69,15 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
             var policy = ContextRequest.GetQueryParam(paramName, defaultValue, inline);
             policy.Should().Be(expected);
         }
+
+        [Theory]
+        [InlineData("testingParam", "TestDefault", false, "@(context.Request.Headers.GetValueOrDefault(\"testingParam\", \"TestDefault\"))")]
+        [InlineData("testingParam", "TestDefault", true, "context.Request.Headers.GetValueOrDefault(\"testingParam\", \"TestDefault\")")]
+        [InlineData("testingParam", null, true, "context.Request.Headers.GetValueOrDefault(\"testingParam\")")]
+        public void GetHeaderParamGeneratesCorrectPolicy(string paramName, string defaultValue, bool inline, string expected)
+        {
+            var policy = ContextRequest.GetHeaderParam(paramName, defaultValue, inline);
+            policy.Should().Be(expected);
+        }
     }
 }
