@@ -9,11 +9,6 @@
                 return code;
             }
 
-            if (code.Length > 1 && code[0] == '(' && code[code.Length - 1] == ')')
-            {
-                return $@"@{code}";
-            }
-
             return $@"@({code})";
         }
     }
