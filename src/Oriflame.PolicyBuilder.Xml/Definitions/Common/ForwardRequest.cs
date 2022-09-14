@@ -5,11 +5,15 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Common
 {
     public class ForwardRequest : PolicyXmlBase
     {
-        public ForwardRequest(TimeSpan? timeout) : base("forward-request")
+        public ForwardRequest(TimeSpan? timeout) : this(timeout?.GetSeconds())
         {
-            if (timeout != null)
+        }
+
+        public ForwardRequest(string timeoutValue) : base("forward-request")
+        {
+            if (!string.IsNullOrEmpty(timeoutValue))
             {
-                Attributes.Add("timeout", timeout.Value.GetSeconds());
+                Attributes.Add("timeout", timeoutValue);
             }
         }
     }

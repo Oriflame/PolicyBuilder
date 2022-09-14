@@ -102,5 +102,11 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         {
             return AddPolicyDefinition(new ForwardRequest(timeout));
         }
+
+        /// <inheritdoc />
+        public virtual IBackendSectionPolicyBuilder ForwardRequest(string timeoutValue)
+        {
+            return AddPolicyDefinition(new ForwardRequest(timeoutValue));
+        }
     }
 }
