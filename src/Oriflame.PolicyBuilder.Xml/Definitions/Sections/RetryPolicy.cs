@@ -1,5 +1,5 @@
 ﻿using System;
-using Oriflame.PolicyBuilder.Xml.Extensions;
+using Oriflame.PolicyBuilder.Policies.Extensions;
 using Oriflame.PolicyBuilder.Xml.Mappers;
 
 namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections

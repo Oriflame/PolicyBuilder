@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentAssertions;
+using Oriflame.PolicyBuilder.Policies.Extensions;
 using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
-using Oriflame.PolicyBuilder.Xml.Extensions;
 using Xunit;
 
 namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections

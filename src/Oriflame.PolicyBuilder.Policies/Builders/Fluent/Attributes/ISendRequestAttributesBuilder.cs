@@ -11,6 +11,8 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Attributes
 
         ISendRequestAttributesBuilder Timeout(TimeSpan time);
 
+        ISendRequestAttributesBuilder Timeout(string value);
+
         ISendRequestAttributesBuilder IgnoreError(bool value);
     }
 }
