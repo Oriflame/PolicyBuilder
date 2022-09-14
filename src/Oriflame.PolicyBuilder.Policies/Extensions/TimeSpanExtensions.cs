@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Oriflame.PolicyBuilder.Xml.Extensions
+namespace Oriflame.PolicyBuilder.Policies.Extensions
 {
     public static class TimeSpanExtensions
     {
