@@ -7,7 +7,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
     public class ContextResponseTests
     {
         [Theory]
-        [InlineData(false, "@((IResponse)context.Response)")]
+        [InlineData(false, "@(((IResponse)context.Response))")]
         [InlineData(true, "((IResponse)context.Response)")]
         public void GetGeneratesCorrectPolicy(bool inline, string expected)
         {
@@ -16,11 +16,11 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData(false, "@(context.Response.Body.As<JObject>())")]
-        [InlineData(true, "context.Response.Body.As<JObject>()")]
-        public void GetBodyAsJObjectGeneratesCorrectPolicy(bool inline, string expected)
+        [InlineData(false, false, "@(context.Response.Body.As<JObject>())")]
+        [InlineData(true, true, "context.Response.Body.As<JObject>(preserveContent: true)")]
+        public void GetBodyAsJObjectGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
         {
-            var policy = ContextResponse.GetBodyAsJObject(inline);
+            var policy = ContextResponse.GetBodyAsJObject(inline, preserveContent);
             policy.Should().Be(expected);
         }
 
@@ -50,6 +50,16 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         public void GetStatusReasonGeneratesCorrectPolicy(bool inline, string expected)
         {
             var policy = ContextResponse.GetStatusReason(inline);
+            policy.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("testingParam", "TestDefault", false, "@(((IResponse)context.Response).Headers.GetValueOrDefault(\"testingParam\", \"TestDefault\"))")]
+        [InlineData("testingParam", "TestDefault", true, "((IResponse)context.Response).Headers.GetValueOrDefault(\"testingParam\", \"TestDefault\")")]
+        [InlineData("testingParam", null, true, "((IResponse)context.Response).Headers.GetValueOrDefault(\"testingParam\")")]
+        public void GetHeaderParamGeneratesCorrectPolicy(string paramName, string defaultValue, bool inline, string expected)
+        {
+            var policy = ContextResponse.GetHeaderParam(paramName, defaultValue, inline);
             policy.Should().Be(expected);
         }
     }

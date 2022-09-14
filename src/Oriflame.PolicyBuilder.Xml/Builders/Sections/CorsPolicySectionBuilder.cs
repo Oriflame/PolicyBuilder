@@ -7,7 +7,7 @@ using Oriflame.PolicyBuilder.Xml.Builders.Sections;
 using Oriflame.PolicyBuilder.Xml.Definitions.Inner.Cors;
 using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
 
-namespace Oriflame.PolicyBuilder.Xml.Builders
+namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 {
     public class CorsPolicySectionBuilder : SectionBuilderBase<ICorsPolicySectionBuilder>, ICorsPolicySectionBuilder, IAllowedOriginsPolicyBuilder, IAllowedMethodsPolicyBuilder, IAllowedHeadersPolicyBuilder, IExposeHeadersPolicyBuilder
     {

@@ -10,7 +10,7 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         ISectionPolicy Create();
     }
 
-    public interface IPolicySectionBuilder<TSection> : ISendRequests<TSection>, ISetHeaders<TSection>, ISetMethod<TSection>, ICacheValue<TSection>, ISetVariable<TSection>, IPolicySectionBuilder where TSection : IPolicySectionBuilder
+    public interface IPolicySectionBuilder<TSection> : ISendRequest<TSection>, ISendOneWayRequest<TSection>, ISetHeaders<TSection>, ISetMethod<TSection>, ICacheValue<TSection>, ISetVariable<TSection>, IPolicySectionBuilder where TSection : IPolicySectionBuilder
     {
         //Calls base action for this section
         TSection Base();
@@ -18,13 +18,16 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         //Adds comment
         TSection Comment(string comment);
 
-        /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ReturnResponse"/>
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ReturnResponse"/>
         ISectionPolicy ReturnResponse(Func<IReturnResponseSectionBuilder, ISectionPolicy> returnResponseBuilder);
 
-        /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace"/>
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace"/>
         TSection Trace(string sourceName, string content, Severity? severity = null);
 
-        /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#choose"/>
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Trace"/>
+        TSection Trace(string source, string message, Func<ITracePolicyBuilder, ISectionPolicy> action, Severity? severity = null);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#choose"/>
         TSection Choose(Func<IConditionSectionBuilder<TSection>, ISectionPolicy> conditionBuilder);
     }
 }

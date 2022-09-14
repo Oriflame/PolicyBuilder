@@ -22,7 +22,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         public static string IsRequestBodyNull(bool inline = false)
         {
-            return $"string.IsNullOrEmpty({ContextRequest.GetBodyAsString(true)})".ToPolicyCode(inline);
+            return $"string.IsNullOrEmpty({ContextRequest.GetBodyAsString(true, true)})".ToPolicyCode(inline);
         }
 
         public static string IsResponseCodeOk(string variableName = null, bool inline = false, bool strict = true)
@@ -43,11 +43,6 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         public static string IsResponseNotNull(string variableName = null, bool inline = false, bool strict = true)
         {
             return ResponseNullCheckCommand(true, variableName, inline, strict);
-        }
-
-        private static string RequestNullCheckCommand(bool negative, bool inline, bool strict)
-        {
-            return GetNullCommand(negative, strict: strict, type: VariableType.Request).ToPolicyCode(inline);
         }
 
         private static string ResponseNullCheckCommand(bool negative, string variableName = null, bool inline = false, bool strict = true)

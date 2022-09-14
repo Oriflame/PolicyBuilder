@@ -1,4 +1,7 @@
-﻿using System.Web;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Web;
 
 namespace Oriflame.PolicyBuilder.Generator.Services
 {
@@ -13,10 +16,15 @@ namespace Oriflame.PolicyBuilder.Generator.Services
         public string Prettify(string xmlContent)
         {
             var content = xmlContent;
+            
             DecodeCodeBlocks(">@{", "}<", ref content); // Method in tags
             DecodeCodeBlocks("=\"@{", "}\"", ref content); // Method in attributes
+            
             DecodeCodeBlocks(">@(", ")<", ref content); // Expression in tags
             DecodeCodeBlocks("=\"@(", ")\"", ref content); // Expression in attributes
+
+            DecodeCodeBlocks(KeyValuePair.Create("template", "liquid"), ref content); // Liquid template in tags
+            
             return content;
         }
 
@@ -26,8 +34,9 @@ namespace Oriflame.PolicyBuilder.Generator.Services
         /// <param name="startSequence"></param>
         /// <param name="endSequence"></param>
         /// <param name="content"></param>
-        private void DecodeCodeBlocks(string startSequence, string endSequence, ref string content)
+        private static void DecodeCodeBlocks(string startSequence, string endSequence, ref string content)
         {
+            var sb = new StringBuilder();
             var lastIndex = 0;
             while (true)
             {
@@ -43,14 +52,66 @@ namespace Oriflame.PolicyBuilder.Generator.Services
                 {
                     break;
                 }
-                lastIndex = startIndex;
 
-                var length = endIndex - startIndex;
-                var code = content.Substring(startIndex, length);
-                content = content.Remove(startIndex, length);
-                var unescapedCode = HttpUtility.HtmlDecode(code);
-                content = content.Insert(startIndex, unescapedCode);
+                sb.Append(content.Substring(lastIndex, startIndex - lastIndex));
+                lastIndex = endIndex;
+
+                DecodeCodeBlock(startIndex, endIndex, content, ref sb);
             }
+
+            sb.Append(content.Substring(lastIndex));
+
+            content = sb.ToString();
+        }
+
+        /// <summary>
+        /// Finds code block in XML by attribute data provided and decodes the HTML-encoded characters
+        /// </summary>
+        /// <param name="attributeData"></param>
+        /// <param name="content"></param>
+        private static void DecodeCodeBlocks(KeyValuePair<string, string> attributeData, ref string content)
+        {
+            var sb = new StringBuilder();
+            var attribute = $"{attributeData.Key}=\"{attributeData.Value}\"";
+            var lastIndex = 0;
+            while (true)
+            {
+                var attributeIndex = content.IndexOf(attribute, lastIndex, StringComparison.InvariantCultureIgnoreCase);
+                if (attributeIndex < 0)
+                {
+                    break;
+                }
+                attributeIndex += attribute.Length;
+
+                var startIndex = content.IndexOf(">", attributeIndex);
+                if (startIndex < 0)
+                {
+                    break;
+                }
+
+                var endIndex = content.IndexOf("</", startIndex);
+                if (endIndex < 0)
+                {
+                    break;
+                }
+
+                sb.Append(content.Substring(lastIndex, startIndex - lastIndex));
+                lastIndex = endIndex;
+
+                DecodeCodeBlock(startIndex, endIndex, content, ref sb);
+            }
+
+            sb.Append(content.Substring(lastIndex));
+
+            content = sb.ToString();
+        }
+
+        private static void DecodeCodeBlock(int startIndex, int endIndex, string content, ref StringBuilder sb)
+        {
+            var length = endIndex - startIndex;
+            var code = content.Substring(startIndex, length);
+            var unescapedCode = HttpUtility.HtmlDecode(code);
+            sb.Append(unescapedCode);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(conditionBuilder.Invoke(conditionSectionBuilder));
         }
 
-        /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#Retry"/>
         public IOnErrorSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IOnErrorSectionPolicyBuilder, ISectionPolicy> action,
             bool? firstFastRetry = null)
         {

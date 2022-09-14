@@ -21,5 +21,10 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         {
             return AddPolicyDefinition(new SetBody(content));
         }
+
+        public ISendRequestSectionBuilder AuthenticationCertificate(string thumbprint)
+        {
+            return AddPolicyDefinition(new AuthenticationCertificate(thumbprint));
+        }
     }
 }

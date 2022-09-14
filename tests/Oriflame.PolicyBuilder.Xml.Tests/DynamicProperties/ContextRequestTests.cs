@@ -25,20 +25,20 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData(false, "@(context.Request.Body.As<JObject>())")]
-        [InlineData(true, "context.Request.Body.As<JObject>()")]
-        public void GetBodyAsJObjectGeneratesCorrectPolicy(bool inline, string expected)
+        [InlineData(false, false, "@(context.Request.Body.As<JObject>())")]
+        [InlineData(true, true, "context.Request.Body.As<JObject>(preserveContent: true)")]
+        public void GetBodyAsJObjectGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
         {
-            var policy = ContextRequest.GetBodyAsJObject(inline);
+            var policy = ContextRequest.GetBodyAsJObject(inline, preserveContent);
             policy.Should().Be(expected);
         }
 
         [Theory]
-        [InlineData(false, "@(context.Request.Body.As<string>(true))")]
-        [InlineData(true, "context.Request.Body.As<string>(true)")]
-        public void GetBodyAsStringGeneratesCorrectPolicy(bool inline, string expected)
+        [InlineData(false, true, "@(context.Request.Body.As<string>(preserveContent: true))")]
+        [InlineData(true, false, "context.Request.Body.As<string>()")]
+        public void GetBodyAsStringGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
         {
-            var policy = ContextRequest.GetBodyAsString(inline);
+            var policy = ContextRequest.GetBodyAsString(inline, preserveContent);
             policy.Should().Be(expected);
         }
 
@@ -67,6 +67,16 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         public void GetQueryParamGeneratesCorrectPolicy(string paramName,string defaultValue, bool inline, string expected)
         {
             var policy = ContextRequest.GetQueryParam(paramName, defaultValue, inline);
+            policy.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("testingParam", "TestDefault", false, "@(context.Request.Headers.GetValueOrDefault(\"testingParam\", \"TestDefault\"))")]
+        [InlineData("testingParam", "TestDefault", true, "context.Request.Headers.GetValueOrDefault(\"testingParam\", \"TestDefault\")")]
+        [InlineData("testingParam", null, true, "context.Request.Headers.GetValueOrDefault(\"testingParam\")")]
+        public void GetHeaderParamGeneratesCorrectPolicy(string paramName, string defaultValue, bool inline, string expected)
+        {
+            var policy = ContextRequest.GetHeaderParam(paramName, defaultValue, inline);
             policy.Should().Be(expected);
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Attributes;
-using Oriflame.PolicyBuilder.Xml.Extensions;
+using Oriflame.PolicyBuilder.Policies.Extensions;
 using Oriflame.PolicyBuilder.Xml.Mappers;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Attributes
@@ -20,7 +20,12 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Attributes
 
         public ISendRequestAttributesBuilder Timeout(TimeSpan time)
         {
-            return AddAttribute("timeout", time.GetSeconds());
+            return Timeout(time.GetSeconds());
+        }
+
+        public ISendRequestAttributesBuilder Timeout(string value)
+        {
+            return AddAttribute("timeout", value);
         }
 
         public ISendRequestAttributesBuilder IgnoreError(bool value)

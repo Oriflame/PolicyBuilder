@@ -6,8 +6,8 @@ using Oriflame.PolicyBuilder.Policies.Definitions;
 
 namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Actions
 {
-    /// <see cref="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#SendRequest"/>
-    public interface ISendRequests<T> where T : IPolicySectionBuilder
+    /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#SendRequest"/>
+    public interface ISendRequest<T> where T : IPolicySectionBuilder
     {
         T SendRequest(Func<ISendRequestAttributesBuilder, IDictionary<string, string>> sendRequestAttributesBuilder,
             Func<ISendRequestSectionBuilder, ISectionPolicy> sendRequestBuilder);

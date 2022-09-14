@@ -1,0 +1,4 @@
+# To learn more about .editorconfig see https://aka.ms/editorconfigdocs
+
+[*.cs]
+end_of_line = crlf

@@ -20,21 +20,25 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             SectionPolicy = sectionPolicy;
         }
 
+        /// <inheritdoc />
         public virtual ISectionPolicy Create()
         {
             return SectionPolicy;
         }
 
+        /// <inheritdoc />
         public virtual TSection Base()
         {
             return AddPolicyDefinition(new BasePolicy());
         }
 
+        /// <inheritdoc />
         public virtual TSection Comment(string comment)
         {
             return AddPolicyDefinition(new CommentPolicy(comment));
         }
 
+        /// <inheritdoc />
         public virtual TSection SetVariable(string name, string value)
         {
             return AddPolicyDefinition(new SetVariablePolicy(name, value));
@@ -55,6 +59,23 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        public virtual TSection Trace(string source, string message, Func<ITracePolicyBuilder, ISectionPolicy> action, Severity? severity = null)
+        {
+            var attributeBuilder = new TraceAttributesBuilder();
+            attributeBuilder.Source(source);
+
+            if (severity.HasValue)
+            {
+                attributeBuilder.Severity(severity.Value);
+            }
+
+            var tracePolicyBuilder = new TracePolicyBuilder(attributeBuilder.Create());
+            tracePolicyBuilder.Message(message);
+            var policy = action?.Invoke(tracePolicyBuilder);
+            return AddPolicyDefinition(policy);
+        }
+
+        /// <inheritdoc />
         public virtual TSection CacheLookupValue(string key, string variable)
         {
             return AddPolicyDefinition(new CacheLookupValuePolicy(key, variable));
@@ -69,6 +90,14 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        public virtual TSection SendOneWayRequest(Func<ISendOneWayRequestAttributesBuilder, IDictionary<string, string>> sendOneWayRequestAttributesBuilder, Func<ISendOneWayRequestSectionBuilder, ISectionPolicy> sendOneWayRequestBuilder)
+        {
+            var attributes = sendOneWayRequestAttributesBuilder.Invoke(new SendOneWayRequestAttributesBuilder());
+            var sendOneWayRequestSectionBuilder = new SendOneWayRequestSectionBuilder(attributes);
+            return AddPolicyDefinition(sendOneWayRequestBuilder.Invoke(sendOneWayRequestSectionBuilder));
+        }
+
+        /// <inheritdoc />
         public virtual TSection CacheStoreValue(string key, string value, TimeSpan duration)
         {
             return AddPolicyDefinition(new CacheStoreValue(key, value, duration));
@@ -78,6 +107,18 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         public virtual TSection Choose(Func<IConditionSectionBuilder<TSection>, ISectionPolicy> conditionBuilder)
         {
             throw new NotImplementedException();
+        }
+
+        /// <inheritdoc />
+        public virtual TSection SetHeader(string name, string value, ExistsAction? existsAction)
+        {
+            return AddPolicyDefinition(new SetHeaderParameter(name, value, existsAction));
+        }
+
+        /// <inheritdoc />
+        public virtual TSection SetMethod(HttpMethod httpMethod)
+        {
+            return AddPolicyDefinition(new SetMethod(httpMethod));
         }
 
         protected TSection AddPolicyDefinition(IXmlPolicy policy)
@@ -95,16 +136,6 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         private TSection Return()
         {
             return this as TSection;
-        }
-
-        public virtual TSection SetHeader(string name, string value, ExistsAction? existsAction)
-        {
-            return AddPolicyDefinition(new SetHeaderParameter(name, value, existsAction));
-        }
-
-        public virtual TSection SetMethod(HttpMethod httpMethod)
-        {
-            return AddPolicyDefinition(new SetMethod(httpMethod));
         }
     }
 }
