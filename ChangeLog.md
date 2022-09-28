@@ -1,5 +1,10 @@
 # Change log
 
+## 3.1.0
+
+- `validate-jwt` policy - added support for `require-scheme` and `output-token-variable-name` attributes
+
+
 ## 3.0.1
 
 - `SendRequest` policy extension - `timeout` parameter can be defined as string
