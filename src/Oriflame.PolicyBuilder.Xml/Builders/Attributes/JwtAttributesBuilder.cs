@@ -19,5 +19,15 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Attributes
         {
             return AddAttribute("failed-validation-error-message", message);
         }
+
+        public IJwtValidationOptionalAttributesBuilder RequireScheme(string scheme)
+        {
+            return AddAttribute("require-scheme", scheme);
+        }
+
+        public IJwtValidationOptionalAttributesBuilder OutputTokenVariable(string variableName)
+        {
+            return AddAttribute("output-token-variable-name", variableName);
+        }
     }
 }
