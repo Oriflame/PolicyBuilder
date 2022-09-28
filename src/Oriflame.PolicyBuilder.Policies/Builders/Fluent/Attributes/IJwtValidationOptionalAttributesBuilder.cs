@@ -7,5 +7,9 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Attributes
         IJwtValidationOptionalAttributesBuilder FailedValidationStatusCode(HttpStatusCode code);
 
         IJwtValidationOptionalAttributesBuilder FailedValidationMessage(string message);
+
+        IJwtValidationOptionalAttributesBuilder RequireScheme(string scheme);
+
+        IJwtValidationOptionalAttributesBuilder OutputTokenVariable(string variableName);
     }
 }
