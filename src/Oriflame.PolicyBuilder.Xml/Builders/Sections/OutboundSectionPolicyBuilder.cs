@@ -45,6 +45,12 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         {
             return AddPolicyDefinition(new CacheStore(cacheDuration));
         }
+        
+        /// <inheritdoc />
+        public virtual IOutboundSectionPolicyBuilder CacheStore(string cacheDuration)
+        {
+            return AddPolicyDefinition(new CacheStore(cacheDuration));
+        }
 
         public virtual IOutboundSectionPolicyBuilder SetStatus(string statusCode, string reason)
         {
