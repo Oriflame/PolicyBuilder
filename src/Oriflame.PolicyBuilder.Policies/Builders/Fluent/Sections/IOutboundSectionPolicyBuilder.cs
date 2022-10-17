@@ -14,5 +14,8 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-caching-policies#StoreToCache"/>
         IOutboundSectionPolicyBuilder CacheStore(TimeSpan cacheDuration);
+        
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-caching-policies#StoreToCache"/>
+        IOutboundSectionPolicyBuilder CacheStore(string cacheDuration);
     }
 }
