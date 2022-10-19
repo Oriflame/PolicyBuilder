@@ -21,9 +21,9 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Definitions.Common
         [InlineData("5", true)]
         public void CreatesCorrectPolicy_OptionalCacheResponseAttributeIsGenerated(string seconds, bool cacheResponse)
         {
-            var basePolicy = new CacheStore(seconds, new Dictionary<string, string>() { {"cache-response", cacheResponse.ToString().ToLower()}});
+            var basePolicy = new CacheStore(seconds, new Dictionary<string, string>() { {"cache-response", cacheResponse.ToString()}});
             var xml = basePolicy.GetXml().ToString();
-            xml.Should().Be($"<cache-store cache-response=\"true\" duration=\"{seconds}\" />");
+            xml.Should().Be($"<cache-store cache-response=\"{cacheResponse}\" duration=\"{seconds}\" />");
         }
     }
 }
