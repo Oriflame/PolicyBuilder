@@ -1,5 +1,9 @@
 # Change log
 
+## 3.3.0
+
+- `CacheStore` policy - added optional attribute builder - allows to set `cache-response` optional attribute
+
 ## 3.2.2
 
 - No changes
