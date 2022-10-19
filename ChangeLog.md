@@ -1,5 +1,15 @@
 # Change log
 
+## 3.2.2
+
+- No changes
+- New version just due to new Nuget package version to fix the issue with upload
+
+## 3.2.1
+
+- No changes
+- New version just due to new Nuget package version to fix the issue with upload 
+
 ## 3.2.0
 
 - `CacheStore` policy - `duration` parameter can be defined as string
