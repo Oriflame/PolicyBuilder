@@ -3,6 +3,7 @@
 ## 3.3.0
 
 - `CacheStore` policy - added optional attribute builder - allows to set `cache-response` optional attribute
+- Code refactoring - split main policy section builders (Inbound, outbound...) into partial classes by policy
 
 ## 3.2.2
 
