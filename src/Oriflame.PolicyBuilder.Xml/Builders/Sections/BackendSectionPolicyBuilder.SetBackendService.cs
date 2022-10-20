@@ -1,12 +1,14 @@
 ﻿using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
-using Oriflame.PolicyBuilder.Policies.Definitions;
+using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 {
     public partial class BackendSectionPolicyBuilder : SectionBuilderBase<IBackendSectionPolicyBuilder>, IBackendSectionPolicyBuilder
     {
-        public BackendSectionPolicyBuilder(ISectionPolicy sectionPolicy) : base(sectionPolicy)
+        /// <inheritdoc />
+        public virtual IBackendSectionPolicyBuilder SetBackendService(string url)
         {
+            return AddPolicyDefinition(new SetBackendService(url));
         }
     }
 }

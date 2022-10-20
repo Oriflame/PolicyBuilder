@@ -8,7 +8,7 @@ using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 {
-    public class OutboundSectionPolicyBuilder : SectionBuilderBase<IOutboundSectionPolicyBuilder>, IOutboundSectionPolicyBuilder
+    public partial class OutboundSectionPolicyBuilder : SectionBuilderBase<IOutboundSectionPolicyBuilder>, IOutboundSectionPolicyBuilder
     {
         public OutboundSectionPolicyBuilder(ISectionPolicy sectionPolicy) : base(sectionPolicy)
         {
@@ -38,18 +38,6 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         {
             var actionBuilder = new OutboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
-        }
-
-        /// <inheritdoc />
-        public virtual IOutboundSectionPolicyBuilder CacheStore(TimeSpan cacheDuration)
-        {
-            return AddPolicyDefinition(new CacheStore(cacheDuration));
-        }
-        
-        /// <inheritdoc />
-        public virtual IOutboundSectionPolicyBuilder CacheStore(string cacheDuration)
-        {
-            return AddPolicyDefinition(new CacheStore(cacheDuration));
         }
 
         public virtual IOutboundSectionPolicyBuilder SetStatus(string statusCode, string reason)
