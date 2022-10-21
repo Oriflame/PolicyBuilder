@@ -1,5 +1,8 @@
 # Change log
 
+## 3.4.0
+- added YAML pipeline for CI/CD project build
+
 ## 3.3.0
 
 - `CacheStore` policy - added optional attribute builder - allows to set `cache-response` optional attribute
