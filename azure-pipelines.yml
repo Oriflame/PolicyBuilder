@@ -11,6 +11,7 @@ pool:
   vmImage: ubuntu-latest
   
 variables:
+  BuildConfiguration: Release
   pushPackageCondition: $[eq(variables['pushpackage'], true)]
   testProjects: test/**/*.csproj
   srcProjects: src/**/*.csproj
@@ -115,3 +116,32 @@ steps:
     testResultsFiles: '**\testresults.trx'
     searchFolder: '$(Build.SourcesDirectory)'
     mergeTestResults: true
+  condition: succeededOrFailed()
+
+- task: DotNetCoreCLI@2
+  displayName: Pack
+  inputs:
+    command: 'pack'
+    packagesToPack: |
+      $(srcProjects)
+      $(testProjects)
+    nobuild: true
+    includesymbols: true
+    versioningScheme: 'off'
+  condition: and(succeeded(), eq(variables['pushPackageCondition'], 'true'))
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish build artifacts
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+  condition: and(succeeded(), eq(variables['pushPackageCondition'], 'true'))
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'external'
+    publishFeedCredentials: 'Nuget.org'
+  condition: and(succeeded(), eq(variables['pushPackageCondition'], 'true'))
