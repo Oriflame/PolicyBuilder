@@ -2,7 +2,7 @@
 
 ## 3.4.0
 
-- added `GetBodyAsJArray()` support to `ContextRequest` and `ContextResponse`
+- `ContextRequest` and `ContextResponse` - added support for getting body as JArray (`GetBodyAsJArray()` method)
 
 ## 3.3.0
 
