@@ -1,5 +1,9 @@
 # Change log
 
+## 3.4.0
+
+- added `GetBodyAsJArray()` support to `ContextRequest` and `ContextResponse`
+
 ## 3.3.0
 
 - `CacheStore` policy - added optional attribute builder - allows to set `cache-response` optional attribute

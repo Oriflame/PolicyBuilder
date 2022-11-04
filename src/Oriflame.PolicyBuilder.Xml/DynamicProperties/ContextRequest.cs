@@ -24,6 +24,11 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             return $"{GetBody(true)}.As<string>({GetPreserveContentParameter(preserveContent)})".ToPolicyCode(inline);
         }
+        
+        public static string GetBodyAsJArray(bool inline = false, bool preserveContent = false)
+        {
+            return $"{GetBody(true)}.As<JArray>({GetPreserveContentParameter(preserveContent)})".ToPolicyCode(inline);
+        }
 
         public static string GetRouteParam(string paramName, bool inline = false)
         {
