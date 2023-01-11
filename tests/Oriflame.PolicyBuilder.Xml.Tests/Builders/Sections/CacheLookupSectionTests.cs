@@ -48,6 +48,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
                     .VaryByDeveloperGroups(false)
                     .DownstreamCachingType(DownstreamCachingType.Public)
                     .AllowPrivateResponseCaching(true)
+                    .CachingType(CachingType.PreferExternal)
                     .Create();
 
             var basePolicy = (SectionPolicy)
@@ -58,7 +59,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
                     .Create();
             var xml = basePolicy.GetXml().ToString();
             xml.Should().Be(
-$@"<cache-lookup vary-by-developer=""true"" vary-by-developer-groups=""false"" downstream-caching-type=""public"" allow-private-response-caching=""true"">
+$@"<cache-lookup vary-by-developer=""true"" vary-by-developer-groups=""false"" downstream-caching-type=""public"" allow-private-response-caching=""true"" caching-type=""prefer-external"">
   <vary-by-header>{headerTenant}</vary-by-header>
   <vary-by-header>{headerApplication}</vary-by-header>
   <vary-by-query-parameter>{queryParam}</vary-by-query-parameter>

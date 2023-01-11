@@ -1,4 +1,5 @@
 ﻿using System;
+using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
 
 namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Actions
@@ -8,7 +9,13 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Actions
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-caching-policies#GetFromCacheByKey"/>
         TSection CacheLookupValue(string key, string variable);
 
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-caching-policies#GetFromCacheByKey"/>
+        TSection CacheLookupValue(string key, string variable, CachingType cachingType);
+
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-caching-policies#StoreToCacheByKey"/>
         TSection CacheStoreValue(string key, string value, TimeSpan duration);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-caching-policies#StoreToCacheByKey"/>
+        TSection CacheStoreValue(string key, string value, TimeSpan duration, CachingType cachingType);
     }
 }
