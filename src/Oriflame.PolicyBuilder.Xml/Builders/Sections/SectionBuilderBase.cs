@@ -81,6 +81,11 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(new CacheLookupValuePolicy(key, variable));
         }
 
+        public TSection CacheLookupValue(string key, string variable, CachingType cachingType)
+        {
+            return AddPolicyDefinition(new CacheLookupValuePolicy(key, variable, cachingType));
+        }
+
         /// <inheritdoc />
         public virtual TSection SendRequest(Func<ISendRequestAttributesBuilder, IDictionary<string, string>> sendRequestAttributesBuilder, Func<ISendRequestSectionBuilder, ISectionPolicy> sendRequestBuilder)
         {
@@ -101,6 +106,12 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         public virtual TSection CacheStoreValue(string key, string value, TimeSpan duration)
         {
             return AddPolicyDefinition(new CacheStoreValue(key, value, duration));
+        }
+
+        /// <inheritdoc />
+        public TSection CacheStoreValue(string key, string value, TimeSpan duration, CachingType cachingType)
+        {
+            return AddPolicyDefinition(new CacheStoreValue(key, value, duration, cachingType));
         }
 
         /// <inheritdoc />
