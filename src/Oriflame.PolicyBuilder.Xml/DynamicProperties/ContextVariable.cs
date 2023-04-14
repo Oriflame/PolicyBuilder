@@ -128,12 +128,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
                 return @$"context.Variables.GetValueOrDefault(""{variableName}"", {defaultValue.ToString().ToLower()})";
             }
 
-            if (ImplementsInterface(typeof(T), typeof(INumber<>)))
-            {
-                return string.Format(CultureInfo.InvariantCulture, @"context.Variables.GetValueOrDefault(""{0}"", {1})", variableName, defaultValue); ;
-            }
-
-            return @$"context.Variables.GetValueOrDefault(""{variableName}"", {defaultValue.ToString()})";
+            return string.Format(CultureInfo.InvariantCulture, @"context.Variables.GetValueOrDefault(""{0}"", {1})", variableName, defaultValue); ;
         }
 
         private static string GetBodyCommand(string variableName)
