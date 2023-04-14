@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using Oriflame.PolicyBuilder.Xml.DynamicProperties;
 using Xunit;
 
@@ -13,6 +14,19 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         {
             var policy = ContextVariable.Get(variableName, strict);
             policy.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("testingVariable", true, false, "context.Variables.GetValueOrDefault(\"testingVariable\", true)")]
+        [InlineData("testingVariable", true, true, "((System.Boolean)context.Variables.GetValueOrDefault(\"testingVariable\", true))")]
+        [InlineData("testingVariable", 123, true, "((System.Int32)context.Variables.GetValueOrDefault(\"testingVariable\", 123))")]
+        [InlineData("testingVariable", 123.1f, true, "((System.Single)context.Variables.GetValueOrDefault(\"testingVariable\", 123.1))")]
+        [InlineData("testingVariable", 123.1d, true, "((System.Double)context.Variables.GetValueOrDefault(\"testingVariable\", 123.1))")]
+        [InlineData("testingVariable", "Value", true, "((System.String)context.Variables.GetValueOrDefault(\"testingVariable\", \"Value\"))")]
+        public void GetValueOrDefaultGeneratesCorrectPolicy(string variableName, dynamic value, bool explicitCast, string expected)
+        {
+            var policy = ContextVariable.GetValueOrDefault(variableName, value, explicitCast);
+            Assert.Equal(expected, policy.ToString());
         }
 
         [Theory]

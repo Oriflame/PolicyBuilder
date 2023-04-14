@@ -1,4 +1,6 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.Extensions
+﻿using System;
+
+namespace Oriflame.PolicyBuilder.Xml.Extensions
 {
     public static class StringExtensions
     {
@@ -10,6 +12,11 @@
             }
 
             return $@"@({code})";
+        }
+
+        public static string Cast(this string code, Type type)
+        {
+            return $"(({type.FullName}){code})";
         }
     }
 }

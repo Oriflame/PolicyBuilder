@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using AutoFixture;
 using AutoFixture.AutoMoq;
 using AutoFixture.Kernel;
@@ -22,6 +23,9 @@ namespace Oriflame.PolicyBuilder.Policies
         {
             _buildersFactory = buildersFactory;
             _fixture = fixture ?? new Fixture();
+
+            // Set culture to invariant to avoid problems with decimal separator
+            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
         }
 
         public TResult Generate(MethodInfo method)
