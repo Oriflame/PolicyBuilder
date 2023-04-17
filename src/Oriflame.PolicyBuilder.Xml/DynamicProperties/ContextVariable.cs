@@ -27,15 +27,15 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
             return GetVariableCommand(variableName, strict);
         }
 
-        public static string GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false)
+        public static string GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false, bool inline = false)
         {
             var policy = GetValueOrDefaultVariableCommand(variableName, defaultValue);
             if (explicitCast)
             {
-                return policy.Cast(typeof(T));
+                policy = policy.Cast(typeof(T));
             }
 
-            return policy;
+            return policy.ToPolicyCode(inline);
         }
 
         public static string GetBody(string variableName)
@@ -51,11 +51,6 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         public static string GetAsString(string variableName, bool strict = true, bool inline = false)
         {
             return $"((string){GetVariableCommand(variableName, strict)})".ToPolicyCode(inline);
-        }
-
-        public static string GetValueOrDefaultAsString(string variableName, string defaultValue, bool inline = false)
-        {
-            return $"((string){GetValueOrDefaultVariableCommand(variableName, defaultValue)})".ToPolicyCode(inline);
         }
 
         public static string GetAsResponse(string variableName, bool strict = true)
@@ -76,11 +71,6 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         public static string GetAsBoolean(string variableName, bool strict = true, bool inline = false)
         {
             return $"((bool){GetVariableCommand(variableName, strict)})".ToPolicyCode(inline);
-        }
-
-        public static string GetValueOrDefaultAsBoolean(string variableName, bool defaultValue, bool inline = false)
-        {
-            return $"((bool){GetValueOrDefaultVariableCommand(variableName, defaultValue)})".ToPolicyCode(inline);
         }
 
         public static string GetAsJObject(string variableName, bool strict = true)
@@ -107,17 +97,12 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             return strict
                 ? $"context.Variables[\"{variableName}\"]"
-                : GetValueOrDefaultVariableCommand<string>(variableName, default);
+                : @$"context.Variables.GetValueOrDefault(""{variableName}"")";
         }
 
-        private static string GetValueOrDefaultVariableCommand<T>(string variableName, T defaultValue = default)
+        private static string GetValueOrDefaultVariableCommand<T>(string variableName, T defaultValue)
         {
             var type = typeof(T);
-            if (object.Equals(defaultValue, default(T)))
-            {
-                return @$"context.Variables.GetValueOrDefault(""{variableName}"")";
-            }
-
             if (type == typeof(string))
             {
                 return @$"context.Variables.GetValueOrDefault(""{variableName}"", ""{defaultValue}"")";
@@ -139,11 +124,6 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         private static string GetPreserveContentParameter(bool preserveContent)
         {
             return preserveContent ? @$"{nameof(preserveContent)}: {BoolMapper.Map(preserveContent)}" : string.Empty;
-        }
-
-        private static bool ImplementsInterface(Type type1, Type type2)
-        {
-            return type1.GetInterfaces().Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == type2);
         }
     }
 }

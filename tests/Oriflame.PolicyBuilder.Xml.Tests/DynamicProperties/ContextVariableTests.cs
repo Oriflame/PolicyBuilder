@@ -25,7 +25,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", "Value", true, "((System.String)context.Variables.GetValueOrDefault(\"testingVariable\", \"Value\"))")]
         public void GetValueOrDefaultGeneratesCorrectPolicy(string variableName, dynamic value, bool explicitCast, string expected)
         {
-            var policy = ContextVariable.GetValueOrDefault(variableName, value, explicitCast);
+            var policy = ContextVariable.GetValueOrDefault(variableName, value, explicitCast, true);
             Assert.Equal(expected, policy.ToString());
         }
 
