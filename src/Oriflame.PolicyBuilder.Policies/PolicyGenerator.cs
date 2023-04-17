@@ -23,9 +23,6 @@ namespace Oriflame.PolicyBuilder.Policies
         {
             _buildersFactory = buildersFactory;
             _fixture = fixture ?? new Fixture();
-
-            // Set culture to invariant to avoid problems with decimal separator
-            Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.InvariantCulture;
         }
 
         public TResult Generate(MethodInfo method)
