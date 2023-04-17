@@ -128,7 +128,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
                 return @$"context.Variables.GetValueOrDefault(""{variableName}"", {defaultValue.ToString().ToLower()})";
             }
 
-            return string.Format(CultureInfo.InvariantCulture, @"context.Variables.GetValueOrDefault(""{0}"", {1})", variableName, defaultValue); ;
+            return string.Format(CultureInfo.InvariantCulture, @"context.Variables.GetValueOrDefault(""{0}"", {1})", variableName, defaultValue);
         }
 
         private static string GetBodyCommand(string variableName)
