@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using AutoFixture;
 using AutoFixture.AutoMoq;
 using AutoFixture.Kernel;
