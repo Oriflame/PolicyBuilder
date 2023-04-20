@@ -1,4 +1,10 @@
-﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties;
+﻿using System;
+using System.Globalization;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Numerics;
+using Oriflame.PolicyBuilder.Policies.DynamicProperties;
+using Oriflame.PolicyBuilder.Xml.Definitions.Inner;
 using Oriflame.PolicyBuilder.Xml.Extensions;
 using Oriflame.PolicyBuilder.Xml.Mappers;
 
@@ -19,6 +25,17 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         public static string Get(string variableName, bool strict = true)
         {
             return GetVariableCommand(variableName, strict);
+        }
+
+        public static string GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false, bool inline = false)
+        {
+            var policy = GetValueOrDefaultVariableCommand(variableName, defaultValue);
+            if (explicitCast)
+            {
+                policy = policy.Cast(typeof(T));
+            }
+
+            return policy.ToPolicyCode(inline);
         }
 
         public static string GetBody(string variableName)
@@ -75,12 +92,28 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             return $"context.Variables.ContainsKey(\"{variableName}\")";
         }
-       
+
         private static string GetVariableCommand(string variableName, bool strict = true)
         {
             return strict
                 ? $"context.Variables[\"{variableName}\"]"
-                : $"context.Variables.GetValueOrDefault(\"{variableName}\")";
+                : @$"context.Variables.GetValueOrDefault(""{variableName}"")";
+        }
+
+        private static string GetValueOrDefaultVariableCommand<T>(string variableName, T defaultValue)
+        {
+            var type = typeof(T);
+            if (type == typeof(string))
+            {
+                return @$"context.Variables.GetValueOrDefault(""{variableName}"", ""{defaultValue}"")";
+            }
+
+            if (type == typeof(bool))
+            {
+                return @$"context.Variables.GetValueOrDefault(""{variableName}"", {defaultValue.ToString().ToLower()})";
+            }
+
+            return string.Format(CultureInfo.InvariantCulture, @"context.Variables.GetValueOrDefault(""{0}"", {1})", variableName, defaultValue);
         }
 
         private static string GetBodyCommand(string variableName)
