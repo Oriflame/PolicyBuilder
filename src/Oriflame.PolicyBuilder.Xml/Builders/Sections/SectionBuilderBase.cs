@@ -81,6 +81,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(new CacheLookupValuePolicy(key, variable));
         }
 
+        /// <inheritdoc />
         public TSection CacheLookupValue(string key, string variable, CachingType cachingType)
         {
             return AddPolicyDefinition(new CacheLookupValuePolicy(key, variable, cachingType));
@@ -121,9 +122,15 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        public TSection DeleteHeader(string name)
+        {
+            return AddPolicyDefinition(new DeleteHeader(name));
+        }
+
+        /// <inheritdoc />
         public virtual TSection SetHeader(string name, string value, ExistsAction? existsAction)
         {
-            return AddPolicyDefinition(new SetHeaderParameter(name, value, existsAction));
+            return AddPolicyDefinition(new SetHeader(name, value, existsAction));
         }
 
         /// <inheritdoc />
@@ -132,12 +139,14 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(new SetMethod(httpMethod));
         }
 
+        /// <inheritdoc />
         protected TSection AddPolicyDefinition(IXmlPolicy policy)
         {
             SectionPolicy.AddInnerPolicy(policy);
             return Return();
         }
 
+        /// <inheritdoc />
         protected TSection AddPolicyDefinition(ISectionPolicy policy)
         {
             SectionPolicy.AddInnerPolicy(policy as IXmlPolicy);

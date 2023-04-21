@@ -9,20 +9,16 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Common
     {
         private readonly Value _value;
 
-        public SetQueryParameter(string name, ExistsAction existsAction) : this(name, null, existsAction)
-        {
-        }
-
         public SetQueryParameter(string name, string value, ExistsAction? existsAction) : base("set-query-parameter")
         {
-            if (existsAction == ExistsAction.Delete)
+#pragma warning disable CS0618 // Type or member is obsolete
+            if (existsAction == ExistsAction.Delete && value != null)
             {
-                if (value != null)
-                {
-                    throw new System.ArgumentException("Parameter marked for deletion cannot have value(s) specified.");
-                }
+                throw new System.ArgumentException("Parameter marked for deletion cannot have value(s) specified.");
             }
-            else
+#pragma warning restore CS0618 // Type or member is obsolete
+
+            if (value != null)
             {
                 _value = new Value(value);
             }
@@ -33,12 +29,7 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Common
 
         public override XNode GetXml()
         {
-            if (_value != null)
-            {
-                return CreateElement(_value.GetXml());
-            }
-
-            return CreateElement();
+            return _value == null ? CreateElement() : CreateElement(_value.GetXml());
         }
     }
 }

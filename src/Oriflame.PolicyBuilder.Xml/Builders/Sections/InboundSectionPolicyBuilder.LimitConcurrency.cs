@@ -8,7 +8,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
     public partial class InboundSectionPolicyBuilder : SectionBuilderBase<IInboundSectionPolicyBuilder>, IInboundSectionPolicyBuilder
     {
         /// <inheritdoc />
-        public IInboundSectionPolicyBuilder LimitConcurrency(string key, int maxCount, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action)
+        public virtual IInboundSectionPolicyBuilder LimitConcurrency(string key, int maxCount, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action)
         {
             var limitConcurrency = new LimitConcurrency(key, maxCount);
             var innerPolicyBuilder = new InboundSectionPolicyBuilder(limitConcurrency);
@@ -16,7 +16,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public IInboundSectionPolicyBuilder LimitConcurrency(string key, string maxCount, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action)
+        public virtual IInboundSectionPolicyBuilder LimitConcurrency(string key, string maxCount, Func<IInboundSectionPolicyBuilder, ISectionPolicy> action)
         {
             var limitConcurrency = new LimitConcurrency(key, maxCount);
             var innerPolicyBuilder = new InboundSectionPolicyBuilder(limitConcurrency);
