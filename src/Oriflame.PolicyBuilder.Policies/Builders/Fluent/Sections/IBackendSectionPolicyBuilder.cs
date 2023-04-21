@@ -18,6 +18,9 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         IBackendSectionPolicyBuilder SetBackendService(string url);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetHTTPheader"/>
+        IBackendSectionPolicyBuilder DeleteQueryParameter(string name);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetHTTPheader"/>
         IBackendSectionPolicyBuilder SetQueryParameter(string name, string value, ExistsAction? existsAction);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetHTTPheader"/>
