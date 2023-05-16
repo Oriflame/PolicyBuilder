@@ -8,6 +8,19 @@
 
 - `ForwardRequest` policy - allows to set `buffer-response` optional attribute
 
+## 4.0.0
+
+- New policies `DeleteHeader` and `DeleteQueryParameter`
+- `ExistAction.Delete` marked as `Obsolete` - replaced with new policies `DeleteHeader` and `DeleteQueryParameter`
+
+## 3.6.0
+
+- `ContextVariable` extended with `GetValueOrDefault` method
+
+## 3.5.0
+
+- added new attribute `CachingType` to `CacheStoreValue` and `CacheLookupValue` policies
+
 ## 3.4.0
 
 - `ContextRequest` and `ContextResponse` - added support for getting body as JArray (`GetBodyAsJArray()` method)
