@@ -7,9 +7,8 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Definitions.Common
 {
     public class ForwardRequestsTests
     {
-        [Theory]
-        [InlineData("5")]
-        public void CreatesCorrectPolicy(string timeoutSeconds)
+        [Fact]
+        public void CreatesCorrectPolicy()
         {
             var basePolicy = new ForwardRequest(new Dictionary<string, string>());
             var xml = basePolicy.GetXml().ToString();

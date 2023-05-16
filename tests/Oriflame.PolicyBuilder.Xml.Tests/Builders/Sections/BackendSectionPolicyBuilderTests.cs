@@ -2,24 +2,26 @@
 using FluentAssertions;
 using Oriflame.PolicyBuilder.Xml.Builders.Sections;
 using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
+using Oriflame.PolicyBuilder.Xml.Mappers;
 using Xunit;
 
 namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
 {
     public class BackendSectionPolicyBuilderTests
     {
-        [Fact]
-        public void CreatesForwardRequestPolicyWithAttributes()
+        [Theory]
+        [InlineData(5, true, false, false, true)]
+        [InlineData(2, false, false, false, false)]
+        [InlineData(1, true, true, true, true)]
+        public void CreatesForwardRequestPolicyWithAttributes(int timeout, bool bufferResponse, bool followRedirects, bool failOnErrorStatusCode, bool bufferRequestBody)
         {
-            const int timeout = 5;
-            
             var policyBuilder = new BackendSectionPolicyBuilder(new SectionPolicy("backend"))
                 .ForwardRequest(
                     x => x
-                        .BufferResponse(true)
-                        .FollowRedirects(false)
-                        .FailOnErrorStatusCode(true)
-                        .BufferRequestBody(true)
+                        .BufferResponse(bufferResponse)
+                        .FollowRedirects(followRedirects)
+                        .FailOnErrorStatusCode(failOnErrorStatusCode)
+                        .BufferRequestBody(bufferRequestBody)
                         .Timeout(TimeSpan.FromSeconds(timeout))
                         .Create()
                 );
@@ -28,7 +30,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
 
             xml.Should().Be(
                 $@"<backend>
-  <forward-request buffer-response=""true"" follow-redirects=""false"" fail-on-error-status-code=""true"" buffer-request-body=""true"" timeout=""{timeout}"" />
+  <forward-request buffer-response=""{BoolMapper.Map(bufferResponse)}"" follow-redirects=""{BoolMapper.Map(followRedirects)}"" fail-on-error-status-code=""{BoolMapper.Map(failOnErrorStatusCode)}"" buffer-request-body=""{BoolMapper.Map(bufferRequestBody)}"" timeout=""{timeout}"" />
 </backend>");
         }
         
