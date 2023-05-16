@@ -1,5 +1,9 @@
 # Change log
 
+## 4.1.0
+
+- `ForwardRequest` policy - allows to set `buffer-response` optional attribute
+
 ## 3.4.0
 
 - `ContextRequest` and `ContextResponse` - added support for getting body as JArray (`GetBodyAsJArray()` method)

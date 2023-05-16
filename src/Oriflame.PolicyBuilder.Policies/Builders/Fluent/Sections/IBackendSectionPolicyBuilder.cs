@@ -27,6 +27,9 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         IBackendSectionPolicyBuilder SetBody(ILiquidTemplate template);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>
+        IBackendSectionPolicyBuilder ForwardRequest(TimeSpan? timeout, bool bufferTimeout);
+        
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>
         IBackendSectionPolicyBuilder ForwardRequest(TimeSpan? timeout);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>

@@ -15,5 +15,15 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Definitions.Common
             var xml = basePolicy.GetXml().ToString();
             xml.Should().Be($"<forward-request timeout=\"{timeoutSeconds}\" />");
         }
+        
+        [Theory]
+        [InlineData(5, true)]
+        [InlineData(3, false)]
+        public void CreatesCorrectBufferResponsePolicy(int timeoutSeconds, bool bufferResponse)
+        {
+            var basePolicy = new ForwardRequest(timeoutSeconds.ToString(), bufferResponse);
+            var xml = basePolicy.GetXml().ToString();
+            xml.Should().Be($"<forward-request timeout=\"{timeoutSeconds}\" buffer-response=\"{bufferResponse.ToString().ToLower()}\" />");
+        }
     }
 }
