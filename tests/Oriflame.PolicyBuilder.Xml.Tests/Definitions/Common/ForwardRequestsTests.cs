@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using FluentAssertions;
 using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 using Xunit;
@@ -11,9 +11,9 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Definitions.Common
         [InlineData("5")]
         public void CreatesCorrectPolicy(string timeoutSeconds)
         {
-            var basePolicy = new ForwardRequest(timeoutSeconds);
+            var basePolicy = new ForwardRequest(new Dictionary<string, string>());
             var xml = basePolicy.GetXml().ToString();
-            xml.Should().Be($"<forward-request timeout=\"{timeoutSeconds}\" />");
+            xml.Should().Be($"<forward-request />");
         }
     }
 }

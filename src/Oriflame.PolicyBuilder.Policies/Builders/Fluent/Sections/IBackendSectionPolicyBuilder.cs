@@ -29,12 +29,14 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         IBackendSectionPolicyBuilder SetBody(ILiquidTemplate template);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>
+        [Obsolete("Use method nameof(ForwardRequest) with optional parameters builder instead.")]
         IBackendSectionPolicyBuilder ForwardRequest(TimeSpan? timeout);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>
+        [Obsolete("Use method nameof(ForwardRequest) with optional parameters builder instead.")]
         IBackendSectionPolicyBuilder ForwardRequest(string timeoutValue);
         
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>
-        IBackendSectionPolicyBuilder ForwardRequest(TimeSpan? timeout, Func<IForwardRequestAttributesBuilder, IDictionary<string, string>> forwardRequestOptionalAttributesBuilder);
+        IBackendSectionPolicyBuilder ForwardRequest(Func<IForwardRequestAttributesBuilder, IDictionary<string, string>> forwardRequestOptionalAttributesBuilder);
     }
 }

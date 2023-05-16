@@ -14,12 +14,13 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
             const int timeout = 5;
             
             var policyBuilder = new BackendSectionPolicyBuilder(new SectionPolicy("backend"))
-                .ForwardRequest(TimeSpan.FromSeconds(timeout),
+                .ForwardRequest(
                     x => x
                         .BufferResponse(true)
                         .FollowRedirects(false)
                         .FailOnErrorStatusCode(true)
                         .BufferRequestBody(true)
+                        .Timeout(TimeSpan.FromSeconds(timeout))
                         .Create()
                 );
             var policy = (SectionPolicy)policyBuilder.Create();
@@ -32,12 +33,28 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
         }
         
         [Fact]
-        public void CreatesForwardRequestPolicy()
+        public void CreatesForwardRequestPolicyFromTimespanTimeout()
         {
             const int timeout = 5;
             
             var policyBuilder = new BackendSectionPolicyBuilder(new SectionPolicy("backend"))
                 .ForwardRequest(TimeSpan.FromSeconds(timeout));
+            var policy = (SectionPolicy)policyBuilder.Create();
+            var xml = policy.GetXml().ToString();
+
+            xml.Should().Be(
+                $@"<backend>
+  <forward-request timeout=""{timeout}"" />
+</backend>");
+        }
+        
+        [Fact]
+        public void CreatesForwardRequestPolicyFromStringTimeout()
+        {
+            const int timeout = 5;
+            
+            var policyBuilder = new BackendSectionPolicyBuilder(new SectionPolicy("backend"))
+                .ForwardRequest(timeout.ToString());
             var policy = (SectionPolicy)policyBuilder.Create();
             var xml = policy.GetXml().ToString();
 

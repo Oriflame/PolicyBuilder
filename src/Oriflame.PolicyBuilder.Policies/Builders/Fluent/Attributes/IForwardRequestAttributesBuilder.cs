@@ -1,7 +1,14 @@
-﻿namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Attributes;
+﻿using System;
+
+namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Attributes;
 
 public interface IForwardRequestAttributesBuilder : IAttributesBuilder
 {
+    /// <summary>
+    /// The amount of time in seconds to wait for the HTTP response headers to be returned by the backend service before a timeout error is raised
+    /// </summary>
+    IForwardRequestAttributesBuilder Timeout(TimeSpan timeout);
+    
     /// <summary>
     /// When set to true, triggers on-error section for response codes in the range from 400 to 599 inclusive
     /// </summary>
