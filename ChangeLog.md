@@ -1,5 +1,20 @@
 # Change log
 
+## 4.0.0
+
+- New policies `DeleteHeader` and `DeleteQueryParameter`
+- `ExistAction.Delete` marked as `Obsolete` - replaced with new policies `DeleteHeader` and `DeleteQueryParameter`
+- `ContextVariable` extended with `GetValueOrDefault` method
+- `ForwardRequest` policy - added optional attribute builder - allow to set `follow-redirects`, `buffer-request-body`, `buffer-response`, `fail-on-error-status-code`, `timeout` optional attributes
+
+## 3.5.0
+
+- added new attribute `CachingType` to `CacheStoreValue` and `CacheLookupValue` policies
+
+## 3.4.0
+
+- `ContextRequest` and `ContextResponse` - added support for getting body as JArray (`GetBodyAsJArray()` method)
+
 ## 3.3.0
 
 - `CacheStore` policy - added optional attribute builder - allows to set `cache-response` optional attribute

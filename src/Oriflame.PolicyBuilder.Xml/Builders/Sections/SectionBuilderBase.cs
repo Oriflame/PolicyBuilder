@@ -82,6 +82,12 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        public TSection CacheLookupValue(string key, string variable, CachingType cachingType)
+        {
+            return AddPolicyDefinition(new CacheLookupValuePolicy(key, variable, cachingType));
+        }
+
+        /// <inheritdoc />
         public virtual TSection SendRequest(Func<ISendRequestAttributesBuilder, IDictionary<string, string>> sendRequestAttributesBuilder, Func<ISendRequestSectionBuilder, ISectionPolicy> sendRequestBuilder)
         {
             var attributes = sendRequestAttributesBuilder.Invoke(new SendRequestAttributesBuilder());
@@ -104,15 +110,27 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        public TSection CacheStoreValue(string key, string value, TimeSpan duration, CachingType cachingType)
+        {
+            return AddPolicyDefinition(new CacheStoreValue(key, value, duration, cachingType));
+        }
+
+        /// <inheritdoc />
         public virtual TSection Choose(Func<IConditionSectionBuilder<TSection>, ISectionPolicy> conditionBuilder)
         {
             throw new NotImplementedException();
         }
 
         /// <inheritdoc />
+        public TSection DeleteHeader(string name)
+        {
+            return AddPolicyDefinition(new DeleteHeader(name));
+        }
+
+        /// <inheritdoc />
         public virtual TSection SetHeader(string name, string value, ExistsAction? existsAction)
         {
-            return AddPolicyDefinition(new SetHeaderParameter(name, value, existsAction));
+            return AddPolicyDefinition(new SetHeader(name, value, existsAction));
         }
 
         /// <inheritdoc />
@@ -121,12 +139,14 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
             return AddPolicyDefinition(new SetMethod(httpMethod));
         }
 
+        /// <inheritdoc />
         protected TSection AddPolicyDefinition(IXmlPolicy policy)
         {
             SectionPolicy.AddInnerPolicy(policy);
             return Return();
         }
 
+        /// <inheritdoc />
         protected TSection AddPolicyDefinition(ISectionPolicy policy)
         {
             SectionPolicy.AddInnerPolicy(policy as IXmlPolicy);

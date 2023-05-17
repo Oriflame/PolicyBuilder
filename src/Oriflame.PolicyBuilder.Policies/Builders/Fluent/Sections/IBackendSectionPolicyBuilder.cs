@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Actions;
+using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Attributes;
 using Oriflame.PolicyBuilder.Policies.Definitions;
 using Oriflame.PolicyBuilder.Policies.DynamicProperties;
 
@@ -18,15 +20,23 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         IBackendSectionPolicyBuilder SetBackendService(string url);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetHTTPheader"/>
+        IBackendSectionPolicyBuilder DeleteQueryParameter(string name);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetHTTPheader"/>
         IBackendSectionPolicyBuilder SetQueryParameter(string name, string value, ExistsAction? existsAction);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetHTTPheader"/>
         IBackendSectionPolicyBuilder SetBody(ILiquidTemplate template);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>
+        [Obsolete("Use method nameof(ForwardRequest) with optional parameters builder instead.")]
         IBackendSectionPolicyBuilder ForwardRequest(TimeSpan? timeout);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>
+        [Obsolete("Use method nameof(ForwardRequest) with optional parameters builder instead.")]
         IBackendSectionPolicyBuilder ForwardRequest(string timeoutValue);
+        
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#ForwardRequest"/>
+        IBackendSectionPolicyBuilder ForwardRequest(Func<IForwardRequestAttributesBuilder, IDictionary<string, string>> forwardRequestOptionalAttributesBuilder);
     }
 }

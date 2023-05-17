@@ -41,6 +41,17 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
             var policy = ContextRequest.GetBodyAsString(inline, preserveContent);
             policy.Should().Be(expected);
         }
+        
+        [Theory]
+        [InlineData(false, false, "@(context.Request.Body.As<JArray>())")]
+        [InlineData(true, false, "context.Request.Body.As<JArray>()")]
+        [InlineData(false, true, "@(context.Request.Body.As<JArray>(preserveContent: true))")]
+        [InlineData(true, true, "context.Request.Body.As<JArray>(preserveContent: true)")]
+        public void GetBodyAsJArrayGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
+        {
+            var policy = ContextRequest.GetBodyAsJArray(inline, preserveContent);
+            policy.Should().Be(expected);
+        }
 
         [Theory]
         [InlineData("testingParam", false, "@(context.Request.MatchedParameters[\"testingParam\"])")]

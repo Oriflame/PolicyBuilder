@@ -21,13 +21,16 @@ namespace Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetBackendService"/>
         IInboundSectionPolicyBuilder SetBackendService(string url);
 
-        /// <see href="https://docs.microsoft.com/cs-cz/azure/api-management/api-management-transformation-policies#SetHTTPheader"/>
-        IInboundSectionPolicyBuilder SetQueryParameter(string name, string value, ExistsAction? skip);
+        /// <see href="https://learn.microsoft.com/en-us/azure/api-management/set-query-parameter-policy"/>
+        IInboundSectionPolicyBuilder DeleteQueryParameter(string name);
 
-        /// <see href="https://docs.microsoft.com/cs-cz/azure/api-management/api-management-transformation-policies#SetBody"/>
+        /// <see href="https://learn.microsoft.com/en-us/azure/api-management/set-query-parameter-policy"/>
+        IInboundSectionPolicyBuilder SetQueryParameter(string name, string value, ExistsAction? existsAction);
+
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetBody"/>
         IInboundSectionPolicyBuilder SetBody(ILiquidTemplate template);
 
-        /// <see href="https://docs.microsoft.com/cs-cz/azure/api-management/api-management-transformation-policies#SetBody"/>
+        /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-transformation-policies#SetBody"/>
         IInboundSectionPolicyBuilder SetBody(string value);
 
         /// <see href="https://docs.microsoft.com/en-us/azure/api-management/api-management-advanced-policies#mock-response" />

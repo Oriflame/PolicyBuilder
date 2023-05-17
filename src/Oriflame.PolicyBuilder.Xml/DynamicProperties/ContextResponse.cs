@@ -21,6 +21,11 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             return $"{Context}.Body.As<string>({ GetPreserveContentParameter(preserveContent) })".ToPolicyCode(inline);
         }
+        
+        public static string GetBodyAsJArray(bool inline = false, bool preserveContent = false)
+        {
+            return $"{Context}.Body.As<JArray>({ GetPreserveContentParameter(preserveContent) })".ToPolicyCode(inline);
+        }
 
         public static string GetStatusCode(bool inline = false)
         {
