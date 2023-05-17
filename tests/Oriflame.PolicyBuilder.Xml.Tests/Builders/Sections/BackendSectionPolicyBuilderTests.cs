@@ -34,6 +34,31 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
 </backend>");
         }
         
+        [Theory]
+        [InlineData(5, "true", "false", "false", "true")]
+        [InlineData(2, "false", "false", "false", "false")]
+        [InlineData(1, "true", "true", "true", "true")]
+        public void CreatesForwardRequestPolicyWithStringAttributes(int timeout, string bufferResponse, string followRedirects, string failOnErrorStatusCode, string bufferRequestBody)
+        {
+            var policyBuilder = new BackendSectionPolicyBuilder(new SectionPolicy("backend"))
+                .ForwardRequest(
+                    x => x
+                        .BufferResponse(bufferResponse)
+                        .FollowRedirects(followRedirects)
+                        .FailOnErrorStatusCode(failOnErrorStatusCode)
+                        .BufferRequestBody(bufferRequestBody)
+                        .Timeout(TimeSpan.FromSeconds(timeout))
+                        .Create()
+                );
+            var policy = (SectionPolicy)policyBuilder.Create();
+            var xml = policy.GetXml().ToString();
+
+            xml.Should().Be(
+                $@"<backend>
+  <forward-request buffer-response=""{bufferResponse}"" follow-redirects=""{followRedirects}"" fail-on-error-status-code=""{failOnErrorStatusCode}"" buffer-request-body=""{bufferRequestBody}"" timeout=""{timeout}"" />
+</backend>");
+        }
+        
         [Fact]
         public void CreatesForwardRequestPolicyFromTimespanTimeout()
         {
