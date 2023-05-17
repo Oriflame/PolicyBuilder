@@ -35,10 +35,10 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
         }
         
         [Theory]
-        [InlineData(5, "true", "false", "false", "true")]
-        [InlineData(2, "false", "false", "false", "false")]
-        [InlineData(1, "true", "true", "true", "true")]
-        public void CreatesForwardRequestPolicyWithStringAttributes(int timeout, string bufferResponse, string followRedirects, string failOnErrorStatusCode, string bufferRequestBody)
+        [InlineData("5", "true", "false", "false", "true")]
+        [InlineData("2", "false", "false", "false", "false")]
+        [InlineData("1", "true", "true", "true", "true")]
+        public void CreatesForwardRequestPolicyWithStringAttributes(string timeout, string bufferResponse, string followRedirects, string failOnErrorStatusCode, string bufferRequestBody)
         {
             var policyBuilder = new BackendSectionPolicyBuilder(new SectionPolicy("backend"))
                 .ForwardRequest(
@@ -47,7 +47,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
                         .FollowRedirects(followRedirects)
                         .FailOnErrorStatusCode(failOnErrorStatusCode)
                         .BufferRequestBody(bufferRequestBody)
-                        .Timeout(TimeSpan.FromSeconds(timeout))
+                        .Timeout(timeout)
                         .Create()
                 );
             var policy = (SectionPolicy)policyBuilder.Create();
