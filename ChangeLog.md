@@ -1,5 +1,8 @@
 # Change log
 
+## 4.1.1
+- No functional changes
+
 ## 4.1.0
 - `ForwardRequest` policy - optional attribute builder adjustments - allow to set `follow-redirects`, `buffer-request-body`, `buffer-response`, `fail-on-error-status-code`, `timeout` using `string` values
 - 
