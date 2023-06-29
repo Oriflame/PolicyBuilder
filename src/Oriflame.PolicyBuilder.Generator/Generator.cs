@@ -26,7 +26,7 @@ namespace Oriflame.PolicyBuilder.Generator
 
         protected abstract void GenerateOutput(string outputDirectory, Assembly assembly);
 
-        protected static Fixture GetCustomFixture()
+        protected virtual Fixture GetCustomFixture()
         {
             var fixture = new Fixture();
             fixture.Customize(new ApiControllerCustomization());
