@@ -4,7 +4,7 @@ namespace Oriflame.PolicyBuilder.Xml.Extensions
 {
     public static class StringExtensions
     {
-        public static string ToPolicyCode(this string code, bool inline)
+        public static string ToPolicyCode(this string code, bool inline = false)
         {
             if (inline || code.Length > 0 && code[0] == '@')
             {
