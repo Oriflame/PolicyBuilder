@@ -5,7 +5,7 @@
     /// </summary>
     public class Variable : ContextProperty
     {
-        public Body Body => new Body($"((IResponse){_path})");
+        public Body Body => new Body($"((IResponse){Get()}).{nameof(Body)}");
 
         public Variable(string path) : base(path)
         {
@@ -13,12 +13,12 @@
 
         public string GetAsString()
         {
-            return $"((string){_path})";
+            return $"((string){Get()})";
         }
 
         public string GetAsResponse()
         {
-            return $"((IResponse){_path})";
+            return $"((IResponse){Get()})";
         }
 
         public string GetStatusCode()
@@ -33,12 +33,12 @@
 
         public string GetAsBoolean()
         {
-            return $"((bool){_path})";
+            return $"((bool){Get()})";
         }
 
         public string GetAsJObject()
         {
-            return $"((JObject){_path})";
+            return $"((JObject){Get()})";
         }
     }
 }

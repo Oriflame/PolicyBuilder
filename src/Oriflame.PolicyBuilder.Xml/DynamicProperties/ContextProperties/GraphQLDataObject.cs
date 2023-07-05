@@ -1,12 +1,10 @@
 ﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Certificates : ContextProperty
+    public class GraphQLDataObject : ContextProperty
     {
-
-        public Certificates(string path) : base(path)
+        public GraphQLDataObject(string path) : base(path)
         {
         }
-        
         // TODO props
     }
 }

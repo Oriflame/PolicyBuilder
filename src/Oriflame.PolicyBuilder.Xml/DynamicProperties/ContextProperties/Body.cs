@@ -4,23 +4,23 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
     public class Body : ContextProperty
     {
-        public Body(string parentPath) : base($"{parentPath}.{nameof(Body)}")
+        public Body(string path) : base(path)
         {
         }
 
         public string GetAsJObject(bool preserveContent = false)
         {
-            return $"{this}.As<JObject>({GetPreserveContentParameter(preserveContent)})";
+            return $"{Get()}.As<JObject>({GetPreserveContentParameter(preserveContent)})";
         }
 
         public string GetAsString(bool preserveContent = false)
         {
-            return $"{this}.As<string>({GetPreserveContentParameter(preserveContent)})";
+            return $"{Get()}.As<string>({GetPreserveContentParameter(preserveContent)})";
         }
 
         public string GetAsJArray(bool preserveContent = false)
         {
-            return $"{this}.As<JArray>({GetPreserveContentParameter(preserveContent)})";
+            return $"{Get()}.As<JArray>({GetPreserveContentParameter(preserveContent)})";
         }
 
         private string GetPreserveContentParameter(bool preserveContent)

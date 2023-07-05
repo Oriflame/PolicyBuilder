@@ -2,12 +2,22 @@
 {
     public class LastError : ContextProperty
     {
-        private readonly string _path;
-        
-        public LastError(string parentPath) : base($"{parentPath}.{nameof(LastError)}")
+        public LastError(string path) : base(path)
         {
         }
 
-        // TODO props
+        public string Source => $"{Get()}.{nameof(Source)}";
+
+        public string Reason => $"{Get()}.{nameof(Reason)}";
+
+        public string Message => $"{Get()}.{nameof(Message)}";
+
+        public string Scope => $"{Get()}.{nameof(Scope)}";
+
+        public string Section => $"{Get()}.{nameof(Section)}";
+
+        public string Path => $"{Get()}.{nameof(Path)}";
+
+        public string PolicyId => $"{Get()}.{nameof(PolicyId)}";
     }
 }

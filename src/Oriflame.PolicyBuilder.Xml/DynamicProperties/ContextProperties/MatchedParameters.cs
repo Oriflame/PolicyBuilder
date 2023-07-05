@@ -2,13 +2,13 @@
 {
     public class MatchedParameters : ContextProperty
     {
-        public MatchedParameters(string parentPath) : base($"{parentPath}.{nameof(MatchedParameters)}")
+        public MatchedParameters(string path) : base(path)
         {
         }
 
         public string GetParam(string paramName)
         {
-            return $"{this}[\"{paramName}\"]";
+            return @$"{Get()}[""{paramName}""]";
         }
 
         public string GetParamAsString(string paramName)

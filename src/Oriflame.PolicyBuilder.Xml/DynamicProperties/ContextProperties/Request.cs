@@ -2,14 +2,13 @@
 {
     public class Request : ContextProperty
     {
-        public Request(string parentPath) : base($"{parentPath}.{nameof(Request)}")
+        public Request(string path) : base(path)
         {
-            Body = new Body(_path.ToString());
-            Certificate = new Certificate(_path);
-            Headers = new Headers(_path);
-            MatchedParameters = new MatchedParameters(_path);
-            OriginalUrl = new Url(_path, nameof(OriginalUrl));
-            Url = new Url(_path, nameof(Url));
+            Body = new Body($"{Get()}.{nameof(Body)}");
+            Headers = new Headers($"{Get()}.{nameof(Headers)}");
+            MatchedParameters = new MatchedParameters($"{Get()}.{nameof(MatchedParameters)}");
+            OriginalUrl = new Url($"{Get()}.{nameof(OriginalUrl)}");
+            Url = new Url($"{Get()}.{nameof(Url)}");
         }
 
         /// <summary>
@@ -20,7 +19,7 @@
         /// <summary>
         /// Certificate of the request<br />
         /// </summary>
-        public Certificate Certificate;
+        public string Certificate => $"{Get()}.{nameof(Certificate)}";
 
         /// <summary>
         /// Headers of the request<br />
@@ -30,7 +29,7 @@
         /// <summary>
         /// IpAddress of the request<br />
         /// </summary>
-        public string IpAddress() => $"{this}.IpAddress";
+        public string IpAddress => $"{Get()}.{nameof(IpAddress)}";
 
         /// <summary>
         /// Matched route parameters of the request<br />
@@ -40,7 +39,7 @@
         /// <summary>
         /// Method of the request<br />
         /// </summary>
-        public string Method() => $"{this}.Method";
+        public string Method => $"{this}.{Method}";
 
         /// <summary>
         /// Original Url of the request<br />

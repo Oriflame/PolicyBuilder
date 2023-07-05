@@ -2,20 +2,20 @@
 {
     public class Url : ContextProperty
     {
-        public Url(string parentPath, string propertyName) : base($"{parentPath}.{propertyName}")
+        public Url(string path) : base(path)
         {
         }
 
-        public string Host => $"{this}.{nameof(Host)}";
+        public string Host => $"{Get()}.{nameof(Host)}";
 
-        public string Path => $"{this}.{nameof(Path)}";
+        public string Path => $"{Get()}.{nameof(Path)}";
 
-        public string Port => $"{this}.{nameof(Port)}";
+        public string Port => $"{Get()}.{nameof(Port)}";
 
-        public Query Query => new Query(ToString());
+        public Query Query => new Query($"{Get()}.{nameof(Query)}");
 
-        public string QueryString => $"{this}.{nameof(QueryString)}";
+        public string QueryString => $"{Get()}.{nameof(QueryString)}";
 
-        public string Scheme => $"{this}.{nameof(Scheme)}";
+        public string Scheme => $"{Get()}.{nameof(Scheme)}";
     }
 }

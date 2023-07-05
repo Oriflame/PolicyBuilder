@@ -2,10 +2,10 @@
 {
     public class Response : ContextProperty
     {
-        public Response(string parentPath) : base($"{parentPath}.{nameof(Response)}")
+        public Response(string path) : base(path)
         {
-            Body = new Body(_path.ToString());
-            Headers = new Headers(_path);
+            Body = new Body($"{Get()}.{nameof(Body)}");
+            Headers = new Headers($"{Get()}.{nameof(Headers)}");
         }
 
         /// <summary>
@@ -18,8 +18,8 @@
         /// </summary>
         public Headers Headers;
 
-        public string StatusCode => $"{this}.StatusCode";
+        public string StatusCode => $"{Get()}.{StatusCode}";
 
-        public string StatusReason => $"{this}.StatusReason";
+        public string StatusReason => $"{Get()}.{StatusReason}";
     }
 }

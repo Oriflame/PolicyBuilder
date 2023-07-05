@@ -2,10 +2,14 @@
 {
     public class GraphQL : ContextProperty
     {
-        public GraphQL(string parentPath) : base($"{parentPath}.{nameof(GraphQL)}")
+        public GraphQL(string path) : base(path)
         {
+            GraphQLArguments = new GraphQLDataObject($"{path}.{nameof(GraphQLArguments)}");
+            Parent = new GraphQLDataObject($"{path}.{nameof(Parent)}");
         }
 
-        // TODO props
+        public GraphQLDataObject GraphQLArguments;
+
+        public GraphQLDataObject Parent;
     }
 }

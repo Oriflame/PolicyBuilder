@@ -2,7 +2,7 @@
 {
     public abstract class ContextProperty
     {
-        protected readonly string _path;
+        private readonly string _path;
 
         protected ContextProperty(string path)
         {

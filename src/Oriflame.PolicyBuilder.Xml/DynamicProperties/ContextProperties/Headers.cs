@@ -2,16 +2,15 @@
 {
     public class Headers : ContextProperty
     {
-
-        public Headers(string parentPath) : base($"{parentPath}.{nameof(Headers)}")
+        public Headers(string path) : base(path)
         {
         }
 
         public string GetParam(string paramName, string defaultValue)
         {
             var command = defaultValue == null
-                ? $"{this}.GetValueOrDefault(\"{paramName}\")"
-                : $"{this}.GetValueOrDefault(\"{paramName}\", \"{defaultValue}\")";
+                ? $"{Get()}.GetValueOrDefault(\"{paramName}\")"
+                : $"{Get()}.GetValueOrDefault(\"{paramName}\", \"{defaultValue}\")";
             return command;
         }
 
