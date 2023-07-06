@@ -1,6 +1,8 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class SubscriptionKeyParameterNames : ContextProperty
+    public class SubscriptionKeyParameterNames : ContextProperty, ISubscriptionKeyParameterNames
     {
         public SubscriptionKeyParameterNames(string path) : base(path)
         {

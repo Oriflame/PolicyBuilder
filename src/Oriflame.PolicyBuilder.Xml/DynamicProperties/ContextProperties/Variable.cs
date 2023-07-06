@@ -1,15 +1,18 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
     /// <summary>
     /// Provides value set in context variable
     /// </summary>
-    public class Variable : ContextProperty
+    public class Variable : ContextProperty, IVariable
     {
-        public Body Body => new Body($"((IResponse){Get()}).{nameof(Body)}");
-
         public Variable(string path) : base(path)
         {
+            Body = new Body($"((IResponse){Get()}).{nameof(Body)}");
         }
+
+        public IBody Body { get; }
 
         public string GetAsString()
         {

@@ -1,7 +1,14 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using System.Collections.Generic;
+using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Query : ContextProperty
+    public class Query : ContextProperty, IQuery
     {
+        /// <summary>
+        /// Type: <see cref="IReadOnlyDictionary{string, string[]}"/>
+        /// </summary>
+        /// <param name="path"></param>
         public Query(string path) : base(path)
         {
         }

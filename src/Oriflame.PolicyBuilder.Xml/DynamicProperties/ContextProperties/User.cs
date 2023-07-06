@@ -1,29 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class User : ContextProperty
+    public class User : ContextProperty, IUser
     {
         public User(string path) : base(path)
         {
             Identities = new UserIdentities($"{Get()}.{nameof(Identities)}");
+            Groups = new Groups($"{Get()}.{nameof(Groups)}");
         }
 
         public string Email => $"{Get()}.{nameof(Email)}";
 
         public string FirstName => $"{Get()}.{nameof(FirstName)}";
 
-        /// <summary>
-        /// IEnumerable<IGroup>
-        /// </summary>
-        public Groups Groups;
+        public IGroups Groups { get; }
 
         public string Id => $"{Get()}.{nameof(Id)}";
 
         /// <summary>
-        /// IEnumerable<IUserIdentity>
+        /// Type: <see cref="IEnumerable{IUserIdentity}"/>
         /// </summary>
-        public UserIdentities Identities;
+        public IUserIdentities Identities { get; }
 
         public string LastName => $"{Get()}.{nameof(LastName)}";
 

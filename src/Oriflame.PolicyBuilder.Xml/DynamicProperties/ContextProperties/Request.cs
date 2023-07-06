@@ -1,6 +1,8 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Request : ContextProperty
+    public class Request : ContextProperty, IRequest
     {
         public Request(string path) : base(path)
         {
@@ -14,7 +16,7 @@
         /// <summary>
         /// Body of the request<br />
         /// </summary>
-        public Body Body;
+        public IBody Body { get; }
 
         /// <summary>
         /// Certificate of the request<br />
@@ -24,7 +26,7 @@
         /// <summary>
         /// Headers of the request<br />
         /// </summary>
-        public Headers Headers;
+        public IHeaders Headers { get; }
 
         /// <summary>
         /// IpAddress of the request<br />
@@ -34,21 +36,21 @@
         /// <summary>
         /// Matched route parameters of the request<br />
         /// </summary>
-        public MatchedParameters MatchedParameters;
+        public IMatchedParameters MatchedParameters { get; }
 
         /// <summary>
         /// Method of the request<br />
         /// </summary>
-        public string Method => $"{this}.{Method}";
+        public string Method => $"{Get()}.{Method}";
 
         /// <summary>
         /// Original Url of the request<br />
         /// </summary>
-        public Url OriginalUrl;
+        public IUrl OriginalUrl { get; }
 
         /// <summary>
         /// URL of the backend<br />
         /// </summary>
-        public Url Url;
+        public IUrl Url { get; }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public abstract class ContextProperty
+    public abstract class ContextProperty : IContextProperty
     {
         private readonly string _path;
 
@@ -10,11 +12,6 @@
         }
 
         public string Get()
-        {
-            return ToString();
-        }
-
-        public override string ToString()
         {
             return _path;
         }

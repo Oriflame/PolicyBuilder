@@ -1,6 +1,8 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Response : ContextProperty
+    public class Response : ContextProperty, IResponse
     {
         public Response(string path) : base(path)
         {
@@ -11,12 +13,12 @@
         /// <summary>
         /// Body of the response<br />
         /// </summary>
-        public Body Body;
+        public IBody Body { get; }
 
         /// <summary>
         /// Headers of the response<br />
         /// </summary>
-        public Headers Headers;
+        public IHeaders Headers { get; }
 
         public string StatusCode => $"{Get()}.{StatusCode}";
 

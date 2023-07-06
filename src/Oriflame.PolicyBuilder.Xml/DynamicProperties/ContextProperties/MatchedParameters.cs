@@ -1,6 +1,8 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class MatchedParameters : ContextProperty
+    public class MatchedParameters : ContextProperty, IMatchedParameters
     {
         public MatchedParameters(string path) : base(path)
         {

@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Api : ContextProperty
+    public class Api : ContextProperty, IApi
     {
         public Api(string path) : base(path)
         {
@@ -17,12 +18,12 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         public string Path => $"{Get()}.{nameof(Path)}";
 
         /// <summary>
-        /// Type: <see cref="IEnumerable[string]"/>
+        /// Type: <see cref="IEnumerable{string}"/>
         /// </summary>
         public string Protocols => $"{Get()}.{nameof(Protocols)}";
 
-        public Url ServiceUrl => new Url($"{Get()}.{nameof(ServiceUrl)}");
+        public IUrl ServiceUrl => new Url($"{Get()}.{nameof(ServiceUrl)}");
 
-        public SubscriptionKeyParameterNames SubscriptionKeyParameterNames;
+        public ISubscriptionKeyParameterNames SubscriptionKeyParameterNames { get; }
     }
 }

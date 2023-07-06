@@ -1,6 +1,8 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class GraphQL : ContextProperty
+    public class GraphQL : ContextProperty, IGraphQL
     {
         public GraphQL(string path) : base(path)
         {
@@ -8,8 +10,8 @@
             Parent = new GraphQLDataObject($"{path}.{nameof(Parent)}");
         }
 
-        public GraphQLDataObject GraphQLArguments;
+        public IGraphQLDataObject GraphQLArguments { get; }
 
-        public GraphQLDataObject Parent;
+        public IGraphQLDataObject Parent { get; }
     }
 }

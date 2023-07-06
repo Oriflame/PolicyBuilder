@@ -1,34 +1,34 @@
-﻿using Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties;
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
 
-namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Context : ContextProperty
+    public class Context : ContextProperty, IContext
     {
-        public Api Api;
+        public IApi Api { get; }
 
-        public Deployment Deployment;
+        public IDeployment Deployment { get; }
 
         /// <summary>
         /// Elapsed: TimeSpan - time interval between the value of Timestamp and current time
         /// </summary>
         public string Elapsed => $"{Get()}.{nameof(Elapsed)}";
 
-        public GraphQL GraphQL;
+        public IGraphQL GraphQL { get; }
 
-        public LastError LastError;
+        public ILastError LastError { get; }
 
-        public Operation Operation;
+        public IOperation Operation { get; }
 
-        public Request Request;
+        public IRequest Request { get; }
 
         /// <summary>
         /// RequestId: Guid - unique request identifier
         /// </summary>
         public string RequestId => $"{Get()}.{nameof(RequestId)}";
 
-        public Response Response;
+        public IResponse Response { get; }
 
-        public Subscription Subscription;
+        public ISubscription Subscription { get; }
 
         /// <summary>
         /// Timestamp: DateTime - point in time when request was received
@@ -40,11 +40,11 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         /// </summary>
         public string Tracing => $"{Get()}.{nameof(Tracing)}";
 
-        public User User;
+        public IUser User { get; }
 
-        public Variables Variables;
+        public IVariables Variables { get; }
 
-        string Trace(string message) => @$"{Get()}.{nameof(Trace)}(""{message}"")";
+        public string Trace(string message) => @$"{Get()}.{nameof(Trace)}(""{message}"")";
 
         public Context() : base("context")
         {

@@ -1,6 +1,8 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Deployment : ContextProperty
+    public class Deployment : ContextProperty, IDeployment
     {
         public Deployment(string path) : base(path)
         {
@@ -8,7 +10,7 @@
             Certificates = new Certificates($"{Get()}.{nameof(Certificates)}");
         }
 
-        public Gateway Gateway;
+        public IGateway Gateway { get; }
 
         public string GatewayId => $"{Get()}.{nameof(Gateway)}";
 
@@ -19,6 +21,6 @@
         public string ServiceName => $"{Get()}.{nameof(ServiceName)}";
 
         //TODO IReadOnlyDictionary<string, X509Certificate2>
-        public Certificates Certificates;
+        public ICertificates Certificates { get; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
 using Oriflame.PolicyBuilder.Xml.Extensions;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
@@ -6,7 +7,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     /// <summary>
     /// Provides value set in context variable
     /// </summary>
-    public class Variables : ContextProperty
+    public class Variables : ContextProperty, IVariables
     {
         public Variables(string path) : base(path)
         {
@@ -17,9 +18,9 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
             return @$"{Get()}.ContainsKey(""{variableName}"")";
         }
 
-        public Variable this[string variableName] => GetVariable(variableName, true);
+        public IVariable this[string variableName] => GetVariable(variableName, true);
 
-        public Variable this[string variableName, bool strict] => GetVariable(variableName, strict);
+        public IVariable this[string variableName, bool strict] => GetVariable(variableName, strict);
 
         public string GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false)
         {
@@ -48,7 +49,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
             return string.Format(CultureInfo.InvariantCulture, $@"{Get()}.GetValueOrDefault(""{{0}}"", {{1}})", variableName, defaultValue);
         }
 
-        private Variable GetVariable(string variableName, bool strict = true)
+        private IVariable GetVariable(string variableName, bool strict = true)
         {
             return strict
                 ? new Variable(@$"{Get()}[""{variableName}""]")

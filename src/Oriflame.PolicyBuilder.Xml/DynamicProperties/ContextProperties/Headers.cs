@@ -1,6 +1,9 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+using Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties;
+
+namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Headers : ContextProperty
+    public class Headers : ContextProperty, IHeaders
     {
         public Headers(string path) : base(path)
         {

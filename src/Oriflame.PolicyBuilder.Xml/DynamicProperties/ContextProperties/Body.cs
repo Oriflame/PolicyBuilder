@@ -1,8 +1,9 @@
-﻿using Oriflame.PolicyBuilder.Xml.Mappers;
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+using Oriflame.PolicyBuilder.Xml.Mappers;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Body : ContextProperty
+    public class Body : ContextProperty, IBody
     {
         public Body(string path) : base(path)
         {

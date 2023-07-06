@@ -1,13 +1,14 @@
 ﻿using System;
-using Oriflame.PolicyBuilder.Xml.DynamicProperties;
+using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+using Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties;
 
 namespace Oriflame.PolicyBuilder.Xml.Providers
 {
     public static class ContextProvider
     {
         // Implement singleton pattern
-        private static readonly Lazy<Context> _context = new Lazy<Context>(() => new Context());
+        private static readonly Lazy<IContext> _context = new Lazy<IContext>(() => new Context());
 
-        public static Context Context => _context.Value;
+        public static IContext Context => _context.Value;
     }
 }

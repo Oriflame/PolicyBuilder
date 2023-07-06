@@ -1,8 +1,9 @@
 ﻿using System;
+using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Subscription : ContextProperty
+    public class Subscription : ContextProperty, ISubscription
     {
         public Subscription(string path) : base(path)
         {
