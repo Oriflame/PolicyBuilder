@@ -74,7 +74,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             if (variableName != null)
             {
-                return ContextProvider.Context.Variables[variableName, strict].GetAsResponse();
+                return ContextProvider.Context.Variables[variableName, strict].AsResponse().Get();
             }
 
             switch (type)

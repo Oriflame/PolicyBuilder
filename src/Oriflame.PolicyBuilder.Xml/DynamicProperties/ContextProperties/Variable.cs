@@ -14,34 +14,12 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 
         public IBody Body { get; }
 
-        public string GetAsString()
-        {
-            return $"((string){Get()})";
-        }
+        public string GetAsString() => $"((string){Get()})";
 
-        public string GetAsResponse()
-        {
-            return $"((IResponse){Get()})";
-        }
+        public IResponse AsResponse() => new Response($"((IResponse){Get()})");
 
-        public string GetStatusCode()
-        {
-            return $"({GetAsResponse()}.StatusCode)";
-        }
+        public string GetAsBoolean() => $"((bool){Get()})";
 
-        public string GetStatusReason()
-        {
-            return $"({GetAsResponse()}.StatusReason)";
-        }
-
-        public string GetAsBoolean()
-        {
-            return $"((bool){Get()})";
-        }
-
-        public string GetAsJObject()
-        {
-            return $"((JObject){Get()})";
-        }
+        public string GetAsJObject() => $"((JObject){Get()})";
     }
 }

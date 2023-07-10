@@ -1,5 +1,4 @@
 ﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
-using Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
@@ -9,7 +8,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
         }
 
-        public string GetParam(string paramName, string defaultValue)
+        public string GetParam(string paramName, string defaultValue = null)
         {
             var command = defaultValue == null
                 ? $"{Get()}.GetValueOrDefault(\"{paramName}\")"

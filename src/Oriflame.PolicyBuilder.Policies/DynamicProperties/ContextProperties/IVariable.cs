@@ -6,9 +6,7 @@
 
         string GetAsBoolean();
         string GetAsJObject();
-        string GetAsResponse();
+        IResponse AsResponse();
         string GetAsString();
-        string GetStatusCode();
-        string GetStatusReason();
     }
 }

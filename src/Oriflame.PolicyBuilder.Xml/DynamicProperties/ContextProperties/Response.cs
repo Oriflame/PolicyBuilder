@@ -20,8 +20,8 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         /// </summary>
         public IHeaders Headers { get; }
 
-        public string StatusCode => $"{Get()}.{StatusCode}";
+        public string StatusCode => $"{Get()}.{nameof(StatusCode)}";
 
-        public string StatusReason => $"{Get()}.{StatusReason}";
+        public string StatusReason => $"{Get()}.{nameof(StatusReason)}";
     }
 }
