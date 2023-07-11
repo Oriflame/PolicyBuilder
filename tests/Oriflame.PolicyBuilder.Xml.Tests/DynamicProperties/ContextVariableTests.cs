@@ -55,7 +55,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData("testingVariable", "(((IResponse)context.Variables[\"testingVariable\"]).StatusCode)")]
+        [InlineData("testingVariable", "((IResponse)context.Variables[\"testingVariable\"]).StatusCode")]
         public void GetStatusCodeGeneratesCorrectPolicy(string variableName, string expected)
         {
             var policy = ContextProvider.Context.Variables[variableName].AsResponse().StatusCode;
@@ -63,7 +63,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         }
 
         [Theory]
-        [InlineData("testingVariable", "(((IResponse)context.Variables[\"testingVariable\"]).StatusReason)")]
+        [InlineData("testingVariable", "((IResponse)context.Variables[\"testingVariable\"]).StatusReason")]
         public void GetStatusReasonGeneratesCorrectPolicy(string variableName, string expected)
         {
             var policy = ContextProvider.Context.Variables[variableName].AsResponse().StatusReason;
