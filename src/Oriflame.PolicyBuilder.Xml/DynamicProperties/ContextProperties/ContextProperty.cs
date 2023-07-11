@@ -15,5 +15,10 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
             return _path;
         }
+
+        public override string ToString()
+        {
+            return Get();
+        }
     }
 }

@@ -80,9 +80,9 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
             switch (type)
             {
                 case VariableType.Request:
-                    return ContextProvider.Context.Request.Body.ToString();
+                    return ContextProvider.Context.Request.Body.Get();
                 case VariableType.Response:
-                    return ContextProvider.Context.Response.ToString();
+                    return ContextProvider.Context.Response.Get();
                 case VariableType.Undefined:
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -93,15 +93,15 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             if (variableName != null)
             {
-                return ContextProvider.Context.Variables[variableName, strict].ToString();
+                return ContextProvider.Context.Variables[variableName, strict].Get();
             }
 
             switch (type)
             {
                 case VariableType.Request:
-                    return ContextProvider.Context.Request.Body.ToString();
+                    return ContextProvider.Context.Request.Body.Get();
                 case VariableType.Response:
-                    return ContextProvider.Context.Response.ToString();
+                    return ContextProvider.Context.Response.Get();
                 case VariableType.Undefined:
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
