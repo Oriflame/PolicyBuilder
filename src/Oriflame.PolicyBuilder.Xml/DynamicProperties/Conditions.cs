@@ -57,7 +57,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         private static string GetIsNullOrEmptyCommand(string variableName, bool strict)
         {
-            return $"(string.IsNullOrEmpty{ContextProvider.Context.Variables[variableName, strict].GetAsString()})";
+            return $"(string.IsNullOrEmpty{ContextProvider.Context.Variables.GetVariable(variableName, strict).GetAsString()})";
         }
 
         private static string GetNullCommand(bool negative, string variableName = null, bool strict = true, VariableType type = VariableType.Undefined)
@@ -74,7 +74,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             if (variableName != null)
             {
-                return ContextProvider.Context.Variables[variableName, strict].AsResponse().Get();
+                return ContextProvider.Context.Variables.GetVariable(variableName, strict).AsResponse().Get();
             }
 
             switch (type)
@@ -93,7 +93,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             if (variableName != null)
             {
-                return ContextProvider.Context.Variables[variableName, strict].Get();
+                return ContextProvider.Context.Variables.GetVariable(variableName, strict).Get();
             }
 
             switch (type)

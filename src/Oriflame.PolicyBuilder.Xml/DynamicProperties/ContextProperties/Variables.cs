@@ -18,10 +18,6 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
             return @$"{Get()}.ContainsKey(""{variableName}"")";
         }
 
-        public IVariable this[string variableName] => GetVariable(variableName, true);
-
-        public IVariable this[string variableName, bool strict] => GetVariable(variableName, strict);
-
         public string GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false)
         {
             var policy = GetValueOrDefaultVariableCommand(variableName, defaultValue);
@@ -49,7 +45,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
             return string.Format(CultureInfo.InvariantCulture, $@"{Get()}.GetValueOrDefault(""{{0}}"", {{1}})", variableName, defaultValue);
         }
 
-        private IVariable GetVariable(string variableName, bool strict = true)
+        public IVariable GetVariable(string variableName, bool strict = true)
         {
             return strict
                 ? new Variable(@$"{Get()}[""{variableName}""]")

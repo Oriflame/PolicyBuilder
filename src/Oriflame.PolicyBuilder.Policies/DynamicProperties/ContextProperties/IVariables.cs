@@ -2,9 +2,7 @@
 {
     public interface IVariables : IContextProperty
     {
-        IVariable this[string variableName] { get; }
-        IVariable this[string variableName, bool strict] { get; }
-
+        IVariable GetVariable(string variableName, bool strict = true);
         string Contains(string variableName);
         string GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false);
     }
