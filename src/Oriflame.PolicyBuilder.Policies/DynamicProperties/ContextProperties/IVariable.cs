@@ -6,7 +6,7 @@
 
         string GetAsBoolean();
         string GetAsJObject();
-        IResponse AsResponse();
+        IResponse GetAsResponse();
         string GetAsString();
     }
 }

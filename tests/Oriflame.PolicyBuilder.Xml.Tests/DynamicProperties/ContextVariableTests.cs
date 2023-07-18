@@ -11,7 +11,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", true, "context.Variables[\"testingVariable\"]")]
         public void GetGeneratesCorrectPolicy(string variableName, bool strict, string expected)
         {
-            var policy = ContextProvider.Context.Variables[variableName, strict].Get();
+            var policy = ContextProvider.Context.Variables.GetVariable(variableName, strict).Get();
             policy.Should().Be(expected);
         }
 
@@ -32,7 +32,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", "((IResponse)context.Variables[\"testingVariable\"]).Body")]
         public void GetBodyGeneratesCorrectPolicy(string variableName, string expected)
         {
-            var policy = ContextProvider.Context.Variables[variableName].Body.Get();
+            var policy = ContextProvider.Context.Variables.GetVariable(variableName).Body.Get();
             policy.Should().Be(expected);
         }
 
@@ -41,7 +41,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", true, "((string)context.Variables[\"testingVariable\"])")]
         public void GetAsStringGeneratesCorrectPolicy(string variableName, bool strict, string expected)
         {
-            var policy = ContextProvider.Context.Variables[variableName, strict].GetAsString();
+            var policy = ContextProvider.Context.Variables.GetVariable(variableName, strict).GetAsString();
             policy.Should().Be(expected);
         }
 
@@ -50,7 +50,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", true, "((IResponse)context.Variables[\"testingVariable\"])")]
         public void GetAsResponseGeneratesCorrectPolicy(string variableName, bool strict, string expected)
         {
-            var policy = ContextProvider.Context.Variables[variableName, strict].AsResponse().Get();
+            var policy = ContextProvider.Context.Variables.GetVariable(variableName, strict).GetAsResponse().Get();
             policy.Should().Be(expected);
         }
 
@@ -58,7 +58,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", "((IResponse)context.Variables[\"testingVariable\"]).StatusCode")]
         public void GetStatusCodeGeneratesCorrectPolicy(string variableName, string expected)
         {
-            var policy = ContextProvider.Context.Variables[variableName].AsResponse().StatusCode;
+            var policy = ContextProvider.Context.Variables.GetVariable(variableName).GetAsResponse().StatusCode;
             policy.Should().Be(expected);
         }
 
@@ -66,7 +66,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", "((IResponse)context.Variables[\"testingVariable\"]).StatusReason")]
         public void GetStatusReasonGeneratesCorrectPolicy(string variableName, string expected)
         {
-            var policy = ContextProvider.Context.Variables[variableName].AsResponse().StatusReason;
+            var policy = ContextProvider.Context.Variables.GetVariable(variableName).GetAsResponse().StatusReason;
             policy.Should().Be(expected);
         }
 
@@ -75,7 +75,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", true, "((bool)context.Variables[\"testingVariable\"])")]
         public void GetAsBooleanGeneratesCorrectPolicy(string variableName, bool strict, string expected)
         {
-            var policy = ContextProvider.Context.Variables[variableName, strict].GetAsBoolean();
+            var policy = ContextProvider.Context.Variables.GetVariable(variableName, strict).GetAsBoolean();
             policy.Should().Be(expected);
         }
 
@@ -85,7 +85,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", true, "((JObject)context.Variables[\"testingVariable\"])")]
         public void GetAsJObjectGeneratesCorrectPolicy(string variableName, bool strict, string expected)
         {
-            var policy = ContextProvider.Context.Variables[variableName, strict].GetAsJObject();
+            var policy = ContextProvider.Context.Variables.GetVariable(variableName, strict).GetAsJObject();
             policy.Should().Be(expected);
         }
 
@@ -103,7 +103,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", true, "((IResponse)context.Variables[\"testingVariable\"]).Body.As<JObject>(preserveContent: true)")]
         public void GetBodyAsJObjectGeneratesCorrectPolicy(string variableName, bool preserveContent, string expected)
         {
-            var policy = ContextProvider.Context.Variables[variableName].Body.GetAsJObject(preserveContent);
+            var policy = ContextProvider.Context.Variables.GetVariable(variableName).Body.GetAsJObject(preserveContent);
             policy.Should().Be(expected);
         }
 

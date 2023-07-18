@@ -16,7 +16,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 
         public string GetAsString() => $"((string){Get()})";
 
-        public IResponse AsResponse() => new Response($"((IResponse){Get()})");
+        public IResponse GetAsResponse() => new Response($"((IResponse){Get()})");
 
         public string GetAsBoolean() => $"((bool){Get()})";
 

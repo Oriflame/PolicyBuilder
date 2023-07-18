@@ -3,7 +3,6 @@ using Microsoft.Net.Http.Headers;
 using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Actions;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
-using Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties;
 using Oriflame.PolicyBuilder.Xml.Providers;
 
 namespace Oriflame.PolicyBuilder.Xml.Extensions
@@ -27,9 +26,9 @@ namespace Oriflame.PolicyBuilder.Xml.Extensions
             return policyBuilder.SetHeader(HeaderNames.Authorization, ContextProvider.Context.Request.Headers.GetParam(HeaderNames.Authorization, ""), ExistsAction.Override);
         }
 
-        public static T SetAcceptHeader<T>(this ISetHeaders<T> policyBuilder) where T : IPolicySectionBuilder
+        public static T SetAcceptHeader<T>(this ISetHeaders<T> policyBuilder, string mimeType = JsonMimeType) where T : IPolicySectionBuilder
         {
-            return policyBuilder.SetHeader(HeaderNames.Accept, JsonMimeType, ExistsAction.Override);
+            return policyBuilder.SetHeader(HeaderNames.Accept, mimeType, ExistsAction.Override);
         }
     }
 }
