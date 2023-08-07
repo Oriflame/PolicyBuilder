@@ -14,7 +14,12 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
             // Some tests can be done here i.e. policy already added
             Policies.Add(policy);
         }
-        
+        public virtual void AddInnerPolicyAsFirst(IXmlPolicy policy)
+        {
+            // Some tests can be done here i.e. policy already added
+            Policies.Insert(0, policy);
+        }
+
         public override XNode GetXml()
         {
             return CreateElement(Policies.Select(p => p.GetXml()));
@@ -31,6 +36,11 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
         public virtual void AddInnerPolicy(IPolicy policy)
         {
             AddInnerPolicy(policy as IXmlPolicy);
+        }
+
+        public virtual void AddInnerPolicyAsFirst(IPolicy policy)
+        {
+            AddInnerPolicyAsFirst(policy as IXmlPolicy);
         }
     }
 }
