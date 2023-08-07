@@ -14,7 +14,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         public virtual ISendOneWayRequestSectionBuilder SetUrl(string url)
         {
-            return AddPolicyDefinition(new SetUrl(url));
+            return AddPolicyDefinitionAsFirst(new SetUrl(url));
         }
 
         public virtual ISendOneWayRequestSectionBuilder SetBody(string content)

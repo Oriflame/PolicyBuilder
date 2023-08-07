@@ -2,6 +2,11 @@
 {
     public interface ISectionPolicy : IPolicy
     {
-       void AddInnerPolicy(IPolicy policy);
+        void AddInnerPolicy(IPolicy policy);
+
+        /// <summary>
+        /// Hack for bug in Api Management - set-url needs to be defined as first policy in send-request and send-one-way-request policies
+        /// </summary>
+        void AddInnerPolicyAsFirst(IPolicy policy);
     }
 }

@@ -147,6 +147,13 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
+        protected TSection AddPolicyDefinitionAsFirst(IXmlPolicy policy)
+        {
+            SectionPolicy.AddInnerPolicyAsFirst(policy);
+            return Return();
+        }
+
+        /// <inheritdoc />
         protected TSection AddPolicyDefinition(ISectionPolicy policy)
         {
             SectionPolicy.AddInnerPolicy(policy as IXmlPolicy);
