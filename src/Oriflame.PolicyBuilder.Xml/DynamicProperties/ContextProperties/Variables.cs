@@ -23,7 +23,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
             var policy = GetValueOrDefaultVariableCommand(variableName, defaultValue);
             if (explicitCast)
             {
-                policy = policy.Cast(typeof(T));
+                policy = $"(({typeof(T).FullName}){policy})";
             }
 
             return policy;
