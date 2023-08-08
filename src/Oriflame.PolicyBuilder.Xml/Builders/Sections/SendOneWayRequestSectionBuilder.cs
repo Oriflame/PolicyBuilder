@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Oriflame.PolicyBuilder.Policies.Builders.Enums;
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
 using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 using Oriflame.PolicyBuilder.Xml.Definitions.Inner;
@@ -21,6 +22,11 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         public virtual ISendOneWayRequestSectionBuilder SetBody(string content)
         {
             return AddPolicyDefinition(new SetBody(content), Priority.SetBody);
+        }
+
+        public virtual ISendOneWayRequestSectionBuilder SetHeader(string name, string value, ExistsAction? existsAction)
+        {
+            return AddPolicyDefinition(new SetHeader(name, value, existsAction), Priority.SetHeader);
         }
 
         public ISendOneWayRequestSectionBuilder AuthenticationCertificate(string thumbprint)

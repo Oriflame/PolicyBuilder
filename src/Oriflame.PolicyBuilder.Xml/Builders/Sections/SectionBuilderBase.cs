@@ -131,7 +131,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         /// <inheritdoc />
         public virtual TSection SetHeader(string name, string value, ExistsAction? existsAction)
         {
-            return AddPolicyDefinition(new SetHeader(name, value, existsAction), Priority.SetHeader);
+            return AddPolicyDefinition(new SetHeader(name, value, existsAction));
         }
 
         /// <inheritdoc />
