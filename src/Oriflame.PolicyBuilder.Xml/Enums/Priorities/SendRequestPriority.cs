@@ -2,7 +2,6 @@
 {
     public enum SendRequestPriority
     {
-        Default = 0,
         SetUrl = -10,
         SetMethod = -9,
         SetBody = -8,

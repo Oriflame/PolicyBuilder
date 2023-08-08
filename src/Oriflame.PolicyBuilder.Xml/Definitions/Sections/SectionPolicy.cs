@@ -13,7 +13,7 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
         public virtual void AddInnerPolicy(IXmlPolicy policy)
         {
             // Some tests can be done here i.e. policy already added
-            Policies.Enqueue(policy, (int)SendRequestPriority.Default);
+            Policies.Enqueue(policy, (int)Priority.Default);
         }
         public virtual void AddInnerPolicy(IXmlPolicy policy, int priority)
         {
