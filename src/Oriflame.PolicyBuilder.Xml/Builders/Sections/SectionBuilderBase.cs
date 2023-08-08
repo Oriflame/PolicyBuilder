@@ -8,6 +8,7 @@ using Oriflame.PolicyBuilder.Policies.Definitions;
 using Oriflame.PolicyBuilder.Xml.Builders.Attributes;
 using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 using Oriflame.PolicyBuilder.Xml.Definitions.Inner;
+using Oriflame.PolicyBuilder.Xml.Enums;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 {
@@ -130,13 +131,13 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         /// <inheritdoc />
         public virtual TSection SetHeader(string name, string value, ExistsAction? existsAction)
         {
-            return AddPolicyDefinition(new SetHeader(name, value, existsAction));
+            return AddPolicyDefinition(new SetHeader(name, value, existsAction), Priority.SetHeader);
         }
 
         /// <inheritdoc />
         public virtual TSection SetMethod(HttpMethod httpMethod)
         {
-            return AddPolicyDefinition(new SetMethod(httpMethod));
+            return AddPolicyDefinition(new SetMethod(httpMethod), Priority.SetMethod);
         }
 
         /// <inheritdoc />
@@ -147,9 +148,9 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
         
         /// <inheritdoc />
-        protected TSection AddPolicyDefinitionAsFirst(IXmlPolicy policy)
+        protected TSection AddPolicyDefinition(IXmlPolicy policy, Priority priority)
         {
-            SectionPolicy.AddInnerPolicyAsFirst(policy);
+            SectionPolicy.AddInnerPolicy(policy, (int)priority);
             return Return();
         }
 

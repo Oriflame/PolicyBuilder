@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
 using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
 
@@ -13,7 +13,15 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Inner
 
         public override XNode GetXml()
         {
-            return CreateElement(Policies.Select(p => p.GetXml()));
+            // For each policy in Policies, call GetXml and return the result
+            var nodes = new List<XNode>();
+            while (!Policies.IsEmpty)
+            {
+                var policy = Policies.Dequeue();
+                nodes.Add(policy.GetXml());
+            }
+
+            return CreateElement(nodes);
         }
     }
 }

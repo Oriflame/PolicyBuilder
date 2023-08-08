@@ -3,6 +3,7 @@ using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
 using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 using Oriflame.PolicyBuilder.Xml.Definitions.Inner;
 using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
+using Oriflame.PolicyBuilder.Xml.Enums;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 {
@@ -14,17 +15,17 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 
         public virtual ISendOneWayRequestSectionBuilder SetUrl(string url)
         {
-            return AddPolicyDefinitionAsFirst(new SetUrl(url));
+            return AddPolicyDefinition(new SetUrl(url), Priority.SetUrl);
         }
 
         public virtual ISendOneWayRequestSectionBuilder SetBody(string content)
         {
-            return AddPolicyDefinition(new SetBody(content));
+            return AddPolicyDefinition(new SetBody(content), Priority.SetBody);
         }
 
         public ISendOneWayRequestSectionBuilder AuthenticationCertificate(string thumbprint)
         {
-            return AddPolicyDefinition(new AuthenticationCertificate(thumbprint));
+            return AddPolicyDefinition(new AuthenticationCertificate(thumbprint), Priority.AuthenticationCertificate);
         }
     }
 }

@@ -67,8 +67,8 @@ $@"<send-request ignore-error=""{ (ignoreError ? "true" : "false")}"" mode=""{Re
             xml.Should().Be(
 $@"<send-request ignore-error=""{ (ignoreError ? "true" : "false")}"" mode=""{RequestModeMapper.Map(mode)}"" response-variable-name=""{responseVariable}"" timeout=""{timeout}"">
   <set-url>{url}</set-url>
-  <set-body>{body}</set-body>
   <set-method>{method.ToString().ToUpper()}</set-method>
+  <set-body>{body}</set-body>
   <set-header name=""{header.Name}"" exists-action=""{header.ExistsAction.ToString().ToLower()}"">
     <value>{header.Value}</value>
   </set-header>

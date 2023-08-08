@@ -1,28 +1,36 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Xml.Linq;
 using Oriflame.PolicyBuilder.Policies.Definitions;
+using Oriflame.PolicyBuilder.Xml.Collections;
 
 namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
 {
     public class SectionPolicy : PolicyXmlBase, ISectionPolicy
     {
-        protected readonly IList<IXmlPolicy> Policies = new List<IXmlPolicy>();
+        protected readonly StalePriorityQueue<IXmlPolicy, int> Policies = new();
         
         public virtual void AddInnerPolicy(IXmlPolicy policy)
         {
             // Some tests can be done here i.e. policy already added
-            Policies.Add(policy);
+            Policies.Enqueue(policy, 0);
         }
-        public virtual void AddInnerPolicyAsFirst(IXmlPolicy policy)
+        public virtual void AddInnerPolicy(IXmlPolicy policy, int priority)
         {
             // Some tests can be done here i.e. policy already added
-            Policies.Insert(0, policy);
+            Policies.Enqueue(policy, priority);
         }
 
         public override XNode GetXml()
         {
-            return CreateElement(Policies.Select(p => p.GetXml()));
+            // For each policy in Policies, call GetXml and return the result
+            var nodes = new List<XNode>();
+            while (!Policies.IsEmpty)
+            {
+                var policy = Policies.Dequeue();
+                nodes.Add(policy.GetXml());
+            }
+
+            return CreateElement(nodes);
         }
 
         public SectionPolicy(string xmlNodeName, IDictionary<string, string> attributes) : base(xmlNodeName, attributes)
@@ -38,9 +46,9 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
             AddInnerPolicy(policy as IXmlPolicy);
         }
 
-        public virtual void AddInnerPolicyAsFirst(IPolicy policy)
+        public virtual void AddInnerPolicy(IPolicy policy, int priority)
         {
-            AddInnerPolicyAsFirst(policy as IXmlPolicy);
+            AddInnerPolicy(policy as IXmlPolicy, priority);
         }
     }
 }
