@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Oriflame.PolicyBuilder.Policies.Builders;
 using Oriflame.PolicyBuilder.Policies.Builders.Extensions;
+using Oriflame.PolicyBuilder.Policies.Expressions;
 using Oriflame.PolicyBuilder.Xml.DynamicProperties;
 using Oriflame.PolicyBuilder.Xml.Extensions;
 using Oriflame.PolicyBuilder.Xml.Providers;
@@ -73,7 +74,7 @@ namespace Oriflame.PolicyBuilder.ApiExample.Controllers
                     .Create()
                 )
                 .Backend(builder => builder
-                    .SetBackendService(ContextProvider.Context.Variables.GetVariable(backendUrlVariableName).GetAsString().AsExpression())
+                    .SetBackendService(new SingleStatementExpression(ContextProvider.Context.Variables.GetVariable(backendUrlVariableName).GetAsString()))
                     .Base()
                     .Create())
                 .Outbound()
