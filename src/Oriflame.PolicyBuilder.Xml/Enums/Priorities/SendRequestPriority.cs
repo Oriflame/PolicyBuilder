@@ -1,6 +1,6 @@
-﻿namespace Oriflame.PolicyBuilder.Xml.Enums
+﻿namespace Oriflame.PolicyBuilder.Xml.Enums.Priorities
 {
-    public enum Priority
+    public enum SendRequestPriority
     {
         Default = 0,
         SetUrl = -10,

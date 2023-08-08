@@ -2,6 +2,7 @@
 using System.Xml.Linq;
 using Oriflame.PolicyBuilder.Policies.Definitions;
 using Oriflame.PolicyBuilder.Xml.Collections;
+using Oriflame.PolicyBuilder.Xml.Enums.Priorities;
 
 namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
 {
@@ -12,7 +13,7 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
         public virtual void AddInnerPolicy(IXmlPolicy policy)
         {
             // Some tests can be done here i.e. policy already added
-            Policies.Enqueue(policy, 0);
+            Policies.Enqueue(policy, (int)SendRequestPriority.Default);
         }
         public virtual void AddInnerPolicy(IXmlPolicy policy, int priority)
         {

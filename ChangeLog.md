@@ -2,7 +2,7 @@
 
 ## 4.2.0
 
-- `SendRequest` and `SendOneWayRequest` insert `set-url` element on the first place to overcome the bug in APIM Validation
+- `SendRequest` and `SendOneWayRequest` use inner-node ordering to overcome the bug in APIM Validation
 
 ## 4.1.1
 

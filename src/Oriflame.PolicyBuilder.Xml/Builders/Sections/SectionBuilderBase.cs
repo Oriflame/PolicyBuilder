@@ -137,7 +137,7 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         /// <inheritdoc />
         public virtual TSection SetMethod(HttpMethod httpMethod)
         {
-            return AddPolicyDefinition(new SetMethod(httpMethod), Priority.SetMethod);
+            return AddPolicyDefinition(new SetMethod(httpMethod));
         }
 
         /// <inheritdoc />
@@ -148,9 +148,9 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
         
         /// <inheritdoc />
-        protected TSection AddPolicyDefinition(IXmlPolicy policy, Priority priority)
+        protected TSection AddPolicyDefinition(IXmlPolicy policy, int priority)
         {
-            SectionPolicy.AddInnerPolicy(policy, (int)priority);
+            SectionPolicy.AddInnerPolicy(policy, priority);
             return Return();
         }
 
