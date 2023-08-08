@@ -6,7 +6,6 @@ using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 using Oriflame.PolicyBuilder.Xml.Definitions.Inner;
 using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
 using Oriflame.PolicyBuilder.Xml.Enums.Priorities;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 {
