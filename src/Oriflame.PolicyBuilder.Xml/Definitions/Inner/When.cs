@@ -10,18 +10,5 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Inner
         {
             Attributes.Add("condition", condition);
         }
-
-        public override XNode GetXml()
-        {
-            // For each policy in Policies, call GetXml and return the result
-            var nodes = new List<XNode>();
-            while (!Policies.IsEmpty)
-            {
-                var policy = Policies.Dequeue();
-                nodes.Add(policy.GetXml());
-            }
-
-            return CreateElement(nodes);
-        }
     }
 }
