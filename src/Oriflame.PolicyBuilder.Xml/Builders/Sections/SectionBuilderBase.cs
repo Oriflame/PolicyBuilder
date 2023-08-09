@@ -8,7 +8,6 @@ using Oriflame.PolicyBuilder.Policies.Definitions;
 using Oriflame.PolicyBuilder.Xml.Builders.Attributes;
 using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 using Oriflame.PolicyBuilder.Xml.Definitions.Inner;
-using Oriflame.PolicyBuilder.Xml.Enums;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 {
@@ -151,13 +150,6 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         protected TSection AddPolicyDefinition(IXmlPolicy policy, int priority)
         {
             SectionPolicy.AddInnerPolicy(policy, priority);
-            return Return();
-        }
-
-        /// <inheritdoc />
-        protected TSection AddPolicyDefinitionAsFirst(IXmlPolicy policy)
-        {
-            SectionPolicy.AddInnerPolicyAsFirst(policy);
             return Return();
         }
 
