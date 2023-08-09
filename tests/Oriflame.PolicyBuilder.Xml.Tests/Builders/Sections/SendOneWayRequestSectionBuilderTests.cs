@@ -36,7 +36,6 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
             xml.Should().Be(
 $@"<send-one-way-request mode=""{RequestModeMapper.Map(mode)}"">
   <set-url>{url}</set-url>
-  <set-body>{body}</set-body>
   <set-method>{method.ToString().ToUpper()}</set-method>
   <set-body>{body}</set-body>
   <set-header name=""{header.Name}"" exists-action=""{header.ExistsAction.ToString().ToLower()}"">
