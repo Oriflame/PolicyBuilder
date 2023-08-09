@@ -68,10 +68,10 @@ $@"<send-request ignore-error=""{ (ignoreError ? "true" : "false")}"" mode=""{Re
 $@"<send-request ignore-error=""{ (ignoreError ? "true" : "false")}"" mode=""{RequestModeMapper.Map(mode)}"" response-variable-name=""{responseVariable}"" timeout=""{timeout}"">
   <set-url>{url}</set-url>
   <set-method>{method.ToString().ToUpper()}</set-method>
-  <set-body>{body}</set-body>
   <set-header name=""{header.Name}"" exists-action=""{header.ExistsAction.ToString().ToLower()}"">
     <value>{header.Value}</value>
   </set-header>
+  <set-body>{body}</set-body>
   <authentication-certificate thumbprint=""{thumbprint}"" />
 </send-request>");
         }
