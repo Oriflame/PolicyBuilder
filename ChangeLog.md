@@ -6,6 +6,10 @@
 - Removed `StringExtensions` class as a antipattern
 - Introduced `Expression` class to separate the expressions from the common string values
 
+## 4.2.0
+
+- `SendRequest` and `SendOneWayRequest` use inner-node ordering to overcome the bug in APIM Validation
+
 ## 4.1.1
 
 - `GetCustomFixture` set as `virtual` to make it overridable
