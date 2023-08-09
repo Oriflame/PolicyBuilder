@@ -1,5 +1,9 @@
 # Change log
 
+## 4.2.0
+
+- `SendRequest` and `SendOneWayRequest` use inner-node ordering to overcome the bug in APIM Validation
+
 ## 4.1.1
 
 - `GetCustomFixture` set as `virtual` to make it overridable
