@@ -10,13 +10,14 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
     {
         private const int LowestPriority = int.MaxValue;
 
-        protected readonly StalePriorityQueue<IXmlPolicy, int> Policies = new();
+        private readonly StalePriorityQueue<IXmlPolicy, int> Policies = new();
         
         public virtual void AddInnerPolicy(IXmlPolicy policy)
         {
             // Some tests can be done here i.e. policy already added
             Policies.Enqueue(policy, LowestPriority);
         }
+
         public virtual void AddInnerPolicy(IXmlPolicy policy, int priority)
         {
             // Some tests can be done here i.e. policy already added
