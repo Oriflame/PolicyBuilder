@@ -1,5 +1,9 @@
 # Change log
 
+## 4.2.1
+
+- `SendRequest` and `SendOneWayRequest` inner nodes priority fix
+
 ## 4.2.0
 
 - `SendRequest` and `SendOneWayRequest` use inner-node ordering to overcome the bug in APIM Validation

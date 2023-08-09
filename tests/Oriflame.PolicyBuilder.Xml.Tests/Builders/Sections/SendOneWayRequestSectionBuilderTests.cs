@@ -37,10 +37,10 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.Builders.Sections
 $@"<send-one-way-request mode=""{RequestModeMapper.Map(mode)}"">
   <set-url>{url}</set-url>
   <set-method>{method.ToString().ToUpper()}</set-method>
-  <set-body>{body}</set-body>
   <set-header name=""{header.Name}"" exists-action=""{header.ExistsAction.ToString().ToLower()}"">
     <value>{header.Value}</value>
   </set-header>
+  <set-body>{body}</set-body>
   <authentication-certificate thumbprint=""{thumbprint}"" />
 </send-one-way-request>");
         }
