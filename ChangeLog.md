@@ -1,5 +1,9 @@
 # Change log
 
+## 4.2.2
+
+- `ReturnResponse` inner nodes priority added
+
 ## 4.2.1
 
 - `SendRequest` and `SendOneWayRequest` inner nodes priority fix
