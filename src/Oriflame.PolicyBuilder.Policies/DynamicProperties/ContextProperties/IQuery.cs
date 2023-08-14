@@ -1,7 +1,7 @@
 ﻿namespace Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties
 {
-    public interface IQuery : IContextProperty
+    public interface IQuery : IContextProperty, IBuilderReadOnlyDictionary<IQueryParam>, IGetWithDefault<IQueryParam>
     {
-        string GetParam(string paramName, string defaultValue = null);
+        IQueryParam Get(string paramName);
     }
 }

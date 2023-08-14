@@ -10,7 +10,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("context.Response")]
         public void GetGeneratesCorrectPolicy(string expected)
         {
-            var policy = ContextProvider.Context.Response.Get();
+            var policy = ContextProvider.Context.Response.GetPropertyPath();
             policy.Should().Be(expected);
         }
 
@@ -19,7 +19,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData(true, "context.Response.Body.As<JObject>(preserveContent: true)")]
         public void GetBodyAsJObjectGeneratesCorrectPolicy(bool preserveContent, string expected)
         {
-            var policy = ContextProvider.Context.Response.Body.GetAsJObject(preserveContent);
+            var policy = ContextProvider.Context.Response.Body.AsJObject(preserveContent);
             policy.Should().Be(expected);
         }
 
@@ -28,7 +28,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData(true, "context.Response.Body.As<string>(preserveContent: true)")]
         public void GetBodyAsStringGeneratesCorrectPolicy(bool preserveContent, string expected)
         {
-            var policy = ContextProvider.Context.Response.Body.GetAsString(preserveContent);
+            var policy = ContextProvider.Context.Response.Body.AsString(preserveContent);
             policy.Should().Be(expected);
         }
 
@@ -37,7 +37,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData(true, "context.Response.Body.As<JArray>(preserveContent: true)")]
         public void GetBodyAsJArrayGeneratesCorrectPolicy(bool preserveContent, string expected)
         {
-            var policy = ContextProvider.Context.Response.Body.GetAsJArray(preserveContent);
+            var policy = ContextProvider.Context.Response.Body.AsJArray(preserveContent);
             policy.Should().Be(expected);
         }
 
@@ -62,7 +62,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingParam", null, @"context.Response.Headers.GetValueOrDefault(""testingParam"")")]
         public void GetHeaderParamGeneratesCorrectPolicy(string paramName, string defaultValue, string expected)
         {
-            var policy = ContextProvider.Context.Response.Headers.GetParam(paramName, defaultValue);
+            var policy = ContextProvider.Context.Response.Headers.GetValueOrDefault(paramName, defaultValue).ToString();
             policy.Should().Be(expected);
         }
     }

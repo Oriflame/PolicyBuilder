@@ -1,9 +1,17 @@
 ﻿namespace Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties
 {
-    public interface IVariables : IContextProperty
+    public interface IVariables : IContextProperty, IBuilderReadOnlyDictionary<IVariable>, IGetWithDefault<IVariable>
     {
-        IVariable GetVariable(string variableName, bool strict = true);
-        string Contains(string variableName);
+        IVariable Get(string variableName);
+
+        /// <summary>
+        /// Gets the variable value of given type or default value if variable is not found.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="variableName"></param>
+        /// <param name="defaultValue"></param>
+        /// <param name="explicitCast"></param>
+        /// <returns></returns>
         string GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false);
     }
 }

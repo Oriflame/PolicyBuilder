@@ -11,7 +11,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         /// <summary>
         /// Elapsed: TimeSpan - time interval between the value of Timestamp and current time
         /// </summary>
-        public string Elapsed => $"{Get()}.{nameof(Elapsed)}";
+        public string Elapsed => $"{GetPropertyPath()}.{nameof(Elapsed)}";
 
         public IGraphQL GraphQL { get; }
 
@@ -24,7 +24,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         /// <summary>
         /// RequestId: Guid - unique request identifier
         /// </summary>
-        public string RequestId => $"{Get()}.{nameof(RequestId)}";
+        public string RequestId => $"{GetPropertyPath()}.{nameof(RequestId)}";
 
         public IResponse Response { get; }
 
@@ -33,31 +33,31 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         /// <summary>
         /// Timestamp: DateTime - point in time when request was received
         /// </summary>
-        public string Timestamp => $"{Get()}.{nameof(Timestamp)}";
+        public string Timestamp => $"{GetPropertyPath()}.{nameof(Timestamp)}";
 
         /// <summary>
         /// Tracing: bool - indicates if tracing is on or off
         /// </summary>
-        public string Tracing => $"{Get()}.{nameof(Tracing)}";
+        public string Tracing => $"{GetPropertyPath()}.{nameof(Tracing)}";
 
         public IUser User { get; }
 
         public IVariables Variables { get; }
 
-        public string Trace(string message) => @$"{Get()}.{nameof(Trace)}(""{message}"")";
+        public string Trace(string message) => @$"{GetPropertyPath()}.{nameof(Trace)}(""{message}"")";
 
         public Context() : base("context")
         {
-            Api = new Api($"{Get()}.{nameof(Api)}");
-            Deployment = new Deployment($"{Get()}.{nameof(Deployment)}");
-            GraphQL = new GraphQL($"{Get()}.{nameof(GraphQL)}");
-            LastError = new LastError($"{Get()}.{nameof(LastError)}");
-            Operation = new Operation($"{Get()}.{nameof(Operation)}");
-            Request = new Request($"{Get()}.{nameof(Request)}");
-            Response = new Response($"{Get()}.{nameof(Response)}");
-            Subscription = new Subscription($"{Get()}.{nameof(Subscription)}");
-            User = new User($"{Get()}.{nameof(User)}");
-            Variables = new Variables($"{Get()}.{nameof(Variables)}");
+            Api = new Api($"{GetPropertyPath()}.{nameof(Api)}");
+            Deployment = new Deployment($"{GetPropertyPath()}.{nameof(Deployment)}");
+            GraphQL = new GraphQL($"{GetPropertyPath()}.{nameof(GraphQL)}");
+            LastError = new LastError($"{GetPropertyPath()}.{nameof(LastError)}");
+            Operation = new Operation($"{GetPropertyPath()}.{nameof(Operation)}");
+            Request = new Request($"{GetPropertyPath()}.{nameof(Request)}");
+            Response = new Response($"{GetPropertyPath()}.{nameof(Response)}");
+            Subscription = new Subscription($"{GetPropertyPath()}.{nameof(Subscription)}");
+            User = new User($"{GetPropertyPath()}.{nameof(User)}");
+            Variables = new Variables($"{GetPropertyPath()}.{nameof(Variables)}");
         }
     }
 }

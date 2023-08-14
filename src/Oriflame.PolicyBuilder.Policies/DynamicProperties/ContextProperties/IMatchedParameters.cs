@@ -1,8 +1,7 @@
 ﻿namespace Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties
 {
-    public interface IMatchedParameters : IContextProperty
+    public interface IMatchedParameters : IContextProperty, IBuilderReadOnlyDictionary<IMatchedParameter>
     {
-        string GetParam(string paramName);
-        string GetParamAsString(string paramName);
+        IMatchedParameter Get(string paramName);
     }
 }

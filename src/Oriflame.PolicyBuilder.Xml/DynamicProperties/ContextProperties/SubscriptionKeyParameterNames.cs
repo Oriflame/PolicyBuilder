@@ -8,8 +8,8 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
         }
 
-        public string Header => $"{Get()}.{nameof(Header)}";
+        public string Header => $"{GetPropertyPath()}.{nameof(Header)}";
 
-        public string Query => $"{Get()}.{nameof(Query)}";
+        public string Query => $"{GetPropertyPath()}.{nameof(Query)}";
     }
 }

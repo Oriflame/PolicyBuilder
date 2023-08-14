@@ -4,9 +4,12 @@
     {
         IBody Body { get; }
 
-        string GetAsBoolean();
-        string GetAsJObject();
-        IResponse GetAsResponse();
-        string GetAsString();
+        string AsBoolean();
+
+        string AsJObject();
+
+        IResponse AsResponse();
+
+        string AsString();
     }
 }

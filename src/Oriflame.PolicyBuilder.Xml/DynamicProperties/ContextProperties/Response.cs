@@ -6,8 +6,8 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     {
         public Response(string path) : base(path)
         {
-            Body = new Body($"{Get()}.{nameof(Body)}");
-            Headers = new Headers($"{Get()}.{nameof(Headers)}");
+            Body = new Body($"{GetPropertyPath()}.{nameof(Body)}");
+            Headers = new Headers($"{GetPropertyPath()}.{nameof(Headers)}");
         }
 
         /// <summary>
@@ -20,8 +20,8 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         /// </summary>
         public IHeaders Headers { get; }
 
-        public string StatusCode => $"{Get()}.{nameof(StatusCode)}";
+        public string StatusCode => $"{GetPropertyPath()}.{nameof(StatusCode)}";
 
-        public string StatusReason => $"{Get()}.{nameof(StatusReason)}";
+        public string StatusReason => $"{GetPropertyPath()}.{nameof(StatusReason)}";
     }
 }

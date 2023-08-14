@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class Query : ContextProperty, IQuery
+    public class Query : ReadonlyDictionaryWithDefaultContextProperty<IQueryParam>, IQuery
     {
         /// <summary>
         /// Type: <see cref="IReadOnlyDictionary{string, string[]}"/>
@@ -13,14 +12,9 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
         }
 
-        public string GetParam(string paramName, string defaultValue = null)
+        protected override IQueryParam CreateInstance(string propertyPath)
         {
-            var command = defaultValue == null
-                ? $"{Get()}.GetValueOrDefault(\"{paramName}\")"
-                : $"{Get()}.GetValueOrDefault(\"{paramName}\", \"{defaultValue}\")";
-            return command;
+            return new QueryParam(propertyPath);
         }
-
-        // TODO props
     }
 }

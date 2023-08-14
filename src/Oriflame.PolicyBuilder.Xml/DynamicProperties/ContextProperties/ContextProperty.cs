@@ -11,14 +11,19 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
             _path = path;
         }
 
-        public string Get()
+        public static implicit operator string(ContextProperty property)
+        {
+            return property._path;
+        }
+
+        public string GetPropertyPath()
         {
             return _path;
         }
 
         public override string ToString()
         {
-            return Get();
+            return _path;
         }
     }
 }

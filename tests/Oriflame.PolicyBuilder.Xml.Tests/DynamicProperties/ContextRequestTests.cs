@@ -10,7 +10,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("context.Request")]
         public void GetGeneratesCorrectPolicy(string expected)
         {
-            var policy = ContextProvider.Context.Request.Get();
+            var policy = ContextProvider.Context.Request.GetPropertyPath();
             policy.Should().Be(expected);
         }
 
@@ -18,7 +18,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("context.Request.Body")]
         public void GetBodyGeneratesCorrectPolicy(string expected)
         {
-            var policy = ContextProvider.Context.Request.Body.Get();
+            var policy = ContextProvider.Context.Request.Body.GetPropertyPath();
             policy.Should().Be(expected);
         }
 
@@ -27,7 +27,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData(true, "context.Request.Body.As<JObject>(preserveContent: true)")]
         public void GetBodyAsJObjectGeneratesCorrectPolicy(bool preserveContent, string expected)
         {
-            var policy = ContextProvider.Context.Request.Body.GetAsJObject(preserveContent);
+            var policy = ContextProvider.Context.Request.Body.AsJObject(preserveContent);
             policy.Should().Be(expected);
         }
 
@@ -36,7 +36,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData(false, "context.Request.Body.As<string>()")]
         public void GetBodyAsStringGeneratesCorrectPolicy(bool preserveContent, string expected)
         {
-            var policy = ContextProvider.Context.Request.Body.GetAsString(preserveContent);
+            var policy = ContextProvider.Context.Request.Body.AsString(preserveContent);
             policy.Should().Be(expected);
         }
 
@@ -45,7 +45,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData(true, "context.Request.Body.As<JArray>(preserveContent: true)")]
         public void GetBodyAsJArrayGeneratesCorrectPolicy(bool preserveContent, string expected)
         {
-            var policy = ContextProvider.Context.Request.Body.GetAsJArray(preserveContent);
+            var policy = ContextProvider.Context.Request.Body.AsJArray(preserveContent);
             policy.Should().Be(expected);
         }
 
@@ -53,7 +53,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingParam", "context.Request.MatchedParameters[\"testingParam\"]")]
         public void GetRouteParamGeneratesCorrectPolicy(string paramName, string expected)
         {
-            var policy = ContextProvider.Context.Request.MatchedParameters.GetParam(paramName);
+            var policy = ContextProvider.Context.Request.MatchedParameters.Get(paramName).ToString();
             policy.Should().Be(expected);
         }
 
@@ -61,7 +61,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingParam", "(string)context.Request.MatchedParameters[\"testingParam\"]")]
         public void GetRouteParamAsStringGeneratesCorrectPolicy(string paramName, string expected)
         {
-            var policy = ContextProvider.Context.Request.MatchedParameters.GetParamAsString(paramName);
+            var policy = ContextProvider.Context.Request.MatchedParameters.Get(paramName).AsString();
             policy.Should().Be(expected);
         }
 
@@ -70,7 +70,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingParam", null, "context.Request.OriginalUrl.Query.GetValueOrDefault(\"testingParam\")")]
         public void GetQueryParamGeneratesCorrectPolicy(string paramName, string defaultValue, string expected)
         {
-            var policy = ContextProvider.Context.Request.OriginalUrl.Query.GetParam(paramName, defaultValue);
+            var policy = ContextProvider.Context.Request.OriginalUrl.Query.GetValueOrDefault(paramName, defaultValue).ToString();
             policy.Should().Be(expected);
         }
 
@@ -79,7 +79,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingParam", null, "context.Request.Headers.GetValueOrDefault(\"testingParam\")")]
         public void GetHeaderParamGeneratesCorrectPolicy(string paramName, string defaultValue, string expected)
         {
-            var policy = ContextProvider.Context.Request.Headers.GetParam(paramName, defaultValue);
+            var policy = ContextProvider.Context.Request.Headers.GetValueOrDefault(paramName, defaultValue).ToString();
             policy.Should().Be(expected);
         }
     }

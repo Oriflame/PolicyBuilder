@@ -8,30 +8,30 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     {
         public User(string path) : base(path)
         {
-            Identities = new UserIdentities($"{Get()}.{nameof(Identities)}");
-            Groups = new Groups($"{Get()}.{nameof(Groups)}");
+            Identities = new UserIdentities($"{GetPropertyPath()}.{nameof(Identities)}");
+            Groups = new Groups($"{GetPropertyPath()}.{nameof(Groups)}");
         }
 
-        public string Email => $"{Get()}.{nameof(Email)}";
+        public string Email => $"{GetPropertyPath()}.{nameof(Email)}";
 
-        public string FirstName => $"{Get()}.{nameof(FirstName)}";
+        public string FirstName => $"{GetPropertyPath()}.{nameof(FirstName)}";
 
         public IGroups Groups { get; }
 
-        public string Id => $"{Get()}.{nameof(Id)}";
+        public string Id => $"{GetPropertyPath()}.{nameof(Id)}";
 
         /// <summary>
         /// Type: <see cref="IEnumerable{IUserIdentity}"/>
         /// </summary>
         public IUserIdentities Identities { get; }
 
-        public string LastName => $"{Get()}.{nameof(LastName)}";
+        public string LastName => $"{GetPropertyPath()}.{nameof(LastName)}";
 
-        public string Note => $"{Get()}.{nameof(Note)}";
+        public string Note => $"{GetPropertyPath()}.{nameof(Note)}";
 
         /// <summary>
         /// Type <see cref="DateTime"/>
         /// </summary>
-        public string RegistrationDate => $"{Get()}.{nameof(RegistrationDate)}";
+        public string RegistrationDate => $"{GetPropertyPath()}.{nameof(RegistrationDate)}";
     }
 }

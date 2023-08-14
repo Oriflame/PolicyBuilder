@@ -71,10 +71,16 @@ namespace Oriflame.PolicyBuilder.ApiExample.Controllers
                 .Inbound(builder => builder
                     .Base()
                     .SetVariable(backendUrlVariableName, NamedValue.Get("Backend"))
+                    .Choose(c => c
+                        .When(new SingleStatementExpression($@"{ContextProvider.Context.Variables.Get(backendUrlVariableName)}.StartsWith(""https:"")"),
+                            a => a
+                                .Comment("Test")
+                                .Create())
+                        .Create())
                     .Create()
                 )
                 .Backend(builder => builder
-                    .SetBackendService(new SingleStatementExpression(ContextProvider.Context.Variables.GetVariable(backendUrlVariableName).GetAsString()))
+                    .SetBackendService("")
                     .Base()
                     .Create())
                 .Outbound()

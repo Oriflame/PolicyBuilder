@@ -6,11 +6,11 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     {
         public Request(string path) : base(path)
         {
-            Body = new Body($"{Get()}.{nameof(Body)}");
-            Headers = new Headers($"{Get()}.{nameof(Headers)}");
-            MatchedParameters = new MatchedParameters($"{Get()}.{nameof(MatchedParameters)}");
-            OriginalUrl = new Url($"{Get()}.{nameof(OriginalUrl)}");
-            Url = new Url($"{Get()}.{nameof(Url)}");
+            Body = new Body($"{GetPropertyPath()}.{nameof(Body)}");
+            Headers = new Headers($"{GetPropertyPath()}.{nameof(Headers)}");
+            MatchedParameters = new MatchedParameters($"{GetPropertyPath()}.{nameof(MatchedParameters)}");
+            OriginalUrl = new Url($"{GetPropertyPath()}.{nameof(OriginalUrl)}");
+            Url = new Url($"{GetPropertyPath()}.{nameof(Url)}");
         }
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         /// <summary>
         /// Certificate of the request<br />
         /// </summary>
-        public string Certificate => $"{Get()}.{nameof(Certificate)}";
+        public string Certificate => $"{GetPropertyPath()}.{nameof(Certificate)}";
 
         /// <summary>
         /// Headers of the request<br />
@@ -31,7 +31,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         /// <summary>
         /// IpAddress of the request<br />
         /// </summary>
-        public string IpAddress => $"{Get()}.{nameof(IpAddress)}";
+        public string IpAddress => $"{GetPropertyPath()}.{nameof(IpAddress)}";
 
         /// <summary>
         /// Matched route parameters of the request<br />
@@ -41,7 +41,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         /// <summary>
         /// Method of the request<br />
         /// </summary>
-        public string Method => $"{Get()}.{Method}";
+        public string Method => $"{GetPropertyPath()}.{Method}";
 
         /// <summary>
         /// Original Url of the request<br />

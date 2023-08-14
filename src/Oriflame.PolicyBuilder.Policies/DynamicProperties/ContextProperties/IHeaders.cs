@@ -1,7 +1,7 @@
 ﻿namespace Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties
 {
-    public interface IHeaders : IContextProperty
+    public interface IHeaders : IContextProperty, IBuilderReadOnlyDictionary<IHeader>, IGetWithDefault<IHeader>
     {
-        string GetParam(string paramName, string defaultValue = null);
+        IHeader Get(string paramName);
     }
 }

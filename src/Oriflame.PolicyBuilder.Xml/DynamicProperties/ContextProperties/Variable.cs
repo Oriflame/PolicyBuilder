@@ -9,17 +9,17 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     {
         public Variable(string path) : base(path)
         {
-            Body = new Body($"((IResponse){Get()}).{nameof(Body)}");
+            Body = new Body($"{this.AsResponse()}.{nameof(Body)}");
         }
 
         public IBody Body { get; }
 
-        public string GetAsString() => $"((string){Get()})";
+        public string AsString() => $"((string){GetPropertyPath()})";
 
-        public IResponse GetAsResponse() => new Response($"((IResponse){Get()})");
+        public IResponse AsResponse() => new Response($"((IResponse){GetPropertyPath()})");
 
-        public string GetAsBoolean() => $"((bool){Get()})";
+        public string AsBoolean() => $"((bool){GetPropertyPath()})";
 
-        public string GetAsJObject() => $"((JObject){Get()})";
+        public string AsJObject() => $"((JObject){GetPropertyPath()})";
     }
 }

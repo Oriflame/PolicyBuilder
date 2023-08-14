@@ -8,21 +8,21 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     {
         public Api(string path) : base(path)
         {
-            SubscriptionKeyParameterNames = new SubscriptionKeyParameterNames($"{Get()}.{nameof(SubscriptionKeyParameterNames)}");
+            SubscriptionKeyParameterNames = new SubscriptionKeyParameterNames($"{GetPropertyPath()}.{nameof(SubscriptionKeyParameterNames)}");
         }
 
-        public string Id => $"{Get()}.{nameof(Id)}";
+        public string Id => $"{GetPropertyPath()}.{nameof(Id)}";
 
-        public string Name => $"{Get()}.{nameof(Name)}";
+        public string Name => $"{GetPropertyPath()}.{nameof(Name)}";
 
-        public string Path => $"{Get()}.{nameof(Path)}";
+        public string Path => $"{GetPropertyPath()}.{nameof(Path)}";
 
         /// <summary>
         /// Type: <see cref="IEnumerable{string}"/>
         /// </summary>
-        public string Protocols => $"{Get()}.{nameof(Protocols)}";
+        public string Protocols => $"{GetPropertyPath()}.{nameof(Protocols)}";
 
-        public IUrl ServiceUrl => new Url($"{Get()}.{nameof(ServiceUrl)}");
+        public IUrl ServiceUrl => new Url($"{GetPropertyPath()}.{nameof(ServiceUrl)}");
 
         public ISubscriptionKeyParameterNames SubscriptionKeyParameterNames { get; }
     }

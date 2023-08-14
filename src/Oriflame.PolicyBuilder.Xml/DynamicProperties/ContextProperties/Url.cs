@@ -6,19 +6,19 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     {
         public Url(string path) : base(path)
         {
-            Query = new Query($"{Get()}.{nameof(Query)}");
+            Query = new Query($"{GetPropertyPath()}.{nameof(Query)}");
         }
 
-        public string Host => $"{Get()}.{nameof(Host)}";
+        public string Host => $"{GetPropertyPath()}.{nameof(Host)}";
 
-        public string Path => $"{Get()}.{nameof(Path)}";
+        public string Path => $"{GetPropertyPath()}.{nameof(Path)}";
 
-        public string Port => $"{Get()}.{nameof(Port)}";
+        public string Port => $"{GetPropertyPath()}.{nameof(Port)}";
 
         public IQuery Query { get; }
 
-        public string QueryString => $"{Get()}.{nameof(QueryString)}";
+        public string QueryString => $"{GetPropertyPath()}.{nameof(QueryString)}";
 
-        public string Scheme => $"{Get()}.{nameof(Scheme)}";
+        public string Scheme => $"{GetPropertyPath()}.{nameof(Scheme)}";
     }
 }

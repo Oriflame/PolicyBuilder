@@ -1,4 +1,5 @@
 ﻿using System;
+using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
 using Oriflame.PolicyBuilder.Xml.Providers;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
@@ -22,7 +23,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         public static string IsRequestBodyNull()
         {
-            return $"string.IsNullOrEmpty({ContextProvider.Context.Request.Body.GetAsString(true)})";
+            return $"string.IsNullOrEmpty{ContextProvider.Context.Request.Body.AsString(true)}";
         }
 
         public static string IsResponseCodeOk(string variableName = null, bool strict = true)
@@ -57,7 +58,14 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         private static string GetIsNullOrEmptyCommand(string variableName, bool strict)
         {
-            return $"(string.IsNullOrEmpty{ContextProvider.Context.Variables.GetVariable(variableName, strict).GetAsString()})";
+            return $"(string.IsNullOrEmpty{ GetVariableValue(variableName, strict).AsString() })"; 
+        }
+
+        private static IVariable GetVariableValue(string variableName, bool strict)
+        {
+            return strict
+                ? ContextProvider.Context.Variables.Get(variableName)
+                : ContextProvider.Context.Variables.GetValueOrDefault(variableName);
         }
 
         private static string GetNullCommand(bool negative, string variableName = null, bool strict = true, VariableType type = VariableType.Undefined)
@@ -74,15 +82,15 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             if (variableName != null)
             {
-                return ContextProvider.Context.Variables.GetVariable(variableName, strict).GetAsResponse().Get();
+                return GetVariableValue(variableName, strict).AsResponse().GetPropertyPath();
             }
 
             switch (type)
             {
                 case VariableType.Request:
-                    return ContextProvider.Context.Request.Body.Get();
+                    return ContextProvider.Context.Request.Body.GetPropertyPath();
                 case VariableType.Response:
-                    return ContextProvider.Context.Response.Get();
+                    return ContextProvider.Context.Response.GetPropertyPath();
                 case VariableType.Undefined:
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -93,15 +101,15 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
         {
             if (variableName != null)
             {
-                return ContextProvider.Context.Variables.GetVariable(variableName, strict).Get();
+                return GetVariableValue(variableName, strict).GetPropertyPath();
             }
 
             switch (type)
             {
                 case VariableType.Request:
-                    return ContextProvider.Context.Request.Body.Get();
+                    return ContextProvider.Context.Request.Body.GetPropertyPath();
                 case VariableType.Response:
-                    return ContextProvider.Context.Response.Get();
+                    return ContextProvider.Context.Response.GetPropertyPath();
                 case VariableType.Undefined:
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);

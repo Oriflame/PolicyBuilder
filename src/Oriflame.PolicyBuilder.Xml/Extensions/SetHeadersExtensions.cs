@@ -23,7 +23,7 @@ namespace Oriflame.PolicyBuilder.Xml.Extensions
 
         public static T SetAuthorizationHeader<T>(this ISetHeaders<T> policyBuilder) where T : IPolicySectionBuilder
         {
-            return policyBuilder.SetHeader(HeaderNames.Authorization, ContextProvider.Context.Request.Headers.GetParam(HeaderNames.Authorization, ""), ExistsAction.Override);
+            return policyBuilder.SetHeader(HeaderNames.Authorization, ContextProvider.Context.Request.Headers.GetValueOrDefault(HeaderNames.Authorization, "").ToString(), ExistsAction.Override);
         }
 
         public static T SetAcceptHeader<T>(this ISetHeaders<T> policyBuilder, string mimeType = JsonMimeType) where T : IPolicySectionBuilder

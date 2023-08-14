@@ -9,19 +9,19 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
         }
 
-        public string GetAsJObject(bool preserveContent = false)
+        public string AsJObject(bool preserveContent = false)
         {
-            return $"{Get()}.As<JObject>({GetPreserveContentParameter(preserveContent)})";
+            return $"{GetPropertyPath()}.As<JObject>({GetPreserveContentParameter(preserveContent)})";
         }
 
-        public string GetAsString(bool preserveContent = false)
+        public string AsString(bool preserveContent = false)
         {
-            return $"{Get()}.As<string>({GetPreserveContentParameter(preserveContent)})";
+            return $"{GetPropertyPath()}.As<string>({GetPreserveContentParameter(preserveContent)})";
         }
 
-        public string GetAsJArray(bool preserveContent = false)
+        public string AsJArray(bool preserveContent = false)
         {
-            return $"{Get()}.As<JArray>({GetPreserveContentParameter(preserveContent)})";
+            return $"{GetPropertyPath()}.As<JArray>({GetPreserveContentParameter(preserveContent)})";
         }
 
         private string GetPreserveContentParameter(bool preserveContent)

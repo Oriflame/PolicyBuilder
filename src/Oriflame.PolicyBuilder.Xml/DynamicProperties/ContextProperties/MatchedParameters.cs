@@ -2,22 +2,15 @@
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
-    public class MatchedParameters : ContextProperty, IMatchedParameters
+    public class MatchedParameters : ReadonlyDictionaryContextProperty<IMatchedParameter>, IMatchedParameters
     {
         public MatchedParameters(string path) : base(path)
         {
         }
 
-        public string GetParam(string paramName)
+        protected override IMatchedParameter CreateInstance(string propertyPath)
         {
-            return @$"{Get()}[""{paramName}""]";
+            return new MatchedParameter(propertyPath);
         }
-
-        public string GetParamAsString(string paramName)
-        {
-            return $"(string){GetParam(paramName)}";
-        }
-
-        // TODO props
     }
 }

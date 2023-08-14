@@ -2,8 +2,8 @@
 {
     public interface IBody : IContextProperty
     {
-        string GetAsJArray(bool preserveContent = false);
-        string GetAsJObject(bool preserveContent = false);
-        string GetAsString(bool preserveContent = false);
+        string AsJArray(bool preserveContent = false);
+        string AsJObject(bool preserveContent = false);
+        string AsString(bool preserveContent = false);
     }
 }
