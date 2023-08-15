@@ -2,6 +2,5 @@
 {
     public interface IHeader : IContextProperty
     {
-        string AsString();
     }
 }

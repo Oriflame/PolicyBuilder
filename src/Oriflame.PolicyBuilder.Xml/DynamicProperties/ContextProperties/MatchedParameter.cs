@@ -7,12 +7,5 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         public MatchedParameter(string path) : base(path)
         {
         }
-
-        public string AsString()
-        {
-            return $"(string){GetPropertyPath()}";
-        }
-
-        // TODO props
     }
 }

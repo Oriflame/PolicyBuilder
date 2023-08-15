@@ -17,7 +17,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
             return new Variable(propertyPath);
         }
 
-        public string GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false)
+        public IVariable GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false)
         {
             var policy = GetValueOrDefaultVariableCommand(variableName, defaultValue);
             if (explicitCast)
@@ -25,7 +25,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
                 policy = $"(({typeof(T).FullName}){policy})";
             }
 
-            return policy;
+            return new Variable(policy);
         }
 
         private string GetValueOrDefaultVariableCommand<T>(string variableName, T defaultValue)

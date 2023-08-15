@@ -12,6 +12,6 @@
         /// <param name="defaultValue"></param>
         /// <param name="explicitCast"></param>
         /// <returns></returns>
-        string GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false);
+        IVariable GetValueOrDefault<T>(string variableName, T defaultValue, bool explicitCast = false);
     }
 }

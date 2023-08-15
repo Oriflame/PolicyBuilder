@@ -23,7 +23,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         public static string IsRequestBodyNull()
         {
-            return $"string.IsNullOrEmpty{ContextProvider.Context.Request.Body.AsString(true)}";
+            return $"string.IsNullOrEmpty({ContextProvider.Context.Request.Body.AsString(true)})";
         }
 
         public static string IsResponseCodeOk(string variableName = null, bool strict = true)
@@ -58,7 +58,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
 
         private static string GetIsNullOrEmptyCommand(string variableName, bool strict)
         {
-            return $"(string.IsNullOrEmpty{ GetVariableValue(variableName, strict).AsString() })"; 
+            return $"(string.IsNullOrEmpty{GetVariableValue(variableName, strict).AsString()})";
         }
 
         private static IVariable GetVariableValue(string variableName, bool strict)
