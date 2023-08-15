@@ -2,6 +2,9 @@
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
+    /// <summary>
+    /// Original type is derived from <see cref="System.Collections.Generic.IReadOnlyDictionary{string, string[]}"/>
+    /// </summary>
     public class Headers : ReadonlyDictionaryWithDefaultContextProperty<IHeader>, IHeaders
     {
         public Headers(string path) : base(path)
@@ -12,7 +15,5 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
             return new Header(propertyPath);
         }
-
-        // TODO props
     }
 }

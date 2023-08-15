@@ -2,12 +2,11 @@
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {
+    /// <summary>
+    /// Original type is derived from <see cref="System.Collections.Generic.IReadOnlyDictionary{string, string[]}"/>
+    /// </summary>
     public class Query : ReadonlyDictionaryWithDefaultContextProperty<IQueryParam>, IQuery
     {
-        /// <summary>
-        /// Type: <see cref="IReadOnlyDictionary{string, string[]}"/>
-        /// </summary>
-        /// <param name="path"></param>
         public Query(string path) : base(path)
         {
         }
