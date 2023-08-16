@@ -1,4 +1,4 @@
-﻿namespace Oriflame.PolicyBuilder.Policies
+﻿namespace Oriflame.PolicyBuilder.Policies.Expressions
 {
     public abstract class Expression
     {

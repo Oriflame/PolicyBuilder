@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
+﻿using Oriflame.PolicyBuilder.Policies.DynamicProperties.ContextProperties;
 
 namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
 {

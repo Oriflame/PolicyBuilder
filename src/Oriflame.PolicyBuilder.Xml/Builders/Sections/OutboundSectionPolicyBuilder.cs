@@ -2,6 +2,7 @@
 using Oriflame.PolicyBuilder.Policies.Builders.Fluent.Sections;
 using Oriflame.PolicyBuilder.Policies.Definitions;
 using Oriflame.PolicyBuilder.Policies.DynamicProperties;
+using Oriflame.PolicyBuilder.Policies.Expressions;
 using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 using Oriflame.PolicyBuilder.Xml.Definitions.Inner;
 using Oriflame.PolicyBuilder.Xml.Definitions.Sections;
@@ -33,16 +34,51 @@ namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
         }
 
         /// <inheritdoc />
-        public virtual IOutboundSectionPolicyBuilder Retry(string condition, int count, TimeSpan interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action,
-            bool? firstFastRetry = null)
+        public virtual IOutboundSectionPolicyBuilder SetStatus(string statusCode, string reason)
+        {
+            return AddPolicyDefinition(new SetStatus(statusCode, reason));
+        }
+
+        /// <inheritdoc />
+        public virtual IOutboundSectionPolicyBuilder Retry(Expression condition, int count, TimeSpan interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
         {
             var actionBuilder = new OutboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
             return AddPolicyDefinition(action.Invoke(actionBuilder));
         }
 
-        public virtual IOutboundSectionPolicyBuilder SetStatus(string statusCode, string reason)
+        /// <inheritdoc />
+        public virtual IOutboundSectionPolicyBuilder Retry(Expression condition, int count, TimeSpan interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action, Expression firstFastRetry)
         {
-            return AddPolicyDefinition(new SetStatus(statusCode, reason));
+            var actionBuilder = new OutboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
+        /// <inheritdoc />
+        public virtual IOutboundSectionPolicyBuilder Retry(Expression condition, Expression count, TimeSpan interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
+        {
+            var actionBuilder = new OutboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
+        /// <inheritdoc />
+        public virtual IOutboundSectionPolicyBuilder Retry(Expression condition, int count, Expression interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
+        {
+            var actionBuilder = new OutboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
+        /// <inheritdoc />
+        public virtual IOutboundSectionPolicyBuilder Retry(Expression condition, Expression count, Expression interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action, Expression firstFastRetry)
+        {
+            var actionBuilder = new OutboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
+        }
+
+        /// <inheritdoc />
+        public virtual IOutboundSectionPolicyBuilder Retry(Expression condition, Expression count, Expression interval, Func<IOutboundSectionPolicyBuilder, ISectionPolicy> action, bool? firstFastRetry = null)
+        {
+            var actionBuilder = new OutboundSectionPolicyBuilder(new RetryPolicy(condition, count, interval, firstFastRetry));
+            return AddPolicyDefinition(action.Invoke(actionBuilder));
         }
     }
 }
