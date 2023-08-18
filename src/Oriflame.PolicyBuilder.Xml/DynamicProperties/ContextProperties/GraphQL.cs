@@ -6,8 +6,8 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     {
         public GraphQL(string path) : base(path)
         {
-            GraphQLArguments = new GraphQLDataObject($"{path}.{nameof(GraphQLArguments)}");
-            Parent = new GraphQLDataObject($"{path}.{nameof(Parent)}");
+            GraphQLArguments = new GraphQLDataObject(GetPropertyPath(nameof(GraphQLArguments)));
+            Parent = new GraphQLDataObject(GetPropertyPath(nameof(Parent)));
         }
 
         public IGraphQLDataObject GraphQLArguments { get; }

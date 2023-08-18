@@ -6,19 +6,19 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     {
         public Deployment(string path) : base(path)
         {
-            Gateway = new Gateway($"{GetPropertyPath()}.{nameof(Gateway)}");
-            Certificates = new Certificates($"{GetPropertyPath()}.{nameof(Certificates)}");
+            Gateway = new Gateway(GetPropertyPath(nameof(Gateway)));
+            Certificates = new Certificates(GetPropertyPath(nameof(Certificates)));
         }
 
         public IGateway Gateway { get; }
 
-        public string GatewayId => $"{GetPropertyPath()}.{nameof(Gateway)}";
+        public string GatewayId => GetPropertyPath(GatewayId);
 
-        public string Region => $"{GetPropertyPath()}.{nameof(Region)}";
+        public string Region => GetPropertyPath(Region);
 
-        public string ServiceId => $"{GetPropertyPath()}.{nameof(ServiceId)}";
+        public string ServiceId => GetPropertyPath(ServiceId);
 
-        public string ServiceName => $"{GetPropertyPath()}.{nameof(ServiceName)}";
+        public string ServiceName => GetPropertyPath(ServiceName);
 
         //TODO IReadOnlyDictionary<string, X509Certificate2>
         public ICertificates Certificates { get; }

@@ -8,18 +8,18 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
         }
 
-        public string Source => $"{GetPropertyPath()}.{nameof(Source)}";
+        public string Source => GetPropertyPath(nameof(Source));
 
-        public string Reason => $"{GetPropertyPath()}.{nameof(Reason)}";
+        public string Reason => GetPropertyPath(nameof(Reason));
 
-        public string Message => $"{GetPropertyPath()}.{nameof(Message)}";
+        public string Message => GetPropertyPath(nameof(Message));
 
-        public string Scope => $"{GetPropertyPath()}.{nameof(Scope)}";
+        public string Scope => GetPropertyPath(nameof(Scope));
 
-        public string Section => $"{GetPropertyPath()}.{nameof(Section)}";
+        public string Section => GetPropertyPath(nameof(Section));
 
-        public string Path => $"{GetPropertyPath()}.{nameof(Path)}";
+        public string Path => GetPropertyPath(nameof(Path));
 
-        public string PolicyId => $"{GetPropertyPath()}.{nameof(PolicyId)}";
+        public string PolicyId => GetPropertyPath(nameof(PolicyId));
     }
 }

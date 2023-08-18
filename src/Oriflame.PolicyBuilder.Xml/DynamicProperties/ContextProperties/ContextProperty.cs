@@ -25,5 +25,10 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
             return _path;
         }
+
+        protected string GetPropertyPath(string propertyName)
+        {
+            return $"{_path}.{propertyName}";
+        }
     }
 }

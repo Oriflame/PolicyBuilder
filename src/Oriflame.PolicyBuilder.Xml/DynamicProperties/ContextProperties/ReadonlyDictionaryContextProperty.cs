@@ -8,22 +8,23 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
         }
 
-        public string TryGetValue(string key, string outValue) => @$"{GetPropertyPath()}.TryGetValue({key}, out {outValue})";
+        public string TryGetValue(string key, string outValue) => GetPropertyPath(@$"TryGetValue({key}, out {outValue})");
 
         public T Get(string paramName)
         {
             return CreateInstance(@$"{GetPropertyPath()}[""{paramName}""]");
         }
 
-        public string Keys => @$"{GetPropertyPath()}.Keys";
+        public string Keys => GetPropertyPath(nameof(Keys));
 
-        public string Values => @$"{GetPropertyPath()}.Values";
+        public string Values => GetPropertyPath(nameof(Values));
 
-        public string Count => @$"{GetPropertyPath()}.Count";
+        public string Count => GetPropertyPath(nameof(Count));
 
         T IBuilderReadOnlyDictionary<T>.this[string key] => Get(key);
 
-        public string ContainsKey(string key) => @$"{GetPropertyPath()}.ContainsKey(""{key}"")";
+        public string ContainsKey(string key) => GetPropertyPath(@$"ContainsKey(""{key}"")");
+        
 
         protected abstract T CreateInstance(string propertyPath);
     }

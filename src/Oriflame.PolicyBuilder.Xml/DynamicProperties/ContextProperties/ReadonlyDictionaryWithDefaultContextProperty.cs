@@ -11,8 +11,8 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         public T GetValueOrDefault(string paramName, string defaultValue = null)
         {
             var propertyPath = defaultValue == null
-                ? $"{GetPropertyPath()}.GetValueOrDefault(\"{paramName}\")"
-                : $"{GetPropertyPath()}.GetValueOrDefault(\"{paramName}\", \"{defaultValue}\")";
+                ? GetPropertyPath($"GetValueOrDefault(\"{paramName}\")")
+                : GetPropertyPath($"GetValueOrDefault(\"{paramName}\", \"{defaultValue}\")");
             return CreateInstance(propertyPath);
         }
     }

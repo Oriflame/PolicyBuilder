@@ -8,12 +8,12 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
         }
 
-        public string Id => $"{GetPropertyPath()}.{nameof(Id)}";
+        public string Id => GetPropertyPath(nameof(Id));
 
-        public string Method => $"{GetPropertyPath()}.{nameof(Method)}";
+        public string Method => GetPropertyPath(nameof(Method));
 
-        public string Name => $"{GetPropertyPath()}.{nameof(Name)}";
+        public string Name => GetPropertyPath(nameof(Name));
 
-        public string UrlTemplate => $"{GetPropertyPath()}.{nameof(UrlTemplate)}";
+        public string UrlTemplate => GetPropertyPath(nameof(UrlTemplate));
     }
 }

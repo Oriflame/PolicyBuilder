@@ -12,26 +12,26 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         /// <summary>
         /// Type: <see cref="DateTime"/>
         /// </summary>
-        public string CreatedDate => $"{GetPropertyPath()}.{nameof(CreatedDate)}";
+        public string CreatedDate => GetPropertyPath(nameof(CreatedDate));
 
         /// <summary>
         /// Type: <see cref="DateTime?"/>
         /// </summary>
-        public string EndDate => $"{GetPropertyPath()}.{nameof(EndDate)}";
+        public string EndDate => GetPropertyPath(nameof(EndDate));
 
-        public string Id => $"{GetPropertyPath()}.{nameof(Id)}";
+        public string Id => GetPropertyPath(nameof(Id));
 
-        public string Key => $"{GetPropertyPath()}.{nameof(Key)}";
+        public string Key => GetPropertyPath(nameof(Key));
 
-        public string Name => $"{GetPropertyPath()}.{nameof(Name)}";
+        public string Name => GetPropertyPath(nameof(Name));
 
-        public string PrimaryKey => $"{GetPropertyPath()}.{nameof(PrimaryKey)}";
+        public string PrimaryKey => GetPropertyPath(nameof(PrimaryKey));
 
-        public string SecondaryKey => $"{GetPropertyPath()}.{nameof(SecondaryKey)}";
+        public string SecondaryKey => GetPropertyPath(nameof(SecondaryKey));
 
         /// <summary>
         /// Type: <see cref="DateTime?"/>
         /// </summary>
-        public string StartDate => $"{GetPropertyPath()}.{nameof(StartDate)}";
+        public string StartDate => GetPropertyPath(nameof(StartDate));
     }
 }
