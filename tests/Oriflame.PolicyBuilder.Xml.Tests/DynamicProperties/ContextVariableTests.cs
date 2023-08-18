@@ -33,7 +33,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", "((IResponse)context.Variables[\"testingVariable\"]).Body")]
         public void GetBodyGeneratesCorrectPolicy(string variableName, string expected)
         {
-            var policy = ContextProvider.Context.Variables.Get(variableName).Body.GetPropertyPath();
+            var policy = ContextProvider.Context.Variables.Get(variableName).AsResponse().Body.GetPropertyPath();
             policy.Should().Be(expected);
         }
 
@@ -104,7 +104,7 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
         [InlineData("testingVariable", true, "((IResponse)context.Variables[\"testingVariable\"]).Body.As<JObject>(preserveContent: true)")]
         public void GetBodyAsJObjectGeneratesCorrectPolicy(string variableName, bool preserveContent, string expected)
         {
-            var policy = ContextProvider.Context.Variables.Get(variableName).Body.AsJObject(preserveContent);
+            var policy = ContextProvider.Context.Variables.Get(variableName).AsResponse().Body.AsJObject(preserveContent);
             policy.Should().Be(expected);
         }
 
