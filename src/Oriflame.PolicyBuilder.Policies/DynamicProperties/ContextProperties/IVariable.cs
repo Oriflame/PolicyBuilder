@@ -2,6 +2,5 @@
 {
     public interface IVariable : IContextProperty, IObjectValueProperty
     {
-        IBody Body { get; }
     }
 }

@@ -9,10 +9,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
     {
         public Variable(string path) : base(path)
         {
-            Body = new Body($"{this.AsResponse()}.{nameof(Body)}");
         }
-
-        public IBody Body { get; }
 
         public string AsString() => $"((string){GetPropertyPath()})";
 
