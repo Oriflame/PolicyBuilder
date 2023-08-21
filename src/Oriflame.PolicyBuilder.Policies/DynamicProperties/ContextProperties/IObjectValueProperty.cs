@@ -2,6 +2,8 @@
 {
     public interface IObjectValueProperty
     {
+        string AsInt();
+
         string AsString();
 
         string AsBoolean();

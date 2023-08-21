@@ -14,6 +14,6 @@
             return expression.ToString();
         }
 
-        public abstract string ToString();
+        public new abstract string ToString();
     }
 }

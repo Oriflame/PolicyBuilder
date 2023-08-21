@@ -11,12 +11,15 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties.ContextProperties
         {
         }
 
-        public string AsString() => $"((string){GetPropertyPath()})";
+        public string AsInt() => $"((int){GetPropertyPath()})";
 
-        public IResponse AsResponse() => new Response($"((IResponse){GetPropertyPath()})");
+        public string AsString() => $"((string){GetPropertyPath()})";
 
         public string AsBoolean() => $"((bool){GetPropertyPath()})";
 
         public string AsJObject() => $"((JObject){GetPropertyPath()})";
+
+        public IResponse AsResponse() => new Response($"((IResponse){GetPropertyPath()})");
+
     }
 }
