@@ -2,7 +2,6 @@
 using System.Xml.Linq;
 using Oriflame.PolicyBuilder.Policies.Definitions;
 using Oriflame.PolicyBuilder.Xml.Collections;
-using Oriflame.PolicyBuilder.Xml.Enums.Priorities;
 
 namespace Oriflame.PolicyBuilder.Xml.Definitions.Sections
 {

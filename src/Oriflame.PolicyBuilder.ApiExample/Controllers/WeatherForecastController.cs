@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Oriflame.PolicyBuilder.Policies.Builders;
 using Oriflame.PolicyBuilder.Policies.Builders.Extensions;
+using Oriflame.PolicyBuilder.Policies.Expressions;
 using Oriflame.PolicyBuilder.Xml.DynamicProperties;
+using Oriflame.PolicyBuilder.Xml.Extensions;
+using Oriflame.PolicyBuilder.Xml.Providers;
 
 namespace Oriflame.PolicyBuilder.ApiExample.Controllers
 {
@@ -68,10 +71,16 @@ namespace Oriflame.PolicyBuilder.ApiExample.Controllers
                 .Inbound(builder => builder
                     .Base()
                     .SetVariable(backendUrlVariableName, NamedValue.Get("Backend"))
+                    .Choose(c => c
+                        .When(new SingleStatementExpression($@"{ContextProvider.Context.Variables.Get(backendUrlVariableName)}.StartsWith(""https:"")"),
+                            a => a
+                                .Comment("Test")
+                                .Create())
+                        .Create())
                     .Create()
                 )
                 .Backend(builder => builder
-                    .SetBackendService(ContextVariable.GetAsString(backendUrlVariableName))
+                    .SetBackendService("")
                     .Base()
                     .Create())
                 .Outbound()

@@ -6,5 +6,10 @@
         {
             return value ? "true" : "false";
         }
+
+        public static string Map(bool? value)
+        {
+            return value.HasValue ? Map(value.Value) : string.Empty;
+        }
     }
 }

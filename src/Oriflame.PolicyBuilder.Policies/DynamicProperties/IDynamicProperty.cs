@@ -2,6 +2,6 @@
 {
     public interface IDynamicProperty
     {
-        string GetAsString();
+        string AsString();
     }
 }

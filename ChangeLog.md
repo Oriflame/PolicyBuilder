@@ -1,5 +1,11 @@
 # Change log
 
+## 5.0.0
+
+- Context refactoring to follow the API Management naming convention
+- Removed `StringExtensions` class as a antipattern
+- Introduced `Expression` class to separate the expressions from the common string values
+
 ## 4.2.2
 
 - `ReturnResponse` inner nodes priority added

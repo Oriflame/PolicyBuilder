@@ -17,6 +17,7 @@ namespace Oriflame.PolicyBuilder.Generator.Services
         {
             var content = xmlContent;
             
+            // TODO consider whitespaces between bracket and expression
             DecodeCodeBlocks(">@{", "}<", ref content); // Method in tags
             DecodeCodeBlocks("=\"@{", "}\"", ref content); // Method in attributes
             

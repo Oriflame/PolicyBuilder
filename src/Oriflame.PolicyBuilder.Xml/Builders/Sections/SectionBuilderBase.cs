@@ -8,7 +8,6 @@ using Oriflame.PolicyBuilder.Policies.Definitions;
 using Oriflame.PolicyBuilder.Xml.Builders.Attributes;
 using Oriflame.PolicyBuilder.Xml.Definitions.Common;
 using Oriflame.PolicyBuilder.Xml.Definitions.Inner;
-using Oriflame.PolicyBuilder.Xml.Enums;
 
 namespace Oriflame.PolicyBuilder.Xml.Builders.Sections
 {

@@ -11,7 +11,7 @@ namespace Oriflame.PolicyBuilder.Xml.DynamicProperties
             _content = content;
         }
 
-        public string GetAsString()
+        public string AsString()
         {
             return _content;
         }
