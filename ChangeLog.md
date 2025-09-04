@@ -1,5 +1,9 @@
 # Change log
 
+## 5.0.0
+
+- Upgrade to .NET 8.0
+
 ## 4.2.2
 
 - `ReturnResponse` inner nodes priority added
