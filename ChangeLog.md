@@ -2,6 +2,10 @@
 
 ## 5.0.0
 
+- Upgrade to .NET 8.0
+
+## 5.0.0
+
 - Context refactoring to follow the API Management naming convention
 - Removed `StringExtensions` class as a antipattern
 - Introduced `Expression` class to separate the expressions from the common string values

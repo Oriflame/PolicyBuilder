@@ -1,21 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-	</PropertyGroup>
-
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
   <ItemGroup>
-	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\Oriflame.PolicyBuilder.Policies\Oriflame.PolicyBuilder.Policies.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Update=".\Builders\Sections\InboundSectionPolicyBuilder.*.cs">
-			<DependentUpon>.\Builders\Sections\InboundSectionPolicyBuilder.cs</DependentUpon>
-		</Compile>
-	</ItemGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\Oriflame.PolicyBuilder.Policies\Oriflame.PolicyBuilder.Policies.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update=".\Builders\Sections\InboundSectionPolicyBuilder.*.cs">
+      <DependentUpon>.\Builders\Sections\InboundSectionPolicyBuilder.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
