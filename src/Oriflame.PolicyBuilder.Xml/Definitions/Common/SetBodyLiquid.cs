@@ -15,7 +15,7 @@ namespace Oriflame.PolicyBuilder.Xml.Definitions.Common
 
         public override XNode GetXml()
         {
-            return CreateElement(_template.GetAsString());
+            return CreateElement(_template.AsString());
         }
     }
 }

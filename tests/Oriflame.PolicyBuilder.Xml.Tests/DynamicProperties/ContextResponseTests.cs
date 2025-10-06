@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using Oriflame.PolicyBuilder.Xml.DynamicProperties;
+using Oriflame.PolicyBuilder.Xml.Providers;
 using Xunit;
 
 namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
@@ -7,70 +7,62 @@ namespace Oriflame.PolicyBuilder.Xml.Tests.DynamicProperties
     public class ContextResponseTests
     {
         [Theory]
-        [InlineData(false, "@(((IResponse)context.Response))")]
-        [InlineData(true, "((IResponse)context.Response)")]
-        public void GetGeneratesCorrectPolicy(bool inline, string expected)
+        [InlineData("context.Response")]
+        public void GetGeneratesCorrectPolicy(string expected)
         {
-            var policy = ContextResponse.Get(inline);
+            var policy = ContextProvider.Context.Response.GetPropertyPath();
             policy.Should().Be(expected);
         }
 
         [Theory]
-        [InlineData(false, false, "@(context.Response.Body.As<JObject>())")]
-        [InlineData(true, true, "context.Response.Body.As<JObject>(preserveContent: true)")]
-        public void GetBodyAsJObjectGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
+        [InlineData(false, "context.Response.Body.As<JObject>()")]
+        [InlineData(true, "context.Response.Body.As<JObject>(preserveContent: true)")]
+        public void GetBodyAsJObjectGeneratesCorrectPolicy(bool preserveContent, string expected)
         {
-            var policy = ContextResponse.GetBodyAsJObject(inline, preserveContent);
+            var policy = ContextProvider.Context.Response.Body.AsJObject(preserveContent);
             policy.Should().Be(expected);
         }
 
         [Theory]
-        [InlineData(false, false, "@(context.Response.Body.As<string>())")]
-        [InlineData(true, false, "context.Response.Body.As<string>()")]
-        [InlineData(false, true, "@(context.Response.Body.As<string>(preserveContent: true))")]
-        [InlineData(true, true, "context.Response.Body.As<string>(preserveContent: true)")]
-        public void GetBodyAsStringGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
+        [InlineData(false, "context.Response.Body.As<string>()")]
+        [InlineData(true, "context.Response.Body.As<string>(preserveContent: true)")]
+        public void GetBodyAsStringGeneratesCorrectPolicy(bool preserveContent, string expected)
         {
-            var policy = ContextResponse.GetBodyAsString(inline, preserveContent);
-            policy.Should().Be(expected);
-        }
-        
-        [Theory]
-        [InlineData(false, false, "@(context.Response.Body.As<JArray>())")]
-        [InlineData(true, false, "context.Response.Body.As<JArray>()")]
-        [InlineData(false, true, "@(context.Response.Body.As<JArray>(preserveContent: true))")]
-        [InlineData(true, true, "context.Response.Body.As<JArray>(preserveContent: true)")]
-        public void GetBodyAsJArrayGeneratesCorrectPolicy(bool inline, bool preserveContent, string expected)
-        {
-            var policy = ContextResponse.GetBodyAsJArray(inline, preserveContent);
+            var policy = ContextProvider.Context.Response.Body.AsString(preserveContent);
             policy.Should().Be(expected);
         }
 
         [Theory]
-        [InlineData(false, "@(((IResponse)context.Response).StatusCode)")]
-        [InlineData(true, "((IResponse)context.Response).StatusCode")]
-        public void GetStatusCodeGeneratesCorrectPolicy(bool inline, string expected)
+        [InlineData(false, "context.Response.Body.As<JArray>()")]
+        [InlineData(true, "context.Response.Body.As<JArray>(preserveContent: true)")]
+        public void GetBodyAsJArrayGeneratesCorrectPolicy(bool preserveContent, string expected)
         {
-            var policy = ContextResponse.GetStatusCode(inline);
+            var policy = ContextProvider.Context.Response.Body.AsJArray(preserveContent);
             policy.Should().Be(expected);
         }
 
         [Theory]
-        [InlineData(false, "@(((IResponse)context.Response).StatusReason)")]
-        [InlineData(true, "((IResponse)context.Response).StatusReason")]
-        public void GetStatusReasonGeneratesCorrectPolicy(bool inline, string expected)
+        [InlineData("context.Response.StatusCode")]
+        public void GetStatusCodeGeneratesCorrectPolicy(string expected)
         {
-            var policy = ContextResponse.GetStatusReason(inline);
+            var policy = ContextProvider.Context.Response.StatusCode;
             policy.Should().Be(expected);
         }
 
         [Theory]
-        [InlineData("testingParam", "TestDefault", false, "@(((IResponse)context.Response).Headers.GetValueOrDefault(\"testingParam\", \"TestDefault\"))")]
-        [InlineData("testingParam", "TestDefault", true, "((IResponse)context.Response).Headers.GetValueOrDefault(\"testingParam\", \"TestDefault\")")]
-        [InlineData("testingParam", null, true, "((IResponse)context.Response).Headers.GetValueOrDefault(\"testingParam\")")]
-        public void GetHeaderParamGeneratesCorrectPolicy(string paramName, string defaultValue, bool inline, string expected)
+        [InlineData("context.Response.StatusReason")]
+        public void GetStatusReasonGeneratesCorrectPolicy(string expected)
         {
-            var policy = ContextResponse.GetHeaderParam(paramName, defaultValue, inline);
+            var policy = ContextProvider.Context.Response.StatusReason;
+            policy.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("testingParam", "TestDefault", @"context.Response.Headers.GetValueOrDefault(""testingParam"", ""TestDefault"")")]
+        [InlineData("testingParam", null, @"context.Response.Headers.GetValueOrDefault(""testingParam"")")]
+        public void GetHeaderParamGeneratesCorrectPolicy(string paramName, string defaultValue, string expected)
+        {
+            var policy = ContextProvider.Context.Response.Headers.GetValueOrDefault(paramName, defaultValue).ToString();
             policy.Should().Be(expected);
         }
     }
